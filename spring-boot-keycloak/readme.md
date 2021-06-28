@@ -27,7 +27,7 @@ $ git clone https://github.com/larmic/spring-boot-keycloak
 
 ### Keycloak
 
-Check the [Keycloak setup](keycloak/README.md) to start a Keycloak service
+Check the [Keycloak setup](keycloak/readme.md) to start a Keycloak service
 
 After installing Keycloak and register service clients, roles and users you can start Keycloak and retrieve an `access token`.
 

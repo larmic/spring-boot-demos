@@ -6,7 +6,7 @@ Simple example using keycloak and bind two spring boot services with rest api.
 
 ## Used technologies
 
-* Spring Boot 2.4.7 (2.5.x is [broken with Keycloak](https://github.com/spring-projects/spring-security/issues/9787))
+* Spring Boot 2.5.2
 * Java 11
 * Keycloak 13.0.1
 * Postgres 13.3 (Keycloak database)
@@ -46,15 +46,15 @@ $ curl -X POST 'http://localhost:8085/auth/realms/spring-boot-services/protocol/
 #### Build services
 
 ```sh 
-$ mvn -f spring-boot-service-1/pom.xml clean package
-$ mvn -f spring-boot-service-2/pom.xml clean package
+$ mvn -f spring-boot-keycloak-service-1/pom.xml clean package
+$ mvn -f spring-boot-keycloak-service-2/pom.xml clean package
 ```
 
 #### Start services
 
 ```sh 
-$ mvn -f spring-boot-service-1/pom.xml spring-boot:run
-$ mvn -f spring-boot-service-2/pom.xml spring-boot:run
+$ mvn -f spring-boot-keycloak-service-1/pom.xml spring-boot:run
+$ mvn -f spring-boot-keycloak-service-2/pom.xml spring-boot:run
 ```
 
 ### Test services

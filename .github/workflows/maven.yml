@@ -90,3 +90,37 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - run: mvn -f spring-boot-elasticsearch clean verify
+
+  keycloak-service-1:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [ 11, 12, 13 ]
+
+    name: Java ${{ matrix.java }} compile
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup java ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - run: mvn -f spring-boot-keycloak/spring-boot-service-1 clean verify
+
+  keycloak-service-2:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [ 11, 12, 13 ]
+
+    name: Java ${{ matrix.java }} compile
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup java ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - run: mvn -f spring-boot-keycloak/spring-boot-service-2 clean verify

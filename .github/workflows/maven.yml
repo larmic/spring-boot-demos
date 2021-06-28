@@ -106,7 +106,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-      - run: mvn -f spring-boot-keycloak/spring-boot-service-1 clean verify
+      - run: mvn -f spring-boot-keycloak/spring-boot-keycloak-service-1 clean verify
 
   keycloak-service-2:
     runs-on: ubuntu-latest
@@ -123,4 +123,4 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-      - run: mvn -f spring-boot-keycloak/spring-boot-service-2 clean verify
+      - run: mvn -f spring-boot-keycloak/spring-boot-keycloak-service-2 clean verify

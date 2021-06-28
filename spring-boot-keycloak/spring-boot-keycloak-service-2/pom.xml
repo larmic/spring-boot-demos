@@ -10,25 +10,17 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.larmic.keycloak</groupId>
-	<artifactId>spring-boot-service-1</artifactId>
+	<artifactId>spring-boot-keycloak-service-2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-    <name>spring-boot-service-1</name>
+    <name>spring-boot-keycloak-service-2</name>
 	<description>Demo project for Spring Boot</description>
 
-	<properties><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <maven.min.version>3.2.1</maven.min.version>
+	<properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
 
 		<java.version>11</java.version>
-
-        <!-- testing -->
-        <junit-jupiter.version>5.7.2</junit-jupiter.version>
-        <testcontainers.version>1.15.3</testcontainers.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 	</properties>
 
     <dependencies>
@@ -53,21 +45,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-            <!--Replace junit5 by a never version -->
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>junit-jupiter</artifactId>
-                </exclusion>
-            </exclusions>
 		</dependency>
-        <!-- Provide JUnit 5 API -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit-jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
 	</dependencies>
 
     <dependencyManagement>
@@ -96,24 +74,6 @@
                     <source>11</source>
                     <target>11</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>${maven-surefire-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
 	</build>

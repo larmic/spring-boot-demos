@@ -28,7 +28,7 @@
         <java.version>11</java.version>
         <kotlin.version>1.5.21</kotlin.version>
 
-        <elasticsearch.version>7.10.1</elasticsearch.version>
+        <elasticsearch.version>7.14.0</elasticsearch.version>
         <jackson-module-kotlin.version>2.12.0</jackson-module-kotlin.version>
 
         <!-- testing -->

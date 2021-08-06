@@ -8,7 +8,7 @@ This demo is build on [larmic/spring-boot-rest-services](https://github.com/larm
 
 * Spring Boot 2.5.1
 * Postgresql 13.3  
-* Testcontainers 1.15.3
+* Testcontainers 1.16.0
 * JUnit 5.7.2
 
 ## Requirements

@@ -33,7 +33,7 @@
 
         <!-- testing -->
         <junit-jupiter.version>5.7.2</junit-jupiter.version>
-        <testcontainers.version>1.15.3</testcontainers.version>
+        <testcontainers.version>1.16.0</testcontainers.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     </properties>
 

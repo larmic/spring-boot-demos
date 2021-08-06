@@ -8,7 +8,7 @@ Simple example using keycloak and bind two spring boot services with rest api.
 
 * Spring Boot 2.5.3
 * Java 11
-* Keycloak 13.0.1
+* Keycloak 15.0.0
 * Postgres 13.3 (Keycloak database)
 
 ## Requirements

@@ -7,7 +7,7 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @EnableConfigurationProperties(value = [RabbitProperties::class])
-open class SpringBootRabbitMQApplication
+class SpringBootRabbitMQApplication
 
 fun main(args: Array<String>) {
     runApplication<SpringBootRabbitMQApplication>(*args)

@@ -1,4 +1,4 @@
-package de.larmic.testcontainers
+package de.larmic.rabbitmq
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

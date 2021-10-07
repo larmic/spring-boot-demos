@@ -1,7 +1,7 @@
-package de.larmic.testcontainers
+package de.larmic.rabbitmq
 
-import de.larmic.testcontainers.elasticsearch.TweetRepository
-import de.larmic.testcontainers.rest.Tweet
+import de.larmic.rabbitmq.elasticsearch.TweetRepository
+import de.larmic.rabbitmq.rest.Tweet
 import de.larmic.testing.ElasticsearchContextInitializer
 import de.larmic.testing.createIndex
 import de.larmic.testing.deleteIndexIfExists

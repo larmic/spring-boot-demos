@@ -1,6 +1,6 @@
-package de.larmic.testcontainers.elasticsearch
+package de.larmic.rabbitmq.elasticsearch
 
-import de.larmic.testcontainers.elasticsearch.TweetDocument.Companion.documentIndex
+import de.larmic.rabbitmq.elasticsearch.TweetDocument.Companion.documentIndex
 import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.client.indices.CreateIndexRequest

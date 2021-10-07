@@ -1,6 +1,6 @@
-package de.larmic.testcontainers.rest
+package de.larmic.rabbitmq.rest
 
-import de.larmic.testcontainers.elasticsearch.TweetRepository
+import de.larmic.rabbitmq.elasticsearch.TweetRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

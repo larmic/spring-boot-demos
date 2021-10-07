@@ -1,0 +1,13 @@
+version: '3'
+
+volumes:
+    postgres_data:
+        driver: local
+
+services:
+    rabbit:
+        image: rabbitmq:3-management
+        container_name: larmic-spring-boot-rabbit-container
+        ports:
+            - "15672:15672"
+            - "5672:5672"

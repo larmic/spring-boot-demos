@@ -21,8 +21,8 @@ Simple example demonstrating how testcontainers, Elasticsearch and JUnit 5 can p
 Integration test ```TweetControllerIT``` will be started in maven phase ```verify```.
 
 ```ssh
-$ git clone https://github.com/larmic/testcontainers-junit5
-$ mvn clean verify
+$ git clone https://github.com/larmic/spring-boot-demos
+$ mvn clean verify -f spring-boot-elasticsearch
 ```
 
 ##### Local testing

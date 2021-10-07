@@ -8,6 +8,9 @@ services:
     rabbit:
         image: rabbitmq:3-management
         container_name: larmic-spring-boot-rabbit-container
+        environment:
+            RABBITMQ_DEFAULT_USER: LARMIC_LOCAL_RABBIT_USER
+            RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
         ports:
             - "15672:15672"
             - "5672:5672"

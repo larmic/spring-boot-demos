@@ -13,3 +13,4 @@ Demo | Language | Content
 [postgres](spring-boot-postgres/readme.md) | `java` | Using spring boot and postgresql and use testcontainers for testing
 [elasticsearch](spring-boot-elasticsearch/readme.md) | `kotlin` | Using spring boot and elasticsearch and use testcontainers for testing
 [keycloak](spring-boot-keycloak/readme.md) | `java` | Using spring boot and keycloak in one docker-compose
+[rabbit mq](spring-boot-rabbitmq/readme.md) | `kotlin` | Using spring boot and rabbit mq and use testcontainers for testing

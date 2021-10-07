@@ -12,7 +12,7 @@ class RabbitReceiver {
 
     @RabbitListener(queues = ["\${larmic.amqp.queue-name}"])
     fun receiveMessage(message: Message) {
-        log.info("[RABBIT] Received message $message''")
+        log.info("[RABBIT] Received message ${String(message.body)}''")
     }
 
 }

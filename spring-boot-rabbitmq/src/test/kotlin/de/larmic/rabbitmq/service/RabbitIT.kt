@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
+import java.util.*
 
 @SpringBootTest
 @ActiveProfiles("it")
@@ -17,7 +18,7 @@ class RabbitIT {
 
     @Test
     fun `send message`() {
-        rabbitSender.sendSimpleMessage("demo message")
+        rabbitSender.sendSimpleMessage(messageId = UUID.randomUUID(), text = "demo message")
     }
 
 }

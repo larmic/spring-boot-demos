@@ -1,4 +1,4 @@
-package de.larmic.rabbitmq.ampq
+package de.larmic.rabbitmq.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
@@ -7,9 +7,4 @@ import org.springframework.validation.annotation.Validated
 @ConstructorBinding
 @ConfigurationProperties("larmic.amqp")
 @Validated
-class RabbitProperties(val exchangeName: String, val inbound: Inbound, val outbound: Outbound) {
-
-    data class Inbound(val queueName: String, val routingKey: String)
-    data class Outbound(val routingKey: String)
-
-}
+class RabbitProperties(val exchangeName: String, val queueName: String, val routingKey: String)

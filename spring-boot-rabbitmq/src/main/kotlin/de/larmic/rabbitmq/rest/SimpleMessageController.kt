@@ -1,6 +1,6 @@
 package de.larmic.rabbitmq.rest
 
-import de.larmic.rabbitmq.ampq.RabbitProperties
+import de.larmic.rabbitmq.properties.RabbitProperties
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -14,9 +14,9 @@ class SimpleMessageController(private val rabbitProperties: RabbitProperties) {
     @PostMapping("/")
     fun tweet(@RequestBody message: String) {
         log.info("rabbitProperties.exchangeName '${rabbitProperties.exchangeName}'")
-        log.info("rabbitProperties.inbound.queueName '${rabbitProperties.inbound.queueName}'")
-        log.info("rabbitProperties.inbound.routingKey '${rabbitProperties.inbound.routingKey}'")
-        log.info("rabbitProperties.outbound.routingKey '${rabbitProperties.outbound.routingKey}'")
+        log.info("rabbitProperties.inbound.queueName '${rabbitProperties.queueName}'")
+        log.info("rabbitProperties.inbound.routingKey '${rabbitProperties.routingKey}'")
+        log.info("rabbitProperties.outbound.routingKey '${rabbitProperties.routingKey}'")
         log.info("[REST] Message '$message' received")
     }
 

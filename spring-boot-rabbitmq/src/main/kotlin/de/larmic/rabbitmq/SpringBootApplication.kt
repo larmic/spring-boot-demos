@@ -1,6 +1,6 @@
 package de.larmic.rabbitmq
 
-import de.larmic.rabbitmq.ampq.RabbitProperties
+import de.larmic.rabbitmq.properties.RabbitProperties
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication

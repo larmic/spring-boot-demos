@@ -1,5 +1,6 @@
-package de.larmic.rabbitmq.ampq
+package de.larmic.rabbitmq.service
 
+import de.larmic.rabbitmq.properties.RabbitProperties
 import org.slf4j.LoggerFactory
 import org.springframework.amqp.core.Message
 import org.springframework.amqp.rabbit.core.RabbitTemplate
@@ -16,7 +17,7 @@ class RabbitSender(
     fun sendSimpleMessage(message: String) {
         log.info("[RABBIT] Send message $message''")
 
-        rabbitTemplate.send(rabbitProperties.exchangeName, rabbitProperties.inbound.routingKey, Message(message.toByteArray()))
+        rabbitTemplate.send(rabbitProperties.exchangeName, rabbitProperties.routingKey, Message(message.toByteArray()))
     }
 
 }

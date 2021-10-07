@@ -20,7 +20,8 @@ class RabbitSender(
         log.info("[RABBIT] Send message $text''")
 
         rabbitTemplate.convertAndSend(rabbitProperties.exchangeName, rabbitProperties.routingKey, text.toJsonRabbitMessage()) {
-            it.messageProperties.headers["message-id"] = messageId.toString()
+            it.messageProperties.headers["custom-header"] = "hi there!"
+            it.messageProperties.messageId = messageId.toString()
             it.messageProperties.contentType = MessageProperties.CONTENT_TYPE_JSON
             it.messageProperties.contentEncoding = "UTF-8"
             it

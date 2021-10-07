@@ -33,6 +33,7 @@
         <!-- testing -->
         <junit-jupiter.version>5.8.1</junit-jupiter.version>
         <testcontainers.version>1.16.0</testcontainers.version>
+        <kotlinx-coroutines-core.version>1.5.2</kotlinx-coroutines-core.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     </properties>
 
@@ -81,6 +82,14 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- required to wait for asynchronous rabbit message  -->
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core</artifactId>
+            <version>${kotlinx-coroutines-core.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

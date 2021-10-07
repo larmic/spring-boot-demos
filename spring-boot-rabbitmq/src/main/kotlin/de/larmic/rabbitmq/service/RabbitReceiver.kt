@@ -10,9 +10,15 @@ class RabbitReceiver {
 
     private val log = LoggerFactory.getLogger(this::class.java)
 
+    /**
+     * This is for testing.
+     */
+    var lastMessage: Message? = null
+
     @RabbitListener(queues = ["\${larmic.amqp.queue-name}"])
     fun receiveMessage(message: Message) {
         log.info("[RABBIT] Received message ${String(message.body)}''")
+        this.lastMessage = message
     }
 
 }

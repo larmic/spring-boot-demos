@@ -16,7 +16,7 @@ class RabbitSender(
     fun sendSimpleMessage(message: String) {
         log.info("[RABBIT] Send message $message''")
 
-        rabbitTemplate.send(rabbitProperties.exchangeName, rabbitProperties.outbound.routingKey, Message(message.toByteArray()))
+        rabbitTemplate.send(rabbitProperties.exchangeName, rabbitProperties.inbound.routingKey, Message(message.toByteArray()))
     }
 
 }

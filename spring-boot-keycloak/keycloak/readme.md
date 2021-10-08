@@ -50,11 +50,5 @@ After that you can validate your `access_token` on [jwt.io](https://jwt.io/).
 Stop Keycloak service by
 
 ```sh 
-$ docker compose down
-```
-
-The volume will continue to exist and consume disk space. To clean this up, the following is necessary:
-
-```sh 
-$ docker volume rm keycloak_postgres_data
+$ docker compose down --volumes
 ```

@@ -1,7 +1,42 @@
 version: 2
 updates:
     - package-ecosystem: maven
-      directory: "/*/"
+      directory: "/spring-boot-elasticsearch"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-in-docker"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-keycloak/spring-boot-keycloak-service-1"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-keycloak/spring-boot-keycloak-service-2"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-postgres"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-properties"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-rabbitmq"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-rest-services"
       schedule:
           interval: daily
           time: "04:00"

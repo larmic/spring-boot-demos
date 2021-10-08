@@ -72,7 +72,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-      - run: mvn -f spring-boot-postgres clean verify
+      - run: mvn -B -f spring-boot-postgres clean verify
 
   elasticsearch:
     runs-on: ubuntu-latest
@@ -89,7 +89,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-      - run: mvn -f spring-boot-elasticsearch clean verify
+      - run: mvn -B -f spring-boot-elasticsearch clean verify
 
   rabbitmq:
     runs-on: ubuntu-latest
@@ -106,7 +106,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-      - run: mvn -f spring-boot-rabbitmq clean verify
+      - run: mvn -B -f spring-boot-rabbitmq clean verify
 
   keycloak-service-1:
     runs-on: ubuntu-latest
@@ -123,7 +123,7 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-      - run: mvn -f spring-boot-keycloak/spring-boot-keycloak-service-1 clean verify
+      - run: mvn -B -f spring-boot-keycloak/spring-boot-keycloak-service-1 clean verify
 
   keycloak-service-2:
     runs-on: ubuntu-latest
@@ -140,4 +140,4 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: ${{ matrix.java }}
-      - run: mvn -f spring-boot-keycloak/spring-boot-keycloak-service-2 clean verify
+      - run: mvn -B -f spring-boot-keycloak/spring-boot-keycloak-service-2 clean verify

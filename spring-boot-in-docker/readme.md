@@ -5,8 +5,8 @@ using [spotify dockerfile-maven-plugin](https://github.com/spotify/dockerfile-ma
 
 ## Used technologies
 
-* Spring Boot 2.5.1
-* spotify/dockerfile-maven plugin 1.4.13
+* Spring Boot >= 2.5.4
+* spotify/dockerfile-maven plugin >= 1.4.13
 
 ## Requirements
 

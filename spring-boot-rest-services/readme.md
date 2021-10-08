@@ -4,8 +4,8 @@ Simple example demonstrating how Spring Boot, REST-API, mockmvc and JUnit 5 can 
 
 ## Used technologies
 
-* Spring Boot 2.5.1
-* JUnit 5.8.0
+* Spring Boot >= 2.5.4
+* JUnit >= 5.8.0
 
 ## Requirements
 

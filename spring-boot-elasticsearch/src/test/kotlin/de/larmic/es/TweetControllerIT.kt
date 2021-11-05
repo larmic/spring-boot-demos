@@ -1,4 +1,4 @@
-package de.larmic.rabbitmq
+package de.larmic.es
 
 import de.larmic.es.elasticsearch.TweetRepository
 import de.larmic.es.rest.Tweet

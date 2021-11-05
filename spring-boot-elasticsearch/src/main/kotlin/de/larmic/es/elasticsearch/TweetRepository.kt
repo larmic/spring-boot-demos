@@ -1,10 +1,10 @@
-package de.larmic.rabbitmq.elasticsearch
+package de.larmic.es.elasticsearch
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import de.larmic.rabbitmq.elasticsearch.TweetDocument.Companion.documentIndex
-import de.larmic.rabbitmq.rest.Tweet
+import de.larmic.es.elasticsearch.TweetDocument.Companion.documentIndex
+import de.larmic.es.rest.Tweet
 import org.elasticsearch.action.delete.DeleteRequest
 import org.elasticsearch.action.get.GetRequest
 import org.elasticsearch.action.index.IndexRequest

@@ -1,6 +1,6 @@
 package de.larmic.testing
 
-import de.larmic.rabbitmq.elasticsearch.TweetDocument
+import de.larmic.es.elasticsearch.TweetDocument
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest
 import org.elasticsearch.action.admin.indices.refresh.RefreshRequest
 import org.elasticsearch.client.RequestOptions

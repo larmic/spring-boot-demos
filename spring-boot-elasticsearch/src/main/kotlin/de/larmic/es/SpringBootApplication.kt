@@ -1,4 +1,4 @@
-package de.larmic.rabbitmq
+package de.larmic.es
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

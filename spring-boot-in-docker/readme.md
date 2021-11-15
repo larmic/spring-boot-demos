@@ -18,14 +18,14 @@ using [spotify dockerfile-maven-plugin](https://github.com/spotify/dockerfile-ma
 
 Maven package phase will be create docker image.
 
-```ssh
+```sh
 $ https://github.com/larmic/spring-boot-rest-services
 $ mvn clean package
 ```
 
 ##### Local testing
 
-```ssh
+```sh
 # start application
 $ docker run --rm -p 8080:8080 larmic/spring-boot-in-docker
 

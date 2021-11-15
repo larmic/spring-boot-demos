@@ -20,14 +20,14 @@ Simple example demonstrating how testcontainers, Elasticsearch and JUnit 5 can p
 
 Integration test ```TweetControllerIT``` will be started in maven phase ```verify```.
 
-```ssh
+```sh
 $ git clone https://github.com/larmic/spring-boot-demos
 $ mvn clean verify -f spring-boot-elasticsearch
 ```
 
 ##### Local testing
 
-```ssh
+```sh
 # start local elasticsearch
 $ docker run -d -p 9200:9200 -p 9300:9300 --name testcontainers-junit5-demo -e "discovery.type=single-node" -e "xpack.security.enabled=false" -e "cluster.name=elasticsearch" docker.elastic.co/elasticsearch/elasticsearch-oss:7.14.0
 

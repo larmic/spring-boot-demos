@@ -16,14 +16,14 @@ Simple example demonstrating how Spring Boot, REST-API, mockmvc and JUnit 5 can 
 
 Test ```TweetControllerTest``` will be started in maven phase ```package```.
 
-```ssh
+```sh
 $ git clone https://github.com/larmic/spring-boot-rest-services
 $ mvn clean package
 ```
 
 ##### Local testing
 
-```ssh
+```sh
 # start application
 $ mvn spring-boot:run
 

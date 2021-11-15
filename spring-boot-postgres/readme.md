@@ -21,14 +21,14 @@ This demo is build on [larmic/spring-boot-rest-services](https://github.com/larm
 
 Integrations test ```TweetRepositoryIT``` will be started in maven phase ```verify```.
 
-```ssh
+```sh
 $ https://github.com/larmic/spring-boot-postgres
 $ mvn clean verify
 ```
 
 ##### Local testing
 
-```ssh
+```sh
 # start postgresql
 $ docker compose -f misc/postgresql/docker-compose.yml up
 

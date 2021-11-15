@@ -23,14 +23,14 @@ Message will be received by [RabbitReceiver.kt](src/main/kotlin/de/larmic/rabbit
 
 Integration test ```RabbitIT``` will be started in maven phase ```verify```.
 
-```ssh
+```sh
 $ git clone https://github.com/larmic/spring-boot-demos
 $ mvn clean verify -f spring-boot-rabbitmq
 ```
 
 ##### Local testing
 
-```ssh
+```sh
 # start local rabbit
 $ docker compose -f misc/rabbitmq/docker-compose.yml up -d
 

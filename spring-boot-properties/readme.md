@@ -14,14 +14,14 @@ Simple example demonstrating how Spring Boot and properties can play together.
 
 ##### Clone repository and build project
 
-```ssh
+```sh
 $ git clone https://github.com/larmic/spring-boot-properties
 $ mvn clean package
 ```
 
 ##### Local testing
 
-```ssh
+```sh
 # default properties
 $ java -jar target/spring-boot*.jar
 

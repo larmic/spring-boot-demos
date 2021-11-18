@@ -24,7 +24,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <java.version>11</java.version>
 
-        <flyway-core.version>8.0.4</flyway-core.version>
+        <flyway-core.version>8.0.5</flyway-core.version>
 
         <!-- testing -->
         <junit-jupiter.version>5.8.1</junit-jupiter.version>

@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 12, 13 ]
+        java: [ 11, 17 ]
 
     name: Java ${{ matrix.java }} compile
 
@@ -28,7 +28,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 12, 13 ]
+        java: [ 11, 17 ]
 
     name: Java ${{ matrix.java }} compile
 
@@ -62,7 +62,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 12, 13 ]
+        java: [ 11, 17 ]
 
     name: Java ${{ matrix.java }} compile
 
@@ -79,7 +79,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 12, 13 ]
+        java: [ 11, 17 ]
 
     name: Java ${{ matrix.java }} compile
 
@@ -96,7 +96,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 12, 13 ]
+        java: [ 11, 17 ]
 
     name: Java ${{ matrix.java }} compile
 
@@ -113,7 +113,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 12, 13 ]
+        java: [ 11, 17 ]
 
     name: Java ${{ matrix.java }} compile
 
@@ -130,7 +130,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 12, 13 ]
+        java: [ 11, 17 ]
 
     name: Java ${{ matrix.java }} compile
 

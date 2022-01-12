@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <maven.min.version>3.2.1</maven.min.version>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <kotlin.version>1.6.10</kotlin.version>
 
         <elasticsearch.version>7.14.0</elasticsearch.version>

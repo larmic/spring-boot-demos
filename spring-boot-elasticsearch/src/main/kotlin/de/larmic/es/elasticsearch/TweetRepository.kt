@@ -3,6 +3,7 @@ package de.larmic.es.elasticsearch
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import de.larmic.es.elasticsearch.TweetDocument.Companion.documentIndex
 import de.larmic.es.rest.Tweet
 import org.elasticsearch.action.delete.DeleteRequest
@@ -21,7 +22,7 @@ import java.util.*
 @Service
 class TweetRepository(private val restHighLevelClient: RestHighLevelClient) {
 
-    private val mapper = ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).registerModule(KotlinModule())
+    private val mapper = ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).registerKotlinModule()
 
     fun storeTweet(tweet: String): String {
         val document = TweetDocument(tweet)

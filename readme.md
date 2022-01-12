@@ -13,4 +13,4 @@ Multiple spring boot samples written in Java or Kotlin.
 | [postgres](spring-boot-postgres/readme.md)           | `java11`           | Using spring boot and postgresql and use testcontainers for testing    |
 | [elasticsearch](spring-boot-elasticsearch/readme.md) | `kotlin on java17` | Using spring boot and elasticsearch and use testcontainers for testing |
 | [keycloak](spring-boot-keycloak/readme.md)           | `java11`           | Using spring boot and keycloak in one docker-compose                   |
-| [rabbit mq](spring-boot-rabbitmq/readme.md)          | `kotlin on java11` | Using spring boot and rabbit mq and use testcontainers for testing     |
+| [rabbit mq](spring-boot-rabbitmq/readme.md)          | `kotlin on java17` | Using spring boot and rabbit mq and use testcontainers for testing     |

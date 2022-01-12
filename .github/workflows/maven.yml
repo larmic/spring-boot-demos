@@ -113,7 +113,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 17 ]
+        java: [ 17 ]
 
     name: Java ${{ matrix.java }} compile
 
@@ -130,7 +130,7 @@ jobs:
 
     strategy:
       matrix:
-        java: [ 11, 17 ]
+        java: [ 17 ]
 
     name: Java ${{ matrix.java }} compile
 

@@ -20,12 +20,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <maven.min.version>3.2.1</maven.min.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
 		<java.version>11</java.version>
 
         <!-- testing -->
-        <junit-jupiter.version>5.8.1</junit-jupiter.version>
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 	</properties>
 
@@ -66,15 +64,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>

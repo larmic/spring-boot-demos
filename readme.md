@@ -8,7 +8,7 @@ Multiple spring boot samples written in Java or Kotlin.
 | Demo                                                 | Language           | Content                                                                |
 |------------------------------------------------------|--------------------|------------------------------------------------------------------------|
 | [properties](spring-boot-properties/readme.md)       | `java11`           | Override spring boot properties                                        |
-| [rest service](spring-boot-rest-services/readme.md)  | `java11`           | Implementing rest services and using mockmvc                           |
+| [rest service](spring-boot-rest-services/readme.md)  | `java17`           | Implementing rest services and using mockmvc                           |
 | [docker](spring-boot-in-docker/readme.md)            | `java11`           | Package spring boot application in docker using maven                  |
 | [postgres](spring-boot-postgres/readme.md)           | `java11`           | Using spring boot and postgresql and use testcontainers for testing    |
 | [elasticsearch](spring-boot-elasticsearch/readme.md) | `kotlin on java17` | Using spring boot and elasticsearch and use testcontainers for testing |

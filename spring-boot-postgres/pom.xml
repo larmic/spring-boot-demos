@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.0</version>
+        <version>2.6.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.larmic.postgres</groupId>
@@ -22,7 +22,7 @@
         <maven.min.version>3.2.1</maven.min.version>
         <java.version>11</java.version>
 
-        <flyway-core.version>8.4.0</flyway-core.version>
+        <flyway-core.version>8.4.1</flyway-core.version>
 
         <!-- testing -->
         <junit-jupiter.version>5.8.2</junit-jupiter.version>

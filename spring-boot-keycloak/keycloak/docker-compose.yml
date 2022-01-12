@@ -14,7 +14,7 @@ services:
             POSTGRES_USER: db-keycloak-user
             POSTGRES_PASSWORD: db-keycloak-pw
     keycloak:
-        image: jboss/keycloak:15.0.0
+        image: jboss/keycloak:16.1.0
         volumes:
             - ./imports:/opt/jboss/keycloak/imports
         environment:
@@ -28,6 +28,6 @@ services:
             KEYCLOAK_PASSWORD: admin
             KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json
         ports:
-            - 8085:8080
+            - "8085:8080"
         depends_on:
             - postgres

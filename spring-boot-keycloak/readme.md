@@ -6,14 +6,13 @@ Simple example using keycloak and bind two spring boot services with rest api.
 
 ## Used technologies
 
-* Spring Boot >= 2.5.4
-* Java 11
-* Keycloak >= 15.0.0
+* Spring Boot >= 2.6.2
+* Keycloak >= 16.0.0
 * Postgres >= 13.3 (Keycloak database)
 
 ## Requirements
 
-* Java 11
+* Java 17
 * Maven >= 3.2.1
 * Docker >= 3.0 (to run Keycloak)
 

@@ -4,12 +4,12 @@ Simple example demonstrating how Spring Boot and properties can play together.
 
 ## Used technologies
 
-* Spring Boot >= 2.5.4
+* Spring Boot >= 2.6.2
 * JUnit >= 5.8.0
 
 ## Requirements
 
-* Java 11
+* Java 17
 * Maven >= 3.2.1 
 
 ##### Clone repository and build project

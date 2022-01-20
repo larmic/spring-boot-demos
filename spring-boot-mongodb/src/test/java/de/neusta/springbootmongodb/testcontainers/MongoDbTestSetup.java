@@ -1,6 +1,6 @@
 package de.neusta.springbootmongodb.testcontainers;
 
-import de.neusta.springbootmongodb.database.EventRepository;
+import de.neusta.springbootmongodb.database.TweetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,10 +13,10 @@ import org.testcontainers.utility.DockerImageName;
 public class MongoDbTestSetup {
 
     @Autowired
-    private EventRepository eventRepository;
+    private TweetRepository tweetRepository;
 
     private static final MongoDBContainer mongoDBContainer =
-            new MongoDBContainer(DockerImageName.parse("mongo:4.0.10"));
+            new MongoDBContainer(DockerImageName.parse("mongo:latest"));
 
     @DynamicPropertySource
     static void mongoDbProperties(DynamicPropertyRegistry registry) {
@@ -26,6 +26,6 @@ public class MongoDbTestSetup {
 
     @BeforeEach
     void tidyUp() {
-        eventRepository.deleteAll();
+        tweetRepository.deleteAll();
     }
 }

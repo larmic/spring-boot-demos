@@ -1,8 +1,8 @@
-package de.neusta.springbootmongodb.rest;
+package de.larmic.springbootmongodb.rest;
 
-import de.neusta.springbootmongodb.database.TweetRepository;
-import de.neusta.springbootmongodb.database.model.TweetEntity;
-import de.neusta.springbootmongodb.rest.dto.TweetDto;
+import de.larmic.springbootmongodb.database.TweetRepository;
+import de.larmic.springbootmongodb.database.model.TweetEntity;
+import de.larmic.springbootmongodb.rest.dto.TweetDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

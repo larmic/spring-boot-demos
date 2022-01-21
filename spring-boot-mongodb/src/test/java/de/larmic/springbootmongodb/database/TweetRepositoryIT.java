@@ -1,7 +1,7 @@
-package de.neusta.springbootmongodb.database;
+package de.larmic.springbootmongodb.database;
 
-import de.neusta.springbootmongodb.database.model.TweetEntity;
-import de.neusta.springbootmongodb.testcontainers.MongoDbTestSetup;
+import de.larmic.springbootmongodb.database.model.TweetEntity;
+import de.larmic.springbootmongodb.testcontainers.MongoDbTestSetup;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

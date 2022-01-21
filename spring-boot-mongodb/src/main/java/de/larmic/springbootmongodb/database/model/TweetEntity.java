@@ -1,4 +1,4 @@
-package de.neusta.springbootmongodb.database.model;
+package de.larmic.springbootmongodb.database.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

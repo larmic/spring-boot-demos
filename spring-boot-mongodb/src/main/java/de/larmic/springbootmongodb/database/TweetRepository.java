@@ -1,6 +1,6 @@
-package de.neusta.springbootmongodb.database;
+package de.larmic.springbootmongodb.database;
 
-import de.neusta.springbootmongodb.database.model.TweetEntity;
+import de.larmic.springbootmongodb.database.model.TweetEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

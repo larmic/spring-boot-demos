@@ -1,6 +1,6 @@
-package de.neusta.springbootmongodb.testcontainers;
+package de.larmic.springbootmongodb.testcontainers;
 
-import de.neusta.springbootmongodb.database.TweetRepository;
+import de.larmic.springbootmongodb.database.TweetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +16,7 @@ public class MongoDbTestSetup {
     private TweetRepository tweetRepository;
 
     private static final MongoDBContainer mongoDBContainer =
-            new MongoDBContainer(DockerImageName.parse("mongo:latest"));
+            new MongoDBContainer(DockerImageName.parse("mongo:5.0.5"));
 
     @DynamicPropertySource
     static void mongoDbProperties(DynamicPropertyRegistry registry) {

@@ -1,11 +1,11 @@
-package de.neusta.springbootmongodb.endtoend;
+package de.larmic.springbootmongodb.endtoend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.neusta.springbootmongodb.database.TweetRepository;
-import de.neusta.springbootmongodb.database.model.TweetEntity;
-import de.neusta.springbootmongodb.rest.dto.TweetDto;
-import de.neusta.springbootmongodb.testcontainers.MongoDbTestSetup;
+import de.larmic.springbootmongodb.database.TweetRepository;
+import de.larmic.springbootmongodb.rest.dto.TweetDto;
+import de.larmic.springbootmongodb.testcontainers.MongoDbTestSetup;
+import de.larmic.springbootmongodb.database.model.TweetEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

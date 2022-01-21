@@ -1,4 +1,4 @@
-package de.neusta.springbootmongodb.rest.dto;
+package de.larmic.springbootmongodb.rest.dto;
 
 import lombok.*;
 

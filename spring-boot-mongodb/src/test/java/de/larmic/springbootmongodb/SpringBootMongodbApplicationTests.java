@@ -1,4 +1,4 @@
-package de.neusta.springbootmongodb;
+package de.larmic.springbootmongodb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

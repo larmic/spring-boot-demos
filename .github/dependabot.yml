@@ -26,6 +26,11 @@ updates:
           interval: daily
           time: "04:00"
     - package-ecosystem: maven
+      directory: "/spring-boot-mongodb"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
       directory: "/spring-boot-properties"
       schedule:
           interval: daily

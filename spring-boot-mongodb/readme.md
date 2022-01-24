@@ -28,7 +28,7 @@ $ mvn clean verify
 
 ```sh
 # start postgresql
-$ docker compose -f spring-boot-mongodb/docker-compose.yaml up
+$ docker compose -f etc/mongodb/docker-compose.yaml up
 
 # start spring boot application
 $ mvn spring-boot:run

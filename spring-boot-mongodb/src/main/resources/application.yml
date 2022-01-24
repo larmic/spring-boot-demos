@@ -1,0 +1,6 @@
+server:
+  port: 9000
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:rootpassword@localhost:27017/db?authSource=admin

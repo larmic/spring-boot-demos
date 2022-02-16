@@ -11,6 +11,11 @@ updates:
           interval: daily
           time: "04:00"
     - package-ecosystem: maven
+      directory: "/spring-boot-in-docker/spring-boot-in-docker-using-dockerfile"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
       directory: "/spring-boot-keycloak/spring-boot-keycloak-service-1"
       schedule:
           interval: daily

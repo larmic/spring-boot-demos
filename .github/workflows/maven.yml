@@ -7,13 +7,12 @@ on: [ push, pull_request ]
 
 jobs:
     properties:
+        name: Build spring boot using properties with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 java: [ 17 ]
-
-        name: Java ${{ matrix.java }} compile
 
         steps:
             -   uses: actions/checkout@v1
@@ -24,13 +23,12 @@ jobs:
             -   run: mvn -f spring-boot-properties clean verify
 
     rest-services:
+        name: Build spring boot provide rest services with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 java: [ 17 ]
-
-        name: Java ${{ matrix.java }} compile
 
         steps:
             -   uses: actions/checkout@v1
@@ -40,40 +38,56 @@ jobs:
                     java-version: ${{ matrix.java }}
             -   run: mvn -f spring-boot-rest-services clean verify
 
-    // TODO see https://github.com/whelk-io/maven-settings-xml-action
-    #docker-using-maven-plugin:
-    #    runs-on: ubuntu-latest
-#
-    #    strategy:
-    #        matrix:
-    #            java: [ 17 ]
-#
-    #    name: Java ${{ matrix.java }} compile
-#
-    #    steps:
-    #        -  name: Check out code into the Go module directory
-    #           uses: actions/checkout@v2
-#
-    #        - name: Login to DockerHub
-    #          uses: docker/login-action@v1
-    #          with:
-    #              username: ${{ secrets.DOCKER_USERNAME }}
-    #              password: ${{ secrets.DOCKER_PASSWORD }}
-#
-    #        - name: Setup java ${{ matrix.java }}
-    #          uses: actions/setup-java@v1
-    #          with:
-    #              java-version: ${{ matrix.java }}
-    #        - run: mvn -f spring-boot-in-docker/spring-boot-in-docker-using-maven-plugin clean verify
+    # TODO see https://github.com/whelk-io/maven-settings-xml-action
+    #    docker-using-maven-plugin:
+    #        runs-on: ubuntu-latest
+    #
+    #        strategy:
+    #            matrix:
+    #                java: [ 17 ]
+    #
+    #        name: Java ${{ matrix.java }} compile
+    #
+    #        steps:
+    #            -  name: Check out code into the Go module directory
+    #               uses: actions/checkout@v2
+    #
+    #            - name: Login to DockerHub
+    #              uses: docker/login-action@v1
+    #              with:
+    #                  username: ${{ secrets.DOCKER_USERNAME }}
+    #                  password: ${{ secrets.DOCKER_PASSWORD }}
+    #
+    #            - name: Setup java ${{ matrix.java }}
+    #              uses: actions/setup-java@v1
+    #              with:
+    #                  java-version: ${{ matrix.java }}
+    #            - run: mvn -f spring-boot-in-docker/spring-boot-in-docker-using-maven-plugin clean verify
+
+    docker-using-dockerfile:
+        name: Build spring boot in docker using dockerfile
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Check out code into the Go module directory
+                uses: actions/checkout@v2
+
+            -   name: Login to DockerHub
+                uses: docker/login-action@v1
+                with:
+                    username: ${{ secrets.DOCKER_USERNAME }}
+                    password: ${{ secrets.DOCKER_PASSWORD }}
+
+            -   name: Build docker image
+            -   run: docker build -t larmic/spring-boot-in-docker-using-dockerfile:latest .
 
     postgres:
+        name: Build spring boot using postres with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 java: [ 17 ]
-
-        name: Java ${{ matrix.java }} compile
 
         steps:
             -   uses: actions/checkout@v1
@@ -84,13 +98,12 @@ jobs:
             -   run: mvn -B -f spring-boot-postgres clean verify
 
     mongodb:
+        name: Build spring boot using mongo with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 java: [ 17 ]
-
-        name: Java ${{ matrix.java }} compile
 
         steps:
             -   uses: actions/checkout@v1
@@ -101,13 +114,12 @@ jobs:
             -   run: mvn -B -f spring-boot-mongodb clean verify
 
     elasticsearch:
+        name: Build spring boot using elasticsearch with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 java: [ 17 ]
-
-        name: Java ${{ matrix.java }} compile
 
         steps:
             -   uses: actions/checkout@v1
@@ -118,13 +130,12 @@ jobs:
             -   run: mvn -B -f spring-boot-elasticsearch clean verify
 
     rabbitmq:
+        name: Build spring boot using rabbitmq with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 java: [ 17 ]
-
-        name: Java ${{ matrix.java }} compile
 
         steps:
             -   uses: actions/checkout@v1
@@ -135,13 +146,12 @@ jobs:
             -   run: mvn -B -f spring-boot-rabbitmq clean verify
 
     keycloak-service-1:
+        name: Build spring boot using keycloak (service 1) with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 java: [ 17 ]
-
-        name: Java ${{ matrix.java }} compile
 
         steps:
             -   uses: actions/checkout@v1
@@ -152,13 +162,12 @@ jobs:
             -   run: mvn -B -f spring-boot-keycloak/spring-boot-keycloak-service-1 clean verify
 
     keycloak-service-2:
+        name: Build spring boot using keycloak (service 2) with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
                 java: [ 17 ]
-
-        name: Java ${{ matrix.java }} compile
 
         steps:
             -   uses: actions/checkout@v1

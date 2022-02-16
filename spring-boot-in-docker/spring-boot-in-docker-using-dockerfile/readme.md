@@ -6,27 +6,26 @@ using [spotify dockerfile-maven-plugin](https://github.com/spotify/dockerfile-ma
 ## Used technologies
 
 * Spring Boot >= 2.6.2
-* spotify/dockerfile-maven plugin >= 1.4.13
 
 ## Requirements
 
 * Java 17
 * Maven >= 3.2.1 
 * Docker >= 3.0
-* 
+
 ##### Clone repository and build project
 
-Maven package phase will be create docker image.
+Dockerfile will used to create image.
 
 ```sh
-$ ./mvnw clean package
+$ docker build -t larmic/spring-boot-in-docker-using-dockerfile:latest .
 ```
 
 ##### Local testing
 
 ```sh
 # start application
-$ docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-using-maven-plugin
+$ docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-using-dockerfile
 
 # GET Hello World
 $ curl -i -H "Accept: application/json" --request GET http://localhost:8080/

@@ -79,7 +79,7 @@ jobs:
                     password: ${{ secrets.DOCKER_PASSWORD }}
 
             -   name: Build docker image
-                run: docker build -t larmic/spring-boot-in-docker-using-dockerfile:latest .
+                run: docker build -t larmic/spring-boot-in-docker-using-dockerfile:latest -f spring-boot-in-docker/spring-boot-in-docker-using-dockerfile .
 
     postgres:
         name: Build spring boot using postres with java version ${{ matrix.java }}

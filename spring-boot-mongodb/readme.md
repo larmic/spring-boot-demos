@@ -1,4 +1,4 @@
-# MockMVC testing with Spring Boot and JUnit5
+# Spring Boot and MongoDB
 
 Simple example demonstrating how Spring Boot, MongoDB, Testcontainers and JUnit 5 can play together.
 

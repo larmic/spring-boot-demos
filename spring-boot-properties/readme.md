@@ -1,4 +1,4 @@
-# MockMVC testing with Spring Boot and JUnit5
+# Spring Boot and Properties
 
 Simple example demonstrating how Spring Boot and properties can play together.
 

@@ -40,22 +40,22 @@ jobs:
           java-version: ${{ matrix.java }}
       - run: mvn -f spring-boot-rest-services clean verify
 
-# TODO enable me  docker:
-# TODO enable me    runs-on: ubuntu-latest
-# TODO enable me
-# TODO enable me    strategy:
-# TODO enable me      matrix:
-# TODO enable me        java: [ 11, 12, 13 ]
-# TODO enable me
-# TODO enable me    name: Java ${{ matrix.java }} compile
-# TODO enable me
-# TODO enable me    steps:
-# TODO enable me      - uses: actions/checkout@v1
-# TODO enable me      - name: Setup java ${{ matrix.java }}
-# TODO enable me        uses: actions/setup-java@v1
-# TODO enable me        with:
-# TODO enable me          java-version: ${{ matrix.java }}
-# TODO enable me      - run: mvn -f spring-boot-in-docker clean verify
+  docker-using-maven-plugin:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java: [ 17 ]
+
+    name: Java ${{ matrix.java }} compile
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup java ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+      - run: mvn -f spring-boot-in-docker clean verify
 
   postgres:
     runs-on: ubuntu-latest

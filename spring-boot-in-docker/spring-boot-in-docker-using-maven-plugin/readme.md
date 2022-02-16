@@ -19,8 +19,7 @@ using [spotify dockerfile-maven-plugin](https://github.com/spotify/dockerfile-ma
 Maven package phase will be create docker image.
 
 ```sh
-$ https://github.com/larmic/spring-boot-rest-services
-$ mvn clean package
+$ ./mvnw clean package
 ```
 
 ##### Local testing

@@ -1,6 +1,6 @@
 # Spring Boot as docker service
 
-There are several ways to package a spring boot application to docker file.
+There are several ways to package a spring boot application in docker.
 
 ## Spring Boot in Docker using maven plugin
 

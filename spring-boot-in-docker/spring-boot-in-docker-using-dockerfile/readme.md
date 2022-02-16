@@ -1,7 +1,9 @@
 # Spring Boot as docker service
 
 Simple example demonstrating how Spring Boot can be packaged as docker container 
-using [spotify dockerfile-maven-plugin](https://github.com/spotify/dockerfile-maven).
+using native [Dockerfile](Dockerfile).
+
+[Dockerfile](Dockerfile) is a multistage docker file and using JLink to build a custom JRE to reduce image size.
 
 ## Used technologies
 

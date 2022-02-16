@@ -14,6 +14,6 @@ and `mvn deploy`.
 
 See [spring-boot-in-docker-using-dockerfile](spring-boot-in-docker-using-dockerfile).
 
-* pure docker is used
+* pure docker is used (multistage dockerfile)
 * easy to integrate in ci pipelines
 * jlink is used to reduce docker size (154MB)

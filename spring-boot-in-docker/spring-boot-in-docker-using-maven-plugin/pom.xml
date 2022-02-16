@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.larmic.docker</groupId>
-    <artifactId>spring-boot-in-docker</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <artifactId>spring-boot-in-docker-using-maven-plugin</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
-    <name>spring-boot-in-docker</name>
+    <name>spring-boot-in-docker-using-maven-plugin</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -113,7 +113,7 @@
                 </executions>
                 <configuration>
                     <skipDockerInfo>true</skipDockerInfo>
-                    <repository>larmic/spring-boot-in-docker</repository>
+                    <repository>larmic/spring-boot-in-docker-using-maven-plugin</repository>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
                     <buildArgs>
                         <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>

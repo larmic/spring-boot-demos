@@ -27,7 +27,7 @@ $ mvn clean package
 
 ```sh
 # start application
-$ docker run --rm -p 8080:8080 larmic/spring-boot-in-docker
+$ docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-using-maven-plugin
 
 # GET Hello World
 $ curl -i -H "Accept: application/json" --request GET http://localhost:8080/

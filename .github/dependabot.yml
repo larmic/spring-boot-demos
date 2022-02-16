@@ -6,7 +6,7 @@ updates:
           interval: daily
           time: "04:00"
     - package-ecosystem: maven
-      directory: "/spring-boot-in-docker"
+      directory: "/spring-boot-in-docker/spring-boot-in-docker-using-maven-plugin"
       schedule:
           interval: daily
           time: "04:00"

@@ -17,17 +17,17 @@ using native [Dockerfile](src/main/docker/Dockerfile-slim).
 
 ##### Clone repository and build project
 
-Dockerfile will be used to create image.
+See [Makefile](Makefile).
 
 ```sh
+# clone project
+$ git clone https://github.com/larmic/spring-boot-demos.git
+
+# build docker slim image
 $ docker build -t larmic/spring-boot-in-docker:latest -f src/main/docker/Dockerfile-slim .
-```
 
-##### Local testing
-
-```sh
 # start application
-$ docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-using-dockerfile
+$ docker run --rm -p 8080:8080 larmic/spring-boot-in-docker:latest
 
 # GET Hello World
 $ curl -i -H "Accept: application/json" --request GET http://localhost:8080/

@@ -15,7 +15,7 @@ using native [Dockerfile](src/main/docker/Dockerfile-slim).
 * Maven >= 3.2.1 
 * Docker >= 3.0
 
-##### Clone repository and build project
+## Clone repository and build project
 
 See [Makefile](Makefile).
 

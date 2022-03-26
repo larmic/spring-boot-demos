@@ -24,11 +24,28 @@ See [Makefile](Makefile).
 $ git clone https://github.com/larmic/spring-boot-demos.git
 
 # build docker slim image
-$ docker build -t larmic/spring-boot-in-docker:latest -f src/main/docker/Dockerfile-slim .
+$ make docker/build/slim
+# run slim docker container
+$ make docker/run/slim
 
-# start application
-$ docker run --rm -p 8080:8080 larmic/spring-boot-in-docker:latest
+# build docker jvm image
+$ make docker/build/jvm
+# run jvm docker container
+$ make docker/run/jvm
+
+# see image sizes
+$ docker images
+REPOSITORY                          TAG       IMAGE ID       CREATED              SIZE
+larmic/spring-boot-in-docker-jvm    latest    e56a0ca2ed6e   About a minute ago   477MB
+larmic/spring-boot-in-docker-slim   latest    f8f3f810c892   2 minutes ago        154MB
 
 # GET Hello World
-$ curl -i -H "Accept: application/json" --request GET http://localhost:8080/
+$ make http-call
+curl -i -H "Accept: application/json" --request GET http://localhost:8080/
+HTTP/1.1 200 
+Content-Type: application/json
+Content-Length: 11
+Date: Sat, 26 Mar 2022 12:36:30 GMT
+
+Hello World%   
 ```

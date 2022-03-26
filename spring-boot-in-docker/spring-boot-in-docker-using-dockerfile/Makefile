@@ -1,10 +1,16 @@
 DOCKER_TAG ?= latest
 
-docker/build:
-	docker build -t larmic/spring-boot-in-docker:$(DOCKER_TAG) -f src/main/docker/Dockerfile-slim .
+docker/build/slim:
+	docker build -t larmic/spring-boot-in-docker-slim:$(DOCKER_TAG) -f src/main/docker/Dockerfile-slim .
 
-docker/run:
-	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker:$(DOCKER_TAG)
+docker/build/jvm:
+	docker build -t larmic/spring-boot-in-docker-jvm:$(DOCKER_TAG) -f src/main/docker/Dockerfile-jvm .
+
+docker/run/slim:
+	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-slim:$(DOCKER_TAG)
+
+docker/run/jvm:
+	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-jvm:$(DOCKER_TAG)
 
 docker/clean:
 	docker images -a | grep none | awk '{ print $3; }' | xargs docker rmi --force

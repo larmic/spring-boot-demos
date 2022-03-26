@@ -1,13 +1,13 @@
 # Spring Boot as docker service
 
 Simple example demonstrating how Spring Boot can be packaged as docker container 
-using native [Dockerfile](Dockerfile).
+using native [Dockerfile](src/main/docker/Dockerfile-slim).
 
-[Dockerfile](Dockerfile) is a multistage docker file and using JLink to build a custom JRE to reduce image size.
+[Dockerfile](src/main/docker/Dockerfile-slim) is a multistage docker file and using JLink to build a custom JRE to reduce image size.
 
 ## Used technologies
 
-* Spring Boot >= 2.6.2
+* Spring Boot >= 2.6.x
 
 ## Requirements
 
@@ -17,10 +17,10 @@ using native [Dockerfile](Dockerfile).
 
 ##### Clone repository and build project
 
-Dockerfile will used to create image.
+Dockerfile will be used to create image.
 
 ```sh
-$ docker build -t larmic/spring-boot-in-docker-using-dockerfile:latest .
+$ docker build -t larmic/spring-boot-in-docker:latest -f src/main/docker/Dockerfile-slim .
 ```
 
 ##### Local testing

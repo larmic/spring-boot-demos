@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.larmic.docker</groupId>
-    <artifactId>spring-boot-in-docker-using-dockerfile</artifactId>
+    <artifactId>spring-boot-in-docker</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>spring-boot-in-docker-using-dockerfile</name>
-    <description>Demo project for Spring Boot</description>
+    <name>spring-boot-in-docker</name>
+    <description>Different ways to wrap spring boot app in docker</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -100,21 +100,13 @@
                             <tag>${project.version}</tag>
                         </configuration>
                     </execution>
-                    <!--execution>
-                        <id>push-version</id>
-                        <phase>deploy</phase>
-                        <goals>
-                            <goal>push</goal>
-                        </goals>
-                        <configuration>
-                            <tag>${project.version}</tag>
-                        </configuration>
-                    </execution-->
                 </executions>
                 <configuration>
+                    <!-- see https://github.com/spotify/dockerfile-maven/blob/master/docs/usage.md -->
                     <skipDockerInfo>true</skipDockerInfo>
                     <repository>larmic/spring-boot-in-docker-using-maven-plugin</repository>
                     <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+                    <dockerfile>src/main/docker/Dockerfile-maven</dockerfile>
                     <buildArgs>
                         <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
                     </buildArgs>

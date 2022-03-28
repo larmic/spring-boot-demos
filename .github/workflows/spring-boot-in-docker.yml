@@ -1,0 +1,70 @@
+name: spring-boot-in-docker jobs
+
+on: [ push, pull_request ]
+
+jobs:
+    docker-using-dockerfile-slim:
+        name: spring boot in docker using slim dockerfile
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Check out code into the Go module directory
+                uses: actions/checkout@v2
+
+            -   name: Login to DockerHub
+                uses: docker/login-action@v1
+                with:
+                    username: ${{ secrets.DOCKER_USERNAME }}
+                    password: ${{ secrets.DOCKER_PASSWORD }}
+
+            -   name: Build docker image
+                run: |
+                    cd spring-boot-in-docker
+                    docker build -t larmic/spring-boot-in-docker-using-dockerfile-slim:latest -f src/main/docker/Dockerfile-slim .
+
+    docker-using-dockerfile-jvm:
+        name: spring boot in docker using jvm dockerfile
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Check out code into the Go module directory
+                uses: actions/checkout@v2
+
+            -   name: Login to DockerHub
+                uses: docker/login-action@v1
+                with:
+                    username: ${{ secrets.DOCKER_USERNAME }}
+                    password: ${{ secrets.DOCKER_PASSWORD }}
+
+            -   name: Build docker image
+                run: |
+                    cd spring-boot-in-docker
+                    docker build -t larmic/spring-boot-in-docker-using-dockerfile-jvm:latest -f src/main/docker/Dockerfile-jvm .
+
+# TODO enable me: java.io.FileNotFoundException: /home/runner/.m2/settings-security.xml (No such file or directory) @ server: github
+#    docker-using-maven-jvm:
+#        runs-on: ubuntu-latest
+#
+#        strategy:
+#            matrix:
+#                java: [ 17 ]
+#
+#        name: Java ${{ matrix.java }} compile
+#
+#        steps:
+#            -  name: Check out code into the Go module directory
+#               uses: actions/checkout@v2
+#
+#            - name: Login to DockerHub
+#              uses: docker/login-action@v1
+#              with:
+#                  username: ${{ secrets.DOCKER_USERNAME }}
+#                  password: ${{ secrets.DOCKER_PASSWORD }}
+#
+#            - name: Setup java ${{ matrix.java }}
+#              uses: actions/setup-java@v1
+#              with:
+#                  java-version: ${{ matrix.java }}
+#            - run: |
+#                  cd spring-boot-in-docker
+#                  mvn clean package -Pdocker

@@ -64,7 +64,7 @@ jobs:
     #                  java-version: ${{ matrix.java }}
     #            - run: mvn -f spring-boot-in-docker/spring-boot-in-docker-using-maven-plugin clean verify
 
-    docker-using-dockerfile:
+    docker-using-dockerfile-slim:
         name: Build spring boot in docker using dockerfile
         runs-on: ubuntu-latest
 
@@ -80,8 +80,8 @@ jobs:
 
             -   name: Build docker image
                 run: |
-                    cd spring-boot-in-docker/spring-boot-in-docker-using-dockerfile
-                    docker build -t larmic/spring-boot-in-docker-using-dockerfile:latest .
+                    cd spring-boot-in-docker
+                    docker build -t larmic/spring-boot-in-docker-using-dockerfile-slim:latest -f src/main/docker/Dockerfile-slim .
 
     postgres:
         name: Build spring boot using postres with java version ${{ matrix.java }}

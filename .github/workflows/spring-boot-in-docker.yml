@@ -64,4 +64,6 @@ jobs:
               uses: actions/setup-java@v1
               with:
                   java-version: ${{ matrix.java }}
-            - run: mvn -f spring-boot-in-docker/spring-boot-in-docker-using-maven-plugin clean package -Pdocker
+            - run: |
+                  cd spring-boot-in-docker
+                  mvn clean package -Pdocker

@@ -2,18 +2,83 @@
 
 There are several ways to package a spring boot application in docker.
 
-## Spring Boot in Docker using maven plugin
+### Used technologies
 
-See [spring-boot-in-docker-using-maven-plugin](spring-boot-in-docker-using-maven-plugin) to see, how docker image build can be added to `mvn package`
-and `mvn deploy`.
+* Spring Boot >= 2.6.x
 
-* maven plugin integrates docker in maven phases
-* size 275MB
+### Requirements
 
-## Spring Boot in Docker using Dockerfile
+* Java 17
+* Maven >= 3.2.1
+* Docker >= 3.0
 
-See [spring-boot-in-docker-using-dockerfile](spring-boot-in-docker-using-dockerfile).
+## Spring Boot in Docker using Dockerfile (jvm)
 
+See [Makefile](Makefile) and [spring-boot-in-docker-using-dockerfile](spring-boot-in-docker-using-dockerfile).
+
+__Advantages__
+* pure docker is used (multistage dockerfile)
+* easy to integrate in ci pipelines
+
+__Disadvantages__
+* docker images size
+
+## Spring Boot in Docker using Dockerfile (slim)
+
+See [Makefile](Makefile) and [spring-boot-in-docker-using-dockerfile](spring-boot-in-docker-using-dockerfile).
+
+__Advantages__
 * pure docker is used (multistage dockerfile)
 * easy to integrate in ci pipelines
 * jlink is used to reduce docker size (154MB)
+
+__Disadvantages__
+* docker file is complex
+
+## Spring Boot in Docker using maven plugin
+
+See [Makefile](Makefile) and [spring-boot-in-docker-using-maven-plugin](spring-boot-in-docker-using-maven-plugin).
+
+__Advantages__
+* easy to understand
+
+__Disadvantages__
+* docker images size
+* integrate in ci pipelines requires both (maven and docker)
+
+## Build docker images and examples
+
+```sh
+# clone project
+$ git clone https://github.com/larmic/spring-boot-demos.git
+
+# build and run docker slim image
+$ make docker/build/slim
+$ make docker/run/slim
+
+# build and run docker jvm image
+$ make docker/build/jvm
+$ make docker/run/jvm
+
+# build and run docker jvm image using maven
+$ make docker/build/maven
+$ make docker/run/maven
+
+# see image sizes
+$ docker images
+REPOSITORY                          TAG       IMAGE ID       CREATED              SIZE
+larmic/spring-boot-in-docker-maven  latest    9b3bbfc30ec9   5 seconds ago        477MB
+larmic/spring-boot-in-docker-jvm    latest    e56a0ca2ed6e   About a minute ago   477MB
+larmic/spring-boot-in-docker-slim   latest    f8f3f810c892   2 minutes ago        154MB
+
+# GET Hello World
+$ make http-call
+curl -i -H "Accept: application/json" --request GET http://localhost:8080/
+HTTP/1.1 200 
+Content-Type: application/json
+Content-Length: 11
+Date: Sat, 26 Mar 2022 12:36:30 GMT
+
+Hello World%   
+```
+

@@ -33,9 +33,15 @@ $ make docker/build/jvm
 # run jvm docker container
 $ make docker/run/jvm
 
+# build docker jvm image using maven
+$ make docker/build/maven
+# run jvm docker container
+$ make docker/run/maven
+
 # see image sizes
 $ docker images
 REPOSITORY                          TAG       IMAGE ID       CREATED              SIZE
+larmic/spring-boot-in-docker-maven  latest    9b3bbfc30ec9   5 seconds ago        477MB
 larmic/spring-boot-in-docker-jvm    latest    e56a0ca2ed6e   About a minute ago   477MB
 larmic/spring-boot-in-docker-slim   latest    f8f3f810c892   2 minutes ago        154MB
 

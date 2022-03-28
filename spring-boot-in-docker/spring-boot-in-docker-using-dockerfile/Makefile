@@ -8,11 +8,18 @@ docker/build/jvm:
 	echo "Build bigger jvm docker image using multistage build"
 	docker build -t larmic/spring-boot-in-docker-jvm:$(DOCKER_TAG) -f src/main/docker/Dockerfile-jvm .
 
+docker/build/maven:
+	echo "Build bigger jvm docker image using maven"
+	./mvnw clean package -Pdocker
+
 docker/run/slim:
 	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-slim:$(DOCKER_TAG)
 
 docker/run/jvm:
 	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-jvm:$(DOCKER_TAG)
+
+docker/run/maven:
+	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-maven:$(DOCKER_TAG)
 
 docker/clean:
 	echo "Clean up dangling images"

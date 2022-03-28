@@ -22,6 +22,9 @@
 
         <maven.min.version>3.2.1</maven.min.version>
         <java.version>17</java.version>
+
+        <!-- docker (used by build docker in maven phase -->
+        <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -52,5 +55,42 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>${dockerfile-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>build-and-tag-latest</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <tag>latest</tag>
+                                </configuration>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <!-- see https://github.com/spotify/dockerfile-maven/blob/master/docs/usage.md -->
+                            <skipDockerInfo>true</skipDockerInfo>
+                            <repository>larmic/spring-boot-in-docker-maven</repository>
+                            <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+                            <dockerfile>src/main/docker/Dockerfile-maven</dockerfile>
+                            <buildArgs>
+                                <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                            </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

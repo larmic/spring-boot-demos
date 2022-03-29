@@ -76,10 +76,10 @@ class TweetControllerTest {
         void tweetExists() throws Exception {
             final var tweet = addTweetToDatabase("second test tweet");
 
-            mockMvc.perform(get("/"+tweet.getId()))
+            mockMvc.perform(get("/" + tweet.id()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(tweet.getId())))
-                .andExpect(jsonPath("message", is(tweet.getMessage())));
+                .andExpect(jsonPath("id", is(tweet.id())))
+                .andExpect(jsonPath("message", is(tweet.message())));
         }
     }
 
@@ -102,8 +102,8 @@ class TweetControllerTest {
 
             mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id", is(tweet.getId())))
-                .andExpect(jsonPath("$[0].message", is(tweet.getMessage())));
+                .andExpect(jsonPath("$[0].id", is(tweet.id())))
+                .andExpect(jsonPath("$[0].message", is(tweet.message())));
         }
     }
 
@@ -124,16 +124,16 @@ class TweetControllerTest {
         void tweetsAreNotEmpty() throws Exception {
             final var tweet = addTweetToDatabase("fourth test tweet");
 
-            mockMvc.perform(put("/" + tweet.getId()).content("tweet content changed"))
+            mockMvc.perform(put("/" + tweet.id()).content("tweet content changed"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("id", is(tweet.getId())))
+                .andExpect(jsonPath("id", is(tweet.id())))
                 .andExpect(jsonPath("message", is("tweet content changed")));
         }
     }
 
     private TweetDto addTweetToDatabase(final String tweet) throws Exception {
         final var dto = new TweetDto(UUID.randomUUID().toString(), tweet);
-        this.inMemoryRepository.tweets.put(dto.getId(), dto);
+        this.inMemoryRepository.tweets.put(dto.id(), dto);
         return dto;
     }
 }

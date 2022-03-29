@@ -1,4 +1,4 @@
-name: spring-boot-in-docker jobs
+name: spring-boot-in-docker
 
 on: [ push, pull_request ]
 

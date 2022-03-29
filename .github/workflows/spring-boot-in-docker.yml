@@ -1,6 +1,12 @@
 name: spring-boot-in-docker
 
-on: [ push, pull_request ]
+on:
+    push:
+        paths:
+            - 'spring-boot-in-docker/**'
+    pull_request:
+        paths:
+            - 'spring-boot-in-docker/**'
 
 jobs:
     docker-using-dockerfile-slim:

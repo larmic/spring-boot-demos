@@ -1,6 +1,14 @@
 name: spring-boot-rest-services
 
-on: [ push, pull_request ]
+on:
+    push:
+        paths:
+            - 'spring-boot-rest-services-java/**'
+            - 'spring-boot-rest-services-kotlin/**'
+    pull_request:
+        paths:
+            - 'spring-boot-rest-services-java/**'
+            - 'spring-boot-rest-services-kotlin/**'
 
 jobs:
     rest-services-java:

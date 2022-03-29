@@ -40,10 +40,9 @@ class TweetController(private val inMemoryRepository: InMemoryRepository) {
 
     private fun String.wrapInTweet() = TweetDto(UUID.randomUUID().toString(), this)
 
+    private fun TweetDto.wrapInResponse() = ResponseEntity.ok(this)
     private fun TweetDto.storeInDatabase(): TweetDto {
         inMemoryRepository.tweets[this.id] = this
         return this
     }
-
-    private fun TweetDto.wrapInResponse() = ResponseEntity.ok(this)
 }

@@ -46,7 +46,12 @@ updates:
           interval: daily
           time: "04:00"
     - package-ecosystem: maven
-      directory: "/spring-boot-rest-services"
+      directory: "/spring-boot-rest-services-java"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-rest-services-kotlin"
       schedule:
           interval: daily
           time: "04:00"

@@ -4,7 +4,8 @@ import de.larmic.rest.rest.dto.TweetDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.UUID;
 
 @RestController
 public class TweetController {
@@ -18,7 +19,7 @@ public class TweetController {
     @PostMapping("/")
     public TweetDto tweet(@RequestBody(required = true) final String message) {
         final var dto = new TweetDto(UUID.randomUUID().toString(), message);
-        this.inMemoryRepository.tweets.put(dto.getId(), dto);
+        this.inMemoryRepository.tweets.put(dto.id(), dto);
         return dto;
     }
 

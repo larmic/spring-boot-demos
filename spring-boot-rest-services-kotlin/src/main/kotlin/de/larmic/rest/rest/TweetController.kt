@@ -3,16 +3,13 @@ package de.larmic.rest.rest
 import de.larmic.rest.rest.dto.TweetDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.util.*
 
 @RestController
 class TweetController(private val inMemoryRepository: InMemoryRepository) {
 
     @PostMapping("/")
-    fun tweet(@RequestBody(required = true) message: String): TweetDto {
-        val dto = TweetDto(message = message)
-        inMemoryRepository.tweets[dto.id] = dto
-        return dto
-    }
+    fun tweet(@RequestBody(required = true) message: String) = message.wrapInTweet().storeInDatabase()
 
     @GetMapping("/{id}")
     fun readTweet(@PathVariable id: String): ResponseEntity<TweetDto?> = if (inMemoryRepository.tweets.containsKey(id)) {
@@ -25,9 +22,7 @@ class TweetController(private val inMemoryRepository: InMemoryRepository) {
     @PutMapping("/{id}")
     fun updateTweet(@PathVariable id: String, @RequestBody message: String): ResponseEntity<TweetDto> {
         if (inMemoryRepository.tweets.containsKey(id)) {
-            val dto = TweetDto(id, message)
-            inMemoryRepository.tweets[id] = dto
-            return ResponseEntity.ok(dto)
+            return message.wrapInTweet().storeInDatabase().wrapInResponse()
         }
         return ResponseEntity.notFound().build()
     }
@@ -40,4 +35,13 @@ class TweetController(private val inMemoryRepository: InMemoryRepository) {
         }
         return ResponseEntity.notFound().build<Any>()
     }
+
+    private fun String.wrapInTweet() = TweetDto(UUID.randomUUID().toString(), this)
+
+    private fun TweetDto.storeInDatabase(): TweetDto {
+        inMemoryRepository.tweets[this.id] = this
+        return this
+    }
+
+    private fun TweetDto.wrapInResponse() = ResponseEntity.ok(this)
 }

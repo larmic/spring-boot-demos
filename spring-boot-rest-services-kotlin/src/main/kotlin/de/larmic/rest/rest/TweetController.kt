@@ -12,29 +12,31 @@ class TweetController(private val inMemoryRepository: InMemoryRepository) {
     fun tweet(@RequestBody(required = true) message: String) = message.wrapInTweet().storeInDatabase()
 
     @GetMapping("/{id}")
-    fun readTweet(@PathVariable id: String): ResponseEntity<TweetDto?> = if (inMemoryRepository.tweets.containsKey(id)) {
-        ResponseEntity.ok(inMemoryRepository.tweets[id])
-    } else ResponseEntity.notFound().build()
+    fun readTweet(@PathVariable id: String): ResponseEntity<TweetDto?> =
+        when (inMemoryRepository.exists(id)) {
+            true -> ResponseEntity.ok(inMemoryRepository.tweets[id])
+            false -> ResponseEntity.notFound().build()
+        }
 
     @GetMapping("/")
     fun readAllTweets() = inMemoryRepository.tweets.values
 
     @PutMapping("/{id}")
-    fun updateTweet(@PathVariable id: String, @RequestBody message: String): ResponseEntity<TweetDto> {
-        if (inMemoryRepository.tweets.containsKey(id)) {
-            return message.wrapInTweet().storeInDatabase().wrapInResponse()
+    fun updateTweet(@PathVariable id: String, @RequestBody message: String): ResponseEntity<TweetDto> =
+        when (inMemoryRepository.exists(id)) {
+            true -> TweetDto(id = id, message = message).storeInDatabase().wrapInResponse()
+            false -> ResponseEntity.notFound().build()
         }
-        return ResponseEntity.notFound().build()
-    }
 
     @DeleteMapping("/{id}")
-    fun deleteTweet(@PathVariable id: String): ResponseEntity<*> {
-        if (inMemoryRepository.tweets.containsKey(id)) {
-            inMemoryRepository.tweets.remove(id)
-            return ResponseEntity.ok().build<Any>()
+    fun deleteTweet(@PathVariable id: String): ResponseEntity<*> =
+        when (inMemoryRepository.exists(id)) {
+            true -> {
+                inMemoryRepository.tweets.remove(id)
+                ResponseEntity.ok().build<Any>()
+            }
+            false -> ResponseEntity.notFound().build<Any>()
         }
-        return ResponseEntity.notFound().build<Any>()
-    }
 
     private fun String.wrapInTweet() = TweetDto(UUID.randomUUID().toString(), this)
 

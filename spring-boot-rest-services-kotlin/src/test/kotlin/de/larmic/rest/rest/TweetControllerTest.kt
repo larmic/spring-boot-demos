@@ -111,7 +111,7 @@ internal class TweetControllerTest {
             val tweet = "fourth test tweet".wrapInTweet().storeInDatabase()
             mockMvc.perform(put("/" + tweet.id).content("tweet content changed"))
                 .andExpect(status().isOk)
-                .andExpect(jsonPath("id", `is`<String>(tweet.id)))
+                .andExpect(jsonPath("id", `is`(tweet.id)))
                 .andExpect(jsonPath("message", `is`("tweet content changed")))
         }
     }

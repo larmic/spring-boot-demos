@@ -32,7 +32,7 @@ class TweetControllerTest {
 
     @Nested
     @DisplayName("tweet() with")
-    class Tweet {
+    class TweetTests {
 
         @Test
         @DisplayName("body is empty")
@@ -61,7 +61,7 @@ class TweetControllerTest {
 
     @Nested
     @DisplayName("readTweet() with")
-    class ReadTweet {
+    class ReadTweetTests {
 
         @Test
         @DisplayName("tweet not exists")
@@ -85,7 +85,7 @@ class TweetControllerTest {
 
     @Nested
     @DisplayName("readAllTweets() with")
-    class ReadAllTweets {
+    class ReadAllTweetsTests {
 
         @Test
         @DisplayName("tweets are empty")
@@ -109,7 +109,7 @@ class TweetControllerTest {
 
     @Nested
     @DisplayName("updateTweet() with")
-    class UpdateTweet {
+    class UpdateTweetTests {
 
         @Test
         @DisplayName("tweet not exists")

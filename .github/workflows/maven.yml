@@ -54,22 +54,6 @@ jobs:
                     java-version: ${{ matrix.java }}
             -   run: mvn -B -f spring-boot-mongodb clean verify
 
-    elasticsearch:
-        name: Build spring boot using elasticsearch with java version ${{ matrix.java }}
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                java: [ 17 ]
-
-        steps:
-            -   uses: actions/checkout@v1
-            -   name: Setup java ${{ matrix.java }}
-                uses: actions/setup-java@v1
-                with:
-                    java-version: ${{ matrix.java }}
-            -   run: mvn -B -f spring-boot-elasticsearch clean verify
-
     rabbitmq:
         name: Build spring boot using rabbitmq with java version ${{ matrix.java }}
         runs-on: ubuntu-latest

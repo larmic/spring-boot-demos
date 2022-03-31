@@ -5,6 +5,7 @@
 [![spring-boot-in-docker](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-in-docker.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-in-docker.yml)
 [![spring-boot-rest-services](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-rest-services.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-rest-services.yml)
 [![spring-boot-properties](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-properties.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-properties.yml)
+[![spring-boot-postgres](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-postgres.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-postgres.yml)
 
 Multiple spring boot samples written in Java or Kotlin.
 

@@ -1,6 +1,12 @@
 name: spring-boot-rabbitmg
 
-on: [ push, pull_request ]
+on:
+    push:
+        paths:
+            - 'spring-boot-rabbitmq/**'
+    pull_request:
+        paths:
+            - 'spring-boot-rabbitmq/**'
 
 jobs:
     rabbitmq:

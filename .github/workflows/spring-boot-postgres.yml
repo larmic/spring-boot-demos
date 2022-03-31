@@ -1,0 +1,23 @@
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: spring-boot-postgres
+
+on: [ push, pull_request ]
+
+jobs:
+    postgres:
+        name: Build spring boot using postres with java version ${{ matrix.java }}
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                java: [ 17 ]
+
+        steps:
+            -   uses: actions/checkout@v1
+            -   name: Setup java ${{ matrix.java }}
+                uses: actions/setup-java@v1
+                with:
+                    java-version: ${{ matrix.java }}
+            -   run: mvn -B -f spring-boot-postgres clean verify

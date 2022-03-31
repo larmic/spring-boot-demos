@@ -1,9 +1,12 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+name: spring-boot-properties
 
-name: Java CI with Maven
-
-on: [ push, pull_request ]
+on:
+    push:
+        paths:
+            - 'spring-boot-properties/**'
+    pull_request:
+        paths:
+            - 'spring-boot-properties/**'
 
 jobs:
     properties:

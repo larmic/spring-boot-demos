@@ -1,6 +1,12 @@
 name: spring-boot-mongodb
 
-on: [ push, pull_request ]
+on:
+    push:
+        paths:
+            - 'spring-boot-mongodb/**'
+    pull_request:
+        paths:
+            - 'spring-boot-mongodb/**'
 
 jobs:
     mongodb:

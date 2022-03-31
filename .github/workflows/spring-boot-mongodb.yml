@@ -1,0 +1,26 @@
+name: spring-boot-mongodb
+
+on:
+    push:
+        paths:
+            - 'spring-boot-mongodb/**'
+    pull_request:
+        paths:
+            - 'spring-boot-mongodb/**'
+
+jobs:
+    mongodb:
+        name: Build spring boot using mongo with java version ${{ matrix.java }}
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                java: [ 17 ]
+
+        steps:
+            -   uses: actions/checkout@v1
+            -   name: Setup java ${{ matrix.java }}
+                uses: actions/setup-java@v1
+                with:
+                    java-version: ${{ matrix.java }}
+            -   run: mvn -B -f spring-boot-mongodb clean verify

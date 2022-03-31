@@ -1,13 +1,13 @@
 # Spring Boot sample projects
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Java CI with Maven](https://github.com/larmic/spring-boot-demos/actions/workflows/maven.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/maven.yml)
 [![spring-boot-in-docker](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-in-docker.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-in-docker.yml)
 [![spring-boot-rest-services](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-rest-services.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-rest-services.yml)
 [![spring-boot-properties](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-properties.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-properties.yml)
 [![spring-boot-postgres](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-postgres.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-postgres.yml)
 [![spring-boot-mongodb](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-mongodb.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-mongodb.yml)
 [![spring-boot-rabbitmg](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-rabbitmg.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-rabbitmg.yml)
+[![spring-boot-keycloak](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-keycloak.yml/badge.svg)](https://github.com/larmic/spring-boot-demos/actions/workflows/spring-boot-keycloak.yml)
 
 Multiple spring boot samples written in Java or Kotlin.
 

@@ -1,0 +1,20 @@
+name: spring-boot-rabbitmg
+
+on: [ push, pull_request ]
+
+jobs:
+    rabbitmq:
+        name: Build spring boot using rabbitmq with java version ${{ matrix.java }}
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                java: [ 17 ]
+
+        steps:
+            -   uses: actions/checkout@v1
+            -   name: Setup java ${{ matrix.java }}
+                uses: actions/setup-java@v1
+                with:
+                    java-version: ${{ matrix.java }}
+            -   run: mvn -B -f spring-boot-rabbitmq clean verify

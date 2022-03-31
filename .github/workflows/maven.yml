@@ -6,22 +6,6 @@ name: Java CI with Maven
 on: [ push, pull_request ]
 
 jobs:
-    properties:
-        name: Build spring boot using properties with java version ${{ matrix.java }}
-        runs-on: ubuntu-latest
-
-        strategy:
-            matrix:
-                java: [ 17 ]
-
-        steps:
-            -   uses: actions/checkout@v1
-            -   name: Setup java ${{ matrix.java }}
-                uses: actions/setup-java@v1
-                with:
-                    java-version: ${{ matrix.java }}
-            -   run: mvn -f spring-boot-properties clean verify
-
     postgres:
         name: Build spring boot using postres with java version ${{ matrix.java }}
         runs-on: ubuntu-latest

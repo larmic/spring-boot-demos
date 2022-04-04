@@ -17,6 +17,6 @@ public class HelloService {
     }
 
     public void logHelloProperties() {
-        logger.info("Properties (hello.value): " + helloProperties.getValue());
+        logger.info("Properties (hello.value): " + helloProperties.value());
     }
 }

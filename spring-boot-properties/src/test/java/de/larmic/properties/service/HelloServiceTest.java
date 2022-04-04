@@ -8,7 +8,7 @@ class HelloServiceTest {
 
     @Test
     void testme() {
-        HelloService helloService = new HelloService(new HelloProperties("hello"));
+        final var helloService = new HelloService(new HelloProperties("hello"));
         helloService.logHelloProperties();
     }
 }

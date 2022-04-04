@@ -15,7 +15,7 @@ Simple example demonstrating how Spring Boot and properties can play together.
 ##### Clone repository and build project
 
 ```sh
-$ git clone https://github.com/larmic/spring-boot-properties
+$ git clone https://github.com/larmic/spring-boot-properties-kotlin
 $ mvn clean package
 ```
 

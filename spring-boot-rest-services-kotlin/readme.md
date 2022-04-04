@@ -17,7 +17,7 @@ Simple example demonstrating how Spring Boot, REST-API, mockmvc and JUnit 5 can 
 Test ```TweetControllerTest``` will be started in maven phase ```package```.
 
 ```sh
-$ git clone https://github.com/larmic/spring-boot-rest-services
+$ git clone https://github.com/larmic/spring-boot-rest-services-kotlin
 $ mvn clean package
 ```
 

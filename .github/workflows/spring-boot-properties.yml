@@ -4,9 +4,11 @@ on:
     push:
         paths:
             - 'spring-boot-properties-java/**'
+            - 'spring-boot-properties-kotlin/**'
     pull_request:
         paths:
             - 'spring-boot-properties-java/**'
+            - 'spring-boot-properties-kotlin/**'
 
 jobs:
     properties-java:

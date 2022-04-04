@@ -3,10 +3,10 @@ name: spring-boot-properties
 on:
     push:
         paths:
-            - 'spring-boot-properties/**'
+            - 'spring-boot-properties-java/**'
     pull_request:
         paths:
-            - 'spring-boot-properties/**'
+            - 'spring-boot-properties-java/**'
 
 jobs:
     properties:

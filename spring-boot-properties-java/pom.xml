@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.larmic.rest</groupId>
-	<artifactId>spring-boot-properties</artifactId>
+	<artifactId>spring-boot-properties-java</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>spring-boot-properties</name>
+	<name>spring-boot-properties-java</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

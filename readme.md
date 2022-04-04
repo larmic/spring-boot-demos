@@ -13,7 +13,8 @@ Multiple spring boot samples written in Java or Kotlin.
 
 | Demo                                             | Language           | Content                                                                |
 |--------------------------------------------------|--------------------|------------------------------------------------------------------------|
-| [properties](spring-boot-properties)             | `java17`           | Override spring boot properties                                        |
+| [properties](spring-boot-properties-java)        | `java17`           | Override spring boot properties                                        |
+| [properties](spring-boot-properties-kotlin)      | `kotlin on java17` | Override spring boot properties                                        |
 | [rest service](spring-boot-rest-services-java)   | `java17`           | Implementing rest services and using mockmvc                           |
 | [rest service](spring-boot-rest-services-kotlin) | `kotlin on java17` | Implementing rest services and using mockmvc                           |
 | [docker](spring-boot-in-docker)                  | `java17`           | Package spring boot application in docker using maven                  |

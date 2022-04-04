@@ -13,7 +13,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<name>spring-boot-rest-services-java</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Spring Boot rest services java example</description>
 
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

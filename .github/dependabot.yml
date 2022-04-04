@@ -36,7 +36,12 @@ updates:
           interval: daily
           time: "04:00"
     - package-ecosystem: maven
-      directory: "/spring-boot-properties"
+      directory: "/spring-boot-properties-java"
+      schedule:
+          interval: daily
+          time: "04:00"
+    - package-ecosystem: maven
+      directory: "/spring-boot-properties-kotlin"
       schedule:
           interval: daily
           time: "04:00"

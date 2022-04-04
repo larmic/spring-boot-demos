@@ -14,6 +14,6 @@ class HelloPropertiesTest {
 
     @Test
     void assertProperties() {
-        assertThat(properties.getValue()).isEqualTo("test properties");
+        assertThat(properties.value()).isEqualTo("test properties");
     }
 }

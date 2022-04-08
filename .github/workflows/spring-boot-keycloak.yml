@@ -4,9 +4,11 @@ on:
     push:
         paths:
             - 'spring-boot-keycloak/**'
+            - '.github/workflows/spring-boot-keycloak.yml'
     pull_request:
         paths:
             - 'spring-boot-keycloak/**'
+            - '.github/workflows/spring-boot-keycloak.yml'
 
 jobs:
     keycloak-service-1:
@@ -15,7 +17,7 @@ jobs:
 
         strategy:
             matrix:
-                java: [ 17 ]
+                java: [ 17,18 ]
 
         steps:
             -   uses: actions/checkout@v1
@@ -31,7 +33,7 @@ jobs:
 
         strategy:
             matrix:
-                java: [ 17 ]
+                java: [ 17,18 ]
 
         steps:
             -   uses: actions/checkout@v1

@@ -5,10 +5,12 @@ on:
         paths:
             - 'spring-boot-properties-java/**'
             - 'spring-boot-properties-kotlin/**'
+            - '.github/workflows/spring-boot-properties.yml'
     pull_request:
         paths:
             - 'spring-boot-properties-java/**'
             - 'spring-boot-properties-kotlin/**'
+            - '.github/workflows/spring-boot-properties.yml'
 
 jobs:
     properties-java:
@@ -17,7 +19,7 @@ jobs:
 
         strategy:
             matrix:
-                java: [ 17 ]
+                java: [ 17, 18 ]
 
         steps:
             -   uses: actions/checkout@v1
@@ -33,7 +35,7 @@ jobs:
 
         strategy:
             matrix:
-                java: [ 17 ]
+                java: [ 17, 18 ]
 
         steps:
             -   uses: actions/checkout@v1

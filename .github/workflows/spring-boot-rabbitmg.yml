@@ -4,9 +4,11 @@ on:
     push:
         paths:
             - 'spring-boot-rabbitmq/**'
+            - '.github/workflows/spring-boot-rabbitmg.yml'
     pull_request:
         paths:
             - 'spring-boot-rabbitmq/**'
+            - '.github/workflows/spring-boot-rabbitmg.yml'
 
 jobs:
     rabbitmq:

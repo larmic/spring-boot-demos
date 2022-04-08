@@ -5,6 +5,7 @@ on:
         paths:
             - 'spring-boot-properties-java/**'
             - 'spring-boot-properties-kotlin/**'
+            - '.github/workflows/spring-boot-properties.yml'
     pull_request:
         paths:
             - 'spring-boot-properties-java/**'

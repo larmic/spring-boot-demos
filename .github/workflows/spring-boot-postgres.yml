@@ -4,9 +4,11 @@ on:
     push:
         paths:
             - 'spring-boot-postgres/**'
+            - '.github/workflows/spring-boot-postgres.yml'
     pull_request:
         paths:
             - 'spring-boot-postgres/**'
+            - '.github/workflows/spring-boot-postgres.yml'
 
 jobs:
     postgres:
@@ -15,7 +17,7 @@ jobs:
 
         strategy:
             matrix:
-                java: [ 17 ]
+                java: [ 17,18 ]
 
         steps:
             -   uses: actions/checkout@v1

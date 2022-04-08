@@ -5,10 +5,12 @@ on:
         paths:
             - 'spring-boot-rest-services-java/**'
             - 'spring-boot-rest-services-kotlin/**'
+            - '.github/workflows/spring-boot-rest-services.yml'
     pull_request:
         paths:
             - 'spring-boot-rest-services-java/**'
             - 'spring-boot-rest-services-kotlin/**'
+            - '.github/workflows/spring-boot-rest-services.yml'
 
 jobs:
     rest-services-java:

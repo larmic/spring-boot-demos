@@ -14,7 +14,7 @@ services:
             POSTGRES_USER: db-keycloak-user
             POSTGRES_PASSWORD: db-keycloak-pw
     keycloak:
-        image: jboss/keycloak:16.1.0
+        image: jboss/keycloak:16.1.1
         volumes:
             - ./imports:/opt/jboss/keycloak/imports
         environment:

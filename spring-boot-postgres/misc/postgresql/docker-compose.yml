@@ -7,7 +7,7 @@ volumes:
 services:
     postgres:
         container_name: spring-boot-postgres_container
-        image: postgres:13.3
+        image: postgres:13.6
         volumes:
             - postgres_data:/var/lib/postgresql/data
         environment:

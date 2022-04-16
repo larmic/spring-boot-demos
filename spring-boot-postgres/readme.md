@@ -6,20 +6,26 @@ This demo is build on [larmic/spring-boot-rest-services](https://github.com/larm
 
 ## Used technologies
 
-* Spring Boot >= 2.6.2
-* Postgresql >= 13.3  
-* Testcontainers >= 1.16.0
-* JUnit >= 5.8.0
+* Spring Boot >= 2.6.x
+* Postgresql >= 14.x  
+* Testcontainers >= 1.17.x
+* JUnit >= 5.8.x
 
 ## Requirements
 
 * Java 17
 * Maven >= 3.2.1 
-* Docker >= 3.0 (for integration tests)
+* Docker >= 3.0 (for database and integration tests)
 
 ##### Clone repository and build project
 
-Integrations test ```TweetRepositoryIT``` will be started in maven phase ```verify```.
+In this repository are different database test examples. A fast unit test and a slow integration tests.
+
+For further information and the difference between unit and integration tests 
+see [Youtube (German)](https://youtu.be/_CGvdhRc9DE) or [GitHub](https://github.com/larmic/unit-testing-best-bad-practices).
+
+Unit test ```de.larmic.postgres.database.TweetRepositoryTest``` will be started in maven phase ```test```.
+Integrations test ```de.larmic.postgres.database.TweetRepositoryIT``` will be started in maven phase ```verify```.
 
 ```sh
 $ https://github.com/larmic/spring-boot-postgres

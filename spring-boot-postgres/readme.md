@@ -6,16 +6,16 @@ This demo is build on [larmic/spring-boot-rest-services](https://github.com/larm
 
 ## Used technologies
 
-* Spring Boot >= 2.6.2
-* Postgresql >= 13.3  
-* Testcontainers >= 1.16.0
-* JUnit >= 5.8.0
+* Spring Boot >= 2.6.x
+* Postgresql >= 14.x  
+* Testcontainers >= 1.17.x
+* JUnit >= 5.8.x
 
 ## Requirements
 
 * Java 17
 * Maven >= 3.2.1 
-* Docker >= 3.0 (for integration tests)
+* Docker >= 3.0 (for database and integration tests)
 
 ##### Clone repository and build project
 

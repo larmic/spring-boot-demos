@@ -1,7 +1,7 @@
 package de.larmic.postgres.database;
 
 import de.larmic.postgres.database.model.TweetEntity;
-import de.larmic.postgres.testcontainers.AbstractIntegrationTest;
+import de.larmic.postgres.testcontainers.AbstractDatabaseTest;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -11,9 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.within;
 
 /**
- * A slow integration tests to start the whole spring context incl. database.
+ * A fast unit tests to start only database context.
  */
-class TweetRepositoryIT extends AbstractIntegrationTest {
+class TweetRepositoryTest extends AbstractDatabaseTest {
 
     @Test
     void save() {

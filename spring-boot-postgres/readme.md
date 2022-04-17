@@ -2,7 +2,7 @@
 
 Simple example demonstrating how Spring Boot, Postgresql, Testcontainers and JUnit 5 can play together.
 
-This demo is build on [larmic/spring-boot-rest-services](https://github.com/larmic/spring-boot-rest-services).
+This demo is based on [larmic/spring-boot-rest-services](https://github.com/larmic/spring-boot-rest-services).
 
 ## Used technologies
 
@@ -17,7 +17,7 @@ This demo is build on [larmic/spring-boot-rest-services](https://github.com/larm
 * Maven >= 3.2.1 
 * Docker >= 3.0 (for database and integration tests)
 
-##### Clone repository and build project
+### Clone repository and build project
 
 In this repository are different database test examples. A fast unit test and a slow integration tests.
 
@@ -32,7 +32,7 @@ $ https://github.com/larmic/spring-boot-postgres
 $ mvn clean verify
 ```
 
-##### Local testing
+### Local testing
 
 ```sh
 # start postgresql

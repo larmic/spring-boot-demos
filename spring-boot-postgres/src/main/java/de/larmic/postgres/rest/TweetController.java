@@ -26,7 +26,6 @@ public class TweetController {
         return mapToDto(entity);
     }
 
-
     @GetMapping("/{id}")
     public ResponseEntity<TweetDto> readTweet(@PathVariable final String id) {
         if (this.tweetRepository.existsById(Long.valueOf(id))) {

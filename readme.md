@@ -18,7 +18,7 @@ Multiple spring boot samples written in Java or Kotlin.
 | [rest service](spring-boot-rest-services-java)   | `java17`           | Implementing rest services and using mockmvc                           |
 | [rest service](spring-boot-rest-services-kotlin) | `kotlin on java17` | Implementing rest services and using mockmvc                           |
 | [docker](spring-boot-in-docker)                  | `java17`           | Package spring boot application in docker using maven                  |
-| [postgres](spring-boot-postgres)                 | `java17`           | Using spring boot and postgresql and use testcontainers for testing    |
+| [postgres](spring-boot-postgres-java)            | `java17`           | Using spring boot and postgresql and use testcontainers for testing    |
 | [elasticsearch](spring-boot-elasticsearch)       | `kotlin on java17` | Using spring boot and elasticsearch and use testcontainers for testing |
 | [keycloak](spring-boot-keycloak)                 | `java17`           | Using spring boot and keycloak in one docker-compose                   |
 | [rabbit mq](spring-boot-rabbitmq)                | `kotlin on java17` | Using spring boot and rabbit mq and use testcontainers for testing     |

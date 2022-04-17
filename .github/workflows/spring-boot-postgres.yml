@@ -3,11 +3,11 @@ name: spring-boot-postgres
 on:
     push:
         paths:
-            - 'spring-boot-postgres/**'
+            - 'spring-boot-postgres-java/**'
             - '.github/workflows/spring-boot-postgres.yml'
     pull_request:
         paths:
-            - 'spring-boot-postgres/**'
+            - 'spring-boot-postgres-java/**'
             - '.github/workflows/spring-boot-postgres.yml'
 
 jobs:

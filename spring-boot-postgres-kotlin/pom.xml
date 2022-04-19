@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.larmic.postgres</groupId>
-    <artifactId>spring-boot-postgres-java</artifactId>
+    <artifactId>spring-boot-postgres-kotlin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>spring-boot-postgres-java</name>
-    <description>Spring Boot postgresql java example</description>
+    <name>spring-boot-postgres-kotlin</name>
+    <description>Spring Boot postgresql kotlin example</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

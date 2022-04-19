@@ -25,4 +25,4 @@ jobs:
                 uses: actions/setup-java@v1
                 with:
                     java-version: ${{ matrix.java }}
-            -   run: mvn -B -f spring-boot-postgres clean verify
+            -   run: mvn -B -f spring-boot-postgres-java clean verify

@@ -1,8 +1,8 @@
-package de.larmic.properties.rest
+package de.larmic.postgres.rest
 
-import de.larmic.properties.database.TweetRepository
-import de.larmic.properties.database.model.TweetEntity
-import de.larmic.properties.rest.dto.TweetDto
+import de.larmic.postgres.database.TweetRepository
+import de.larmic.postgres.database.model.TweetEntity
+import de.larmic.postgres.rest.dto.TweetDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDateTime

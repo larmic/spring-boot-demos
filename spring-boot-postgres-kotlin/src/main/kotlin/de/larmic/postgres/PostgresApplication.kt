@@ -1,4 +1,4 @@
-package de.larmic.properties
+package de.larmic.postgres
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

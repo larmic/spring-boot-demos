@@ -1,4 +1,4 @@
-package de.larmic.properties.database.model
+package de.larmic.postgres.database.model
 
 import java.time.LocalDateTime
 import javax.persistence.*

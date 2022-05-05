@@ -11,25 +11,19 @@ import java.time.LocalDateTime
 class TweetController(private val tweetRepository: TweetRepository) {
 
     @PostMapping("/")
-    fun tweet(@RequestBody message: String): TweetDto {
-        val tweetEntity = TweetEntity(message = message)
-        val entity: TweetEntity = tweetRepository.save(tweetEntity)
-        return mapToDto(entity)
-    }
+    fun tweet(@RequestBody message: String) = tweetRepository.save(TweetEntity(message = message)).mapToDto()
 
     @GetMapping("/{id}")
     fun readTweet(@PathVariable id: String?): ResponseEntity<TweetDto> {
         if (tweetRepository.existsById(java.lang.Long.valueOf(id))) {
             val entity = tweetRepository.getById(java.lang.Long.valueOf(id))!!
-            return ResponseEntity.ok(mapToDto(entity))
+            return entity.wrapInResponse()
         }
         return ResponseEntity.notFound().build()
     }
 
     @GetMapping("/")
-    fun readAllTweets(): Collection<TweetDto> {
-        return tweetRepository.findAll().map { mapToDto(it!!) }
-    }
+    fun readAllTweets() = tweetRepository.findAll().map { it!!.mapToDto() }
 
     @PutMapping("/{id}")
     fun updateTweet(@PathVariable id: String, @RequestBody message: String): ResponseEntity<TweetDto> {
@@ -40,10 +34,12 @@ class TweetController(private val tweetRepository: TweetRepository) {
             entity.lastUpdateDate = LocalDateTime.now()
 
             tweetRepository.save(entity)
-            return ResponseEntity.ok(mapToDto(entity))
+
+            return entity.wrapInResponse()
         }
         return ResponseEntity.notFound().build()
     }
+
 
     @DeleteMapping("/{id}")
     fun deleteTweet(@PathVariable id: String?): ResponseEntity<*> {
@@ -54,7 +50,6 @@ class TweetController(private val tweetRepository: TweetRepository) {
         return ResponseEntity.notFound().build<Any>()
     }
 
-    private fun mapToDto(entity: TweetEntity): TweetDto {
-        return TweetDto(entity.id.toString(), entity.message)
-    }
+    private fun TweetEntity.mapToDto() = TweetDto(this.id.toString(), this.message)
+    private fun TweetEntity.wrapInResponse() = ResponseEntity.ok(this.mapToDto())
 }

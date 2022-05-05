@@ -12,10 +12,10 @@ internal class TweetRepositoryIT : AbstractIntegrationTest() {
 
     @Test
     fun save() {
-        val entity = TweetEntity()
-        entity.message = "Some test message"
+        val entity = TweetEntity(message = "Some test message")
 
         tweetRepository.save(entity)
+
         assertThat(entity.id).isNotZero
         assertThat(entity.message).isEqualTo("Some test message")
         assertThat(entity.createDate).isCloseTo(LocalDateTime.now(), Assertions.within(1, ChronoUnit.SECONDS))

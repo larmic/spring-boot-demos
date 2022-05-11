@@ -3,15 +3,15 @@ name: spring-boot-elasticsearch
 on:
     push:
         paths:
-            - 'spring-boot-elasticsearch/**'
+            - 'spring-boot-elasticsearch-kotlin/**'
             - '.github/workflows/spring-boot-elasticsearch.yml'
     pull_request:
         paths:
-            - 'spring-boot-elasticsearch/**'
+            - 'spring-boot-elasticsearch-kotlin/**'
             - '.github/workflows/spring-boot-elasticsearch.yml'
 
 jobs:
-    elasticsearch:
+    elasticsearch-kotlin:
         name: Build spring boot using elasticsearch with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 

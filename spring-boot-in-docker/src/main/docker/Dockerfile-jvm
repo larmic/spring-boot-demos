@@ -1,5 +1,5 @@
 # Build spring boot app
-FROM eclipse-temurin:17 as app-build
+FROM eclipse-temurin:18 as app-build
 
 COPY mvnw .
 COPY .mvn/ .mvn/
@@ -20,7 +20,7 @@ RUN mv target/*.jar target/spring-boot-app.jar
 
 
 # Build Spring Boot docker image using eclipse-temurin:17
-FROM eclipse-temurin:17
+FROM eclipse-temurin:18
 
 MAINTAINER Lars Michaelis <mail@larmic.de>
 

@@ -13,7 +13,7 @@ public class ElasticsearchContextInitializer implements ApplicationContextInitia
     public void initialize(final ConfigurableApplicationContext context) {
         elasticsearch.start();
         TestPropertyValues.of(
-            "spring.elasticsearch.rest.uris=${elasticsearch.httpHostAddress}"
+            "spring.elasticsearch.rest.uris=" + elasticsearch.getHttpHostAddress()
         ).applyTo(context.getEnvironment());
     }
 }

@@ -7,7 +7,7 @@ import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 public class ElasticsearchContextInitializer implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.14.0");
+    private final ElasticsearchContainer elasticsearch = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.14.0");
 
     @Override
     public void initialize(final ConfigurableApplicationContext context) {

@@ -24,5 +24,6 @@ jobs:
             -   name: Setup java ${{ matrix.java }}
                 uses: actions/setup-java@v3
                 with:
+                    distribution: 'temurin'
                     java-version: ${{ matrix.java }}
             -   run: mvn -B -f spring-boot-mongodb clean verify

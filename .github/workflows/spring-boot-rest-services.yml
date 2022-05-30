@@ -26,6 +26,7 @@ jobs:
             -   name: Setup java ${{ matrix.java }}
                 uses: actions/setup-java@v3
                 with:
+                    distribution: 'temurin'
                     java-version: ${{ matrix.java }}
             -   run: mvn -f spring-boot-rest-services-java clean verify
 
@@ -42,5 +43,6 @@ jobs:
             -   name: Setup java ${{ matrix.java }}
                 uses: actions/setup-java@v3
                 with:
+                    distribution: 'temurin'
                     java-version: ${{ matrix.java }}
             -   run: mvn -f spring-boot-rest-services-kotlin clean verify

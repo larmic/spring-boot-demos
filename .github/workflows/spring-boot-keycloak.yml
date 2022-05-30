@@ -24,6 +24,7 @@ jobs:
             -   name: Setup java ${{ matrix.java }}
                 uses: actions/setup-java@v3
                 with:
+                    distribution: 'temurin'
                     java-version: ${{ matrix.java }}
             -   run: mvn -B -f spring-boot-keycloak/spring-boot-keycloak-service-1 clean verify
 
@@ -40,5 +41,6 @@ jobs:
             -   name: Setup java ${{ matrix.java }}
                 uses: actions/setup-java@v3
                 with:
+                    distribution: 'temurin'
                     java-version: ${{ matrix.java }}
             -   run: mvn -B -f spring-boot-keycloak/spring-boot-keycloak-service-2 clean verify

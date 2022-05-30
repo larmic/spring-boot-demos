@@ -22,8 +22,9 @@ jobs:
         steps:
             -   uses: actions/checkout@v3
             -   name: Setup java ${{ matrix.java }}
-                uses: actions/setup-java@v1
+                uses: actions/setup-java@v3
                 with:
+                    distribution: 'temurin'
                     java-version: ${{ matrix.java }}
             -   run: mvn -B -f spring-boot-keycloak/spring-boot-keycloak-service-1 clean verify
 
@@ -38,7 +39,8 @@ jobs:
         steps:
             -   uses: actions/checkout@v3
             -   name: Setup java ${{ matrix.java }}
-                uses: actions/setup-java@v1
+                uses: actions/setup-java@v3
                 with:
+                    distribution: 'temurin'
                     java-version: ${{ matrix.java }}
             -   run: mvn -B -f spring-boot-keycloak/spring-boot-keycloak-service-2 clean verify

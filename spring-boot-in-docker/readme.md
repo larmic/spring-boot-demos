@@ -14,7 +14,7 @@ There are several ways to package a spring boot application in docker.
 
 ## Spring Boot in Docker using Dockerfile (jvm)
 
-See [Makefile](Makefile) and [spring-boot-in-docker-using-dockerfile](spring-boot-in-docker-using-dockerfile).
+See [Makefile](Makefile) and [dockerfile](src/main/docker/Dockerfile-jvm).
 
 __Advantages__
 * pure docker is used (multistage dockerfile)
@@ -25,7 +25,7 @@ __Disadvantages__
 
 ## Spring Boot in Docker using Dockerfile (slim)
 
-See [Makefile](Makefile) and [spring-boot-in-docker-using-dockerfile](spring-boot-in-docker-using-dockerfile).
+See [Makefile](Makefile) and [dockerfile](src/main/docker/Dockerfile-slim).
 
 __Advantages__
 * pure docker is used (multistage dockerfile)
@@ -37,7 +37,7 @@ __Disadvantages__
 
 ## Spring Boot in Docker using maven plugin
 
-See [Makefile](Makefile) and [spring-boot-in-docker-using-maven-plugin](spring-boot-in-docker-using-maven-plugin).
+See [Makefile](Makefile) and [dockerfile](src/main/docker/Dockerfile-maven).
 
 __Advantages__
 * easy to understand
@@ -45,6 +45,19 @@ __Advantages__
 __Disadvantages__
 * docker images size
 * integrate in ci pipelines requires both (maven and docker)
+
+## Spring Boot in Docker using spring boot maven plugin
+
+See [Makefile](Makefile) and [Spring Boot documentation](https://spring.io/blog/2021/01/04/ymnnalft-easy-docker-image-creation-with-the-spring-boot-maven-plugin-and-buildpacks).
+
+__Advantages__
+* easy to understand
+* no extra configuration needed
+
+__Disadvantages__
+* docker images size
+* integrate in ci pipelines requires both (maven and docker)
+* hidden mechanism (i.e. base image)
 
 ## Build docker images and examples
 
@@ -64,12 +77,18 @@ $ make docker/run/jvm
 $ make docker/build/maven
 $ make docker/run/maven
 
+# build and run docker jvm image using spring boot maven plugin
+$ make docker/build/spring
+$ make docker/run/spring
+
 # see image sizes
 $ docker images
-REPOSITORY                          TAG       IMAGE ID       CREATED              SIZE
-larmic/spring-boot-in-docker-maven  latest    9b3bbfc30ec9   5 seconds ago        477MB
-larmic/spring-boot-in-docker-jvm    latest    e56a0ca2ed6e   About a minute ago   477MB
-larmic/spring-boot-in-docker-slim   latest    f8f3f810c892   2 minutes ago        154MB
+REPOSITORY                          TAG               IMAGE ID       CREATED              SIZE
+larmic/spring-boot-in-docker-maven  latest            9b3bbfc30ec9   5 seconds ago        477MB
+larmic/spring-boot-in-docker-jvm    latest            e56a0ca2ed6e   About a minute ago   477MB
+larmic/spring-boot-in-docker-slim   latest            f8f3f810c892   2 minutes ago        154MB
+spring-boot-in-docker                0.0.1-SNAPSHOT   e0194cf2d9c1   42 years ago         290MB
+
 
 # GET Hello World
 $ make http-call

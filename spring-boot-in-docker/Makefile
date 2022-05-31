@@ -12,6 +12,10 @@ docker/build/maven:
 	echo "Build bigger jvm docker image using maven"
 	./mvnw clean package -Pdocker
 
+docker/build/spring:
+	echo "Build bigger jvm docker image using spring boot maven plugin"
+	./mvnw spring-boot:build-image
+
 docker/run/slim:
 	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-slim:$(DOCKER_TAG)
 
@@ -20,6 +24,9 @@ docker/run/jvm:
 
 docker/run/maven:
 	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-maven:$(DOCKER_TAG)
+
+docker/run/spring:
+	docker run --rm -p 8080:8080spring-boot-in-docker:0.0.1-SNAPSHOT
 
 docker/clean:
 	echo "Clean up dangling images"

@@ -83,11 +83,11 @@ $ make docker/run/spring
 
 # see image sizes
 $ docker images
-REPOSITORY                          TAG               IMAGE ID       CREATED              SIZE
-larmic/spring-boot-in-docker-maven  latest            9b3bbfc30ec9   5 seconds ago        477MB
-larmic/spring-boot-in-docker-jvm    latest            e56a0ca2ed6e   About a minute ago   477MB
-larmic/spring-boot-in-docker-slim   latest            f8f3f810c892   2 minutes ago        154MB
-spring-boot-in-docker                0.0.1-SNAPSHOT   e0194cf2d9c1   42 years ago         290MB
+REPOSITORY                          TAG              IMAGE ID       CREATED              SIZE
+larmic/spring-boot-in-docker-maven  latest           9b3bbfc30ec9   5 seconds ago        477MB
+larmic/spring-boot-in-docker-jvm    latest           e56a0ca2ed6e   About a minute ago   477MB
+larmic/spring-boot-in-docker-slim   latest           f8f3f810c892   2 minutes ago        154MB
+spring-boot-in-docker               0.0.1-SNAPSHOT   e0194cf2d9c1   42 years ago         290MB
 
 
 # GET Hello World

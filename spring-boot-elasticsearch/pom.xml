@@ -24,7 +24,7 @@
 
         <maven.min.version>3.2.1</maven.min.version>
         <java.version>17</java.version>
-        <kotlin.version>1.6.21</kotlin.version>
+        <kotlin.version>1.7.0</kotlin.version>
 
         <elasticsearch.version>7.14.0</elasticsearch.version>
         <jackson-module-kotlin.version>2.13.3</jackson-module-kotlin.version>

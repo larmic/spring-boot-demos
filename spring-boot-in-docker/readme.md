@@ -4,7 +4,7 @@ There are several ways to package a spring boot application in docker.
 
 ### Used technologies
 
-* Spring Boot >= 2.6.x
+* Spring Boot >= 2.7.x
 
 ### Requirements
 

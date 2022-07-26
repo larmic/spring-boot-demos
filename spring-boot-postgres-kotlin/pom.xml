@@ -26,7 +26,7 @@
         <flyway-core.version>8.5.13</flyway-core.version>
 
         <!-- testing -->
-        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <junit-jupiter.version>5.9.0</junit-jupiter.version>
         <testcontainers.version>1.17.3</testcontainers.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
     </properties>

@@ -1,4 +1,4 @@
-FROM eclipse-temurin:18
+FROM eclipse-temurin:19
 
 MAINTAINER Lars Michaelis <mail@larmic.de>
 

@@ -1,7 +1,7 @@
 package de.larmic.postgres.database.model
 
 import java.time.LocalDateTime
-import javax.persistence.*
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "tweet")

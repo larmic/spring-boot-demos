@@ -1,6 +1,6 @@
 package de.larmic.postgres.database.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity

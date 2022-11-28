@@ -1,29 +1,27 @@
 package de.larmic.testing
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient
+import co.elastic.clients.elasticsearch.core.DeleteRequest
+import co.elastic.clients.elasticsearch.core.ReindexRequest
+import co.elastic.clients.elasticsearch.indices.CreateIndexRequest
+import co.elastic.clients.elasticsearch.indices.ExistsRequest
 import de.larmic.es.elasticsearch.TweetDocument
-import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest
-import org.elasticsearch.action.admin.indices.refresh.RefreshRequest
-import org.elasticsearch.client.RequestOptions
-import org.elasticsearch.client.RestHighLevelClient
-import org.elasticsearch.client.indices.CreateIndexRequest
-import org.elasticsearch.client.indices.GetIndexRequest
 
-fun RestHighLevelClient.refreshIndex(): RestHighLevelClient {
-    val request = RefreshRequest(TweetDocument.documentIndex)
-    this.indices().refresh(request, RequestOptions.DEFAULT)
+fun ElasticsearchClient.refreshIndex(): ElasticsearchClient {
+    this.reindex { r : ReindexRequest.Builder -> r.refresh(true)}
     return this
 }
 
-fun RestHighLevelClient.deleteIndexIfExists(): RestHighLevelClient {
+fun ElasticsearchClient.deleteIndexIfExists(): ElasticsearchClient {
     if (this.indexExists(TweetDocument.documentIndex)) {
-        this.indices().delete(DeleteIndexRequest(TweetDocument.documentIndex), RequestOptions.DEFAULT)
+        this.delete { d: DeleteRequest.Builder -> d.index(TweetDocument.documentIndex) }
     }
     return this
 }
 
-fun RestHighLevelClient.createIndex(): RestHighLevelClient {
-    this.indices().create(CreateIndexRequest(TweetDocument.documentIndex), RequestOptions.DEFAULT)
+fun ElasticsearchClient.createIndex(): ElasticsearchClient {
+    this.indices().create { c: CreateIndexRequest.Builder -> c.index(TweetDocument.documentIndex) }
     return this
 }
 
-private fun RestHighLevelClient.indexExists(index: String) = this.indices().exists(GetIndexRequest(index), RequestOptions.DEFAULT)
+private fun ElasticsearchClient.indexExists(index: String) = this.indices().exists { e: ExistsRequest.Builder -> e.index(index) }.value()

@@ -1,20 +1,20 @@
 package de.larmic.testing
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient
-import co.elastic.clients.elasticsearch.core.DeleteRequest
-import co.elastic.clients.elasticsearch.core.ReindexRequest
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest
+import co.elastic.clients.elasticsearch.indices.DeleteIndexRequest
 import co.elastic.clients.elasticsearch.indices.ExistsRequest
+import co.elastic.clients.elasticsearch.indices.RefreshRequest
 import de.larmic.es.elasticsearch.TweetDocument
 
 fun ElasticsearchClient.refreshIndex(): ElasticsearchClient {
-    this.reindex { r : ReindexRequest.Builder -> r.refresh(true)}
+    this.indices().refresh {r: RefreshRequest.Builder -> r.index(TweetDocument.documentIndex) }
     return this
 }
 
 fun ElasticsearchClient.deleteIndexIfExists(): ElasticsearchClient {
     if (this.indexExists(TweetDocument.documentIndex)) {
-        this.delete { d: DeleteRequest.Builder -> d.index(TweetDocument.documentIndex) }
+        this.indices().delete { d: DeleteIndexRequest.Builder -> d.index(TweetDocument.documentIndex) }
     }
     return this
 }

@@ -4,8 +4,8 @@ Simple example demonstrating how Spring Boot and properties can play together.
 
 ## Used technologies
 
-* Spring Boot >= 2.7.x
-* JUnit >= 5.8.x
+* Spring Boot >= 3.0.x
+* JUnit >= 5.9.x
 
 ## Requirements
 

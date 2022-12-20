@@ -1,5 +1,6 @@
 package de.larmic.es
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient
 import de.larmic.es.elasticsearch.TweetRepository
 import de.larmic.es.rest.Tweet
 import de.larmic.testing.ElasticsearchContextInitializer
@@ -7,8 +8,6 @@ import de.larmic.testing.createIndex
 import de.larmic.testing.deleteIndexIfExists
 import de.larmic.testing.refreshIndex
 import org.assertj.core.api.Assertions.assertThat
-import org.elasticsearch.client.RestHighLevelClient
-import org.elasticsearch.rest.RestStatus
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -33,14 +32,14 @@ class TweetControllerIT {
     private lateinit var testRestTemplate: TestRestTemplate
 
     @Autowired
-    private lateinit var restHighLevelClient: RestHighLevelClient
+    private lateinit var esClient: ElasticsearchClient
 
     @Autowired
     private lateinit var tweetRepository: TweetRepository
 
     @BeforeEach
     fun setUp() {
-        restHighLevelClient.deleteIndexIfExists().createIndex()
+        esClient.deleteIndexIfExists().createIndex()
     }
 
     @Test
@@ -48,7 +47,7 @@ class TweetControllerIT {
         val response = testRestTemplate.exchange("/", HttpMethod.POST, HttpEntity("simple tweet"), String::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
 
-        restHighLevelClient.refreshIndex()
+        esClient.refreshIndex()
 
         val tweet = tweetRepository.getTweet(response.body!!)!!
         assertThat(tweet.message).isEqualTo("simple tweet")
@@ -58,7 +57,7 @@ class TweetControllerIT {
     fun `get a tweet`() {
         val tweetId = tweetRepository.storeTweet("other tweet")
 
-        restHighLevelClient.refreshIndex()
+        esClient.refreshIndex()
 
         val response = testRestTemplate.exchange("/$tweetId", HttpMethod.GET, null, Tweet::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
@@ -76,7 +75,7 @@ class TweetControllerIT {
     fun `get all tweets`() {
         val tweet1Id = tweetRepository.storeTweet("some tweet 1")
 
-        restHighLevelClient.refreshIndex()
+        esClient.refreshIndex()
 
         val response = testRestTemplate.exchange("/", HttpMethod.GET, null, object : ParameterizedTypeReference<List<Tweet>>() {})
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
@@ -95,43 +94,43 @@ class TweetControllerIT {
     fun `delete a tweet`() {
         val tweetId = tweetRepository.storeTweet("tweet to delete")
 
-        restHighLevelClient.refreshIndex()
+        esClient.refreshIndex()
 
-        val response = testRestTemplate.exchange("/$tweetId", HttpMethod.DELETE, null, RestStatus::class.java)
+        val response = testRestTemplate.exchange("/$tweetId", HttpMethod.DELETE, null, TweetRepository.RestStatus::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body!!).isEqualTo(RestStatus.OK)
+        assertThat(response.body!!).isEqualTo(TweetRepository.RestStatus.OK)
 
-        restHighLevelClient.refreshIndex()
+        esClient.refreshIndex()
 
         assertThat(tweetRepository.getTweet(tweetId)).isNull()
     }
 
     @Test
     fun `delete a not existing tweet`() {
-        val response = testRestTemplate.exchange("/not-existing", HttpMethod.DELETE, null, RestStatus::class.java)
+        val response = testRestTemplate.exchange("/not-existing", HttpMethod.DELETE, null, TweetRepository.RestStatus::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body!!).isEqualTo(RestStatus.NOT_FOUND)
+        assertThat(response.body!!).isEqualTo(TweetRepository.RestStatus.NOT_FOUND)
     }
 
     @Test
     fun `update a tweet`() {
         val tweetId = tweetRepository.storeTweet("tweet to change")
 
-        restHighLevelClient.refreshIndex()
+        esClient.refreshIndex()
 
-        val response = testRestTemplate.exchange("/$tweetId", HttpMethod.PUT, HttpEntity("tweet changed"), RestStatus::class.java)
+        val response = testRestTemplate.exchange("/$tweetId", HttpMethod.PUT, HttpEntity("tweet changed"), TweetRepository.RestStatus::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body!!).isEqualTo(RestStatus.OK)
+        assertThat(response.body!!).isEqualTo(TweetRepository.RestStatus.OK)
 
-        restHighLevelClient.refreshIndex()
+        esClient.refreshIndex()
 
         assertThat(tweetRepository.getTweet(tweetId)!!.message).isEqualTo("tweet changed")
     }
 
     @Test
     fun `update a not existing tweet`() {
-        val response = testRestTemplate.exchange("/not-existing", HttpMethod.PUT, HttpEntity("tweet changed"), RestStatus::class.java)
+        val response = testRestTemplate.exchange("/not-existing", HttpMethod.PUT, HttpEntity("tweet changed"), TweetRepository.RestStatus::class.java)
         assertThat(response.statusCode).isEqualTo(HttpStatus.OK)
-        assertThat(response.body!!).isEqualTo(RestStatus.NOT_FOUND)
+        assertThat(response.body!!).isEqualTo(TweetRepository.RestStatus.NOT_FOUND)
     }
 }

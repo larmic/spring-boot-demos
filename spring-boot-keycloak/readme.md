@@ -6,9 +6,9 @@ Simple example using keycloak and bind two spring boot services with rest api.
 
 ## Used technologies
 
-* Spring Boot >= 2.6.2
-* Keycloak >= 16.0.0
-* Postgres >= 13.3 (Keycloak database)
+* Spring Boot >= 2.7.x
+* Keycloak >= 16.x.x
+* Postgres >= 15.x (Keycloak database)
 
 ## Requirements
 

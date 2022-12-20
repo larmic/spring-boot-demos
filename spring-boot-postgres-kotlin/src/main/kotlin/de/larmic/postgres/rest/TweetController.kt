@@ -16,7 +16,7 @@ class TweetController(private val tweetRepository: TweetRepository) {
     @GetMapping("/{id}")
     fun readTweet(@PathVariable id: String?): ResponseEntity<TweetDto> {
         if (tweetRepository.existsById(java.lang.Long.valueOf(id))) {
-            val entity = tweetRepository.getById(java.lang.Long.valueOf(id))!!
+            val entity = tweetRepository.getReferenceById(java.lang.Long.valueOf(id))!!
             return entity.wrapInResponse()
         }
         return ResponseEntity.notFound().build()
@@ -28,7 +28,7 @@ class TweetController(private val tweetRepository: TweetRepository) {
     @PutMapping("/{id}")
     fun updateTweet(@PathVariable id: String, @RequestBody message: String): ResponseEntity<TweetDto> {
         if (tweetRepository.existsById(java.lang.Long.valueOf(id))) {
-            val entity = tweetRepository.getById(java.lang.Long.valueOf(id))!!
+            val entity = tweetRepository.getReferenceById(java.lang.Long.valueOf(id))!!
 
             entity.message = message
             entity.lastUpdateDate = LocalDateTime.now()

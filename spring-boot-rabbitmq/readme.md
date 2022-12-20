@@ -7,11 +7,11 @@ Message will be received by [RabbitReceiver.kt](src/main/kotlin/de/larmic/rabbit
 
 ## Used technologies
 
-* Spring Boot >= 2.6.2
-* Kotlin >= 1.6.10
+* Spring Boot >= 3.0.x
+* Kotlin >= 1.7.x
 * Rabbit 3
-* Testcontainers >= 1.16.0
-* JUnit >= 5.8.1
+* Testcontainers >= 1.17.x
+* JUnit >= 5.9.x
 
 ## Requirements
 

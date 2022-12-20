@@ -29,7 +29,7 @@ public class TweetController {
     @GetMapping("/{id}")
     public ResponseEntity<TweetDto> readTweet(@PathVariable final String id) {
         if (this.tweetRepository.existsById(Long.valueOf(id))) {
-            final var entity = this.tweetRepository.getById(Long.valueOf(id));
+            final var entity = this.tweetRepository.getReferenceById(Long.valueOf(id));
             return ResponseEntity.ok(mapToDto(entity));
         }
 
@@ -46,7 +46,7 @@ public class TweetController {
     @PutMapping("/{id}")
     public ResponseEntity<TweetDto> updateTweet(@PathVariable final String id, @RequestBody String message) {
         if (this.tweetRepository.existsById(Long.valueOf(id))) {
-            final var entity = this.tweetRepository.getById(Long.valueOf(id));
+            final var entity = this.tweetRepository.getReferenceById(Long.valueOf(id));
             entity.setMessage(message);
             entity.setLastUpdateDate(LocalDateTime.now());
             this.tweetRepository.save(entity);

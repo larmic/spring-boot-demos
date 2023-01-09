@@ -2,6 +2,9 @@
 
 There are several ways to package a spring boot application in docker.
 
+[Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html) is used by 
+docker health check. See Dockerfiles below.
+
 ### Used technologies
 
 * Spring Boot >= 3.0.x

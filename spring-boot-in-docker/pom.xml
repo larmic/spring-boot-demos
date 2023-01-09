@@ -25,6 +25,7 @@
 
         <!-- docker (used by build docker in maven phase -->
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
+        <jib-maven-plugin.version>3.3.1</jib-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -92,6 +93,24 @@
                             <buildArgs>
                                 <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
                             </buildArgs>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- see https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin -->
+            <id>docker-using-jib-plugin</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <version>${jib-maven-plugin.version}</version>
+                        <configuration>
+                            <to>
+                                <image>larmic/spring-boot-in-docker-jib</image>
+                            </to>
                         </configuration>
                     </plugin>
                 </plugins>

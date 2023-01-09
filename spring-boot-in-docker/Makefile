@@ -12,6 +12,10 @@ docker/build/maven:
 	echo "Build bigger jvm docker image using maven"
 	./mvnw clean package -Pdocker-using-spotify-plugin
 
+docker/build/jib:
+	echo "Build bigger jvm docker image using maven"
+	./mvnw clean compile jib:dockerBuild -Pdocker-using-jib-plugin
+
 docker/build/spring:
 	echo "Build bigger jvm docker image using spring boot maven plugin"
 	./mvnw spring-boot:build-image
@@ -25,8 +29,11 @@ docker/run/jvm:
 docker/run/maven:
 	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-maven:$(DOCKER_TAG)
 
+docker/run/jib:
+	docker run --rm -p 8080:8080 larmic/spring-boot-in-docker-jib:$(DOCKER_TAG)
+
 docker/run/spring:
-	docker run --rm -p 8080:8080spring-boot-in-docker:0.0.1-SNAPSHOT
+	docker run --rm -p 8080:8080 spring-boot-in-docker:0.0.1-SNAPSHOT
 
 docker/clean:
 	echo "Clean up dangling images"

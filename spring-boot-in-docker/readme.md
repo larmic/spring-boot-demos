@@ -62,6 +62,20 @@ __Disadvantages__
 * integrate in ci pipelines requires both (maven and docker)
 * hidden mechanism (i.e. base image)
 
+## Spring Boot in Docker using jib maven plugin
+
+See [Makefile](Makefile) and [jib documentation](https://github.com/GoogleContainerTools/jib).
+
+__Advantages__
+* easy to understand
+* no extra configuration needed
+
+__Disadvantages__
+* docker images size
+* integrate in ci pipelines requires both (maven and docker)
+* hidden mechanism (i.e. base image)
+* no docker health check 
+
 ## Build docker images and examples
 
 ```sh
@@ -90,6 +104,7 @@ REPOSITORY                          TAG              IMAGE ID       CREATED     
 larmic/spring-boot-in-docker-maven  latest           9b3bbfc30ec9   5 seconds ago        477MB
 larmic/spring-boot-in-docker-jvm    latest           e56a0ca2ed6e   About a minute ago   477MB
 larmic/spring-boot-in-docker-slim   latest           f8f3f810c892   2 minutes ago        154MB
+larmic/spring-boot-in-docker-jib    latest           3bc9d7e48fb8   53 years ago         287MB
 spring-boot-in-docker               0.0.1-SNAPSHOT   e0194cf2d9c1   42 years ago         290MB
 
 

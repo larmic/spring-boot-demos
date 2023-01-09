@@ -62,8 +62,15 @@ COPY --from=jre-build /javaruntime $JAVA_HOME
 COPY --from=app-build /target/spring-boot-app.jar .
 
 # Create non-root user
-RUN groupadd --gid $USER_GID $USER_NAME && \
-    useradd -r --uid $USER_UID --gid $USER_GID $USER_NAME
+RUN groupadd --gid $USER_GID $USER_NAME \
+ && useradd -r --uid $USER_UID --gid $USER_GID $USER_NAME \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends curl jq \
+ && rm -rf /var/lib/apt/lists/*
 USER $USER_NAME
+
+HEALTHCHECK --start-period=10s --interval=10s --timeout=5s --retries=20 \
+            CMD curl --silent --fail --request GET http://localhost:8080/health \
+                | jq --exit-status '.status == "UP"' || exit 1
 
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/spring-boot-app.jar"]

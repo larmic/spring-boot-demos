@@ -2,9 +2,26 @@ FROM eclipse-temurin:19
 
 MAINTAINER Lars Michaelis <mail@larmic.de>
 
+# Container should run in non-root user mode
+ENV USER_NAME="change-me"
+ENV USER_UID=999
+ENV USER_GID=999
+
 ARG JAR_FILE
 COPY target/${JAR_FILE} /spring-boot-app.jar
 
 EXPOSE 8080
+
+# Create non-root user
+RUN groupadd --gid $USER_GID $USER_NAME \
+ && useradd -r --uid $USER_UID --gid $USER_GID $USER_NAME \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends curl jq \
+ && rm -rf /var/lib/apt/lists/*
+USER $USER_NAME
+
+HEALTHCHECK --start-period=10s --interval=10s --timeout=5s --retries=20 \
+            CMD curl --silent --fail --request GET http://localhost:8080/health \
+                | jq --exit-status '.status == "UP"' || exit 1
 
 ENTRYPOINT ["java", "-jar", "/spring-boot-app.jar"]

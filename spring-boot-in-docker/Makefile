@@ -10,7 +10,7 @@ docker/build/jvm:
 
 docker/build/maven:
 	echo "Build bigger jvm docker image using maven"
-	./mvnw clean package -Pdocker
+	./mvnw clean package -Pdocker-using-spotify-plugin
 
 docker/build/spring:
 	echo "Build bigger jvm docker image using spring boot maven plugin"

@@ -64,7 +64,7 @@
 
     <profiles>
         <profile>
-            <id>docker</id>
+            <id>docker-using-spotify-plugin</id>
             <build>
                 <plugins>
                     <plugin>

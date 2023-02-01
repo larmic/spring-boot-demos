@@ -23,7 +23,7 @@
         <java.version>17</java.version>
         <kotlin.version>1.8.0</kotlin.version>
 
-        <flyway-core.version>9.14.0</flyway-core.version>
+        <flyway-core.version>9.14.1</flyway-core.version>
 
         <!-- testing -->
         <junit-jupiter.version>5.9.2</junit-jupiter.version>

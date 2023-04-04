@@ -31,7 +31,7 @@
 
         <!-- testing -->
         <junit-jupiter.version>5.9.2</junit-jupiter.version>
-        <testcontainers.version>1.17.6</testcontainers.version>
+        <testcontainers.version>1.18.0</testcontainers.version>
         <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
     </properties>
 

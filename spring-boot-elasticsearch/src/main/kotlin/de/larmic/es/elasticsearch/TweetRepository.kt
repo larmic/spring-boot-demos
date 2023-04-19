@@ -45,12 +45,10 @@ class TweetRepository(private val esClient: ElasticsearchClient) {
         val jsonMap = HashMap<String, Any>()
         jsonMap["message"] = tweet
 
-        val response: UpdateResponse<TweetDocument> = esClient.update(
+        esClient.update(
             { u: UpdateRequest.Builder<TweetDocument, Any> -> u.index(documentIndex).id(id).doc(jsonMap) },
             TweetDocument::class.java
         )
-
-        // TODO response.result()
 
         return RestStatus.OK
     }
@@ -60,9 +58,7 @@ class TweetRepository(private val esClient: ElasticsearchClient) {
             return RestStatus.NOT_FOUND
         }
 
-        val response = esClient.delete { d: DeleteRequest.Builder -> d.index(documentIndex).id(id) }
-
-        // TODO response.result()
+        esClient.delete { d: DeleteRequest.Builder -> d.index(documentIndex).id(id) }
 
         return RestStatus.OK
     }

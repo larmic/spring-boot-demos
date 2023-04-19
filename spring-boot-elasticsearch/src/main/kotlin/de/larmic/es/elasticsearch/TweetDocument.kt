@@ -1,6 +1,8 @@
 package de.larmic.es.elasticsearch
 
-class TweetDocument(val message: String) {
+import com.fasterxml.jackson.annotation.JsonProperty
+
+class TweetDocument(@JsonProperty("message") val message: String) {
     companion object {
         const val documentIndex = "twitter"
     }

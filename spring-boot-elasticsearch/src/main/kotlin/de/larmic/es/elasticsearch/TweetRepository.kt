@@ -7,7 +7,6 @@ import de.larmic.es.rest.Tweet
 import org.springframework.stereotype.Service
 import java.util.*
 
-
 @Service
 class TweetRepository(private val esClient: ElasticsearchClient) {
 
@@ -64,13 +63,9 @@ class TweetRepository(private val esClient: ElasticsearchClient) {
     }
 
     private fun tweetExists(id: String): Boolean {
-        // TODO use ExistResponse
-        val response: GetResponse<TweetDocument> = esClient.get(
-            { g: GetRequest.Builder -> g.index(documentIndex).id(id) },
-            TweetDocument::class.java
-        )
+        val response = esClient.exists { g: ExistsRequest.Builder -> g.index(documentIndex).id(id) }
 
-        return response.found()
+        return response.value()
     }
 
     enum class RestStatus {

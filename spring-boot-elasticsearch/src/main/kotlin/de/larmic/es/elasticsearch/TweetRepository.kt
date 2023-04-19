@@ -7,7 +7,6 @@ import de.larmic.es.rest.Tweet
 import org.springframework.stereotype.Service
 import java.util.*
 
-
 @Service
 class TweetRepository(private val esClient: ElasticsearchClient) {
 
@@ -45,12 +44,10 @@ class TweetRepository(private val esClient: ElasticsearchClient) {
         val jsonMap = HashMap<String, Any>()
         jsonMap["message"] = tweet
 
-        val response: UpdateResponse<TweetDocument> = esClient.update(
+        esClient.update(
             { u: UpdateRequest.Builder<TweetDocument, Any> -> u.index(documentIndex).id(id).doc(jsonMap) },
             TweetDocument::class.java
         )
-
-        // TODO response.result()
 
         return RestStatus.OK
     }
@@ -60,21 +57,15 @@ class TweetRepository(private val esClient: ElasticsearchClient) {
             return RestStatus.NOT_FOUND
         }
 
-        val response = esClient.delete { d: DeleteRequest.Builder -> d.index(documentIndex).id(id) }
-
-        // TODO response.result()
+        esClient.delete { d: DeleteRequest.Builder -> d.index(documentIndex).id(id) }
 
         return RestStatus.OK
     }
 
     private fun tweetExists(id: String): Boolean {
-        // TODO use ExistResponse
-        val response: GetResponse<TweetDocument> = esClient.get(
-            { g: GetRequest.Builder -> g.index(documentIndex).id(id) },
-            TweetDocument::class.java
-        )
+        val response = esClient.exists { g: ExistsRequest.Builder -> g.index(documentIndex).id(id) }
 
-        return response.found()
+        return response.value()
     }
 
     enum class RestStatus {

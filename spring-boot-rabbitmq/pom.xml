@@ -29,7 +29,7 @@
         <jackson-module-kotlin.version>2.15.0</jackson-module-kotlin.version>
 
         <!-- testing -->
-        <junit-jupiter.version>5.9.2</junit-jupiter.version>
+        <junit-jupiter.version>5.9.3</junit-jupiter.version>
         <testcontainers.version>1.18.0</testcontainers.version>
         <kotlinx-coroutines-core.version>1.6.4</kotlinx-coroutines-core.version>
         <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>

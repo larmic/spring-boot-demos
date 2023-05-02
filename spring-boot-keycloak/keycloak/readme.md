@@ -27,7 +27,7 @@ Without using `imports/realm-export.json` you have to create realm, client and r
 You can retrieve an access token by sending a `POST` request.
 
 ```sh 
-$ curl -X POST '<KEYCLOAK_SERVER_URL>/auth/realms/<REALM_NAME>/protocol/openid-connect/token' \
+$ curl -X POST '<KEYCLOAK_SERVER_URL>/realms/<REALM_NAME>/protocol/openid-connect/token' \
  --header 'Content-Type: application/x-www-form-urlencoded' \
  --data-urlencode 'grant_type=password' \
  --data-urlencode 'client_id=<CLIENT_ID>' \
@@ -36,7 +36,7 @@ $ curl -X POST '<KEYCLOAK_SERVER_URL>/auth/realms/<REALM_NAME>/protocol/openid-c
 ```
 
 ```sh 
-$ curl -X POST 'http://localhost:8085/auth/realms/spring-boot-services/protocol/openid-connect/token' \
+$ curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token' \
  --header 'Content-Type: application/x-www-form-urlencoded' \
  --data-urlencode 'grant_type=password' \
  --data-urlencode 'client_id=spring-boot-service-1' \

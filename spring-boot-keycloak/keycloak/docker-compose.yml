@@ -5,31 +5,37 @@ volumes:
         driver: local
 
 services:
-    postgres:
-        image: postgres:15.2
-        volumes:
-            - postgres_data:/var/lib/postgresql/data
-        environment:
-            POSTGRES_DB: keycloak
-            POSTGRES_USER: db-keycloak-user
-            POSTGRES_PASSWORD: db-keycloak-pw
+    #postgres:
+    #    image: postgres:15.2
+    #    volumes:
+    #        - postgres_data:/var/lib/postgresql/data
+    #    environment:
+    #        POSTGRES_DB: keycloak
+    #        POSTGRES_USER: db-keycloak-user
+    #        POSTGRES_PASSWORD: db-keycloak-pw
     keycloak:
-        image: bitnami/keycloak:21.0.2
-        #volumes:
-        #    - ./imports:/opt/jboss/keycloak/imports
+        image: quay.io/keycloak/keycloak:21.1
+        command:
+            - start-dev
+            - --import-realm
+        volumes:
+            - ./imports/realm-export.json:/opt/keycloak/data/import/realm.json
         environment:
-            KEYCLOAK_ADMIN_USER: admin
+            KEYCLOAK_ADMIN: admin
             KEYCLOAK_ADMIN_PASSWORD: admin
             #KEYCLOAK_DATABASE_VENDOR: POSTGRES
-            KEYCLOAK_DATABASE_HOST: postgres
-            KEYCLOAK_DATABASE_NAME: keycloak
+            #KEYCLOAK_DATABASE_HOST: postgres
+            #KEYCLOAK_DATABASE_NAME: keycloak
             #KEYCLOAK_DATABASE_SCHEMA: public
-            KEYCLOAK_DATABASE_USER: db-keycloak-user
-            KEYCLOAK_DATABASE_PASSWORD: db-keycloak-pw
+            #KEYCLOAK_DATABASE_USER: db-keycloak-user
+            #KEYCLOAK_DATABASE_PASSWORD: db-keycloak-pw
             #KEYCLOAK_USER: admin
             #KEYCLOAK_PASSWORD: admin
             #KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json
+        #extraEnvVars:
+        #    -   name: KEYCLOAK_EXTRA_ARGS
+        #        value: "-Dkeycloak.import=/imports/realm-export.json"
         ports:
             - "8085:8080"
-        depends_on:
-            - postgres
+        #depends_on:
+        #    - postgres

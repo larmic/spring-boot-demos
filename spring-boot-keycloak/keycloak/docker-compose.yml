@@ -14,19 +14,19 @@ services:
             POSTGRES_USER: db-keycloak-user
             POSTGRES_PASSWORD: db-keycloak-pw
     keycloak:
-        image: jboss/keycloak:16.1.1
-        volumes:
-            - ./imports:/opt/jboss/keycloak/imports
+        image: bitnami/keycloak:21.0.2
+        #volumes:
+        #    - ./imports:/opt/jboss/keycloak/imports
         environment:
-            DB_VENDOR: POSTGRES
-            DB_ADDR: postgres
-            DB_DATABASE: keycloak
-            DB_SCHEMA: public
-            DB_USER: db-keycloak-user
-            DB_PASSWORD: db-keycloak-pw
-            KEYCLOAK_USER: admin
-            KEYCLOAK_PASSWORD: admin
-            KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json
+            #KEYCLOAK_DATABASE_VENDOR: POSTGRES
+            KEYCLOAK_DATABASE_HOST: postgres
+            KEYCLOAK_DATABASE_NAME: keycloak
+            #KEYCLOAK_DATABASE_SCHEMA: public
+            KEYCLOAK_DATABASE_USER: db-keycloak-user
+            KEYCLOAK_DATABASE_PASSWORD: db-keycloak-pw
+            #KEYCLOAK_USER: admin
+            #KEYCLOAK_PASSWORD: admin
+            #KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json
         ports:
             - "8085:8080"
         depends_on:

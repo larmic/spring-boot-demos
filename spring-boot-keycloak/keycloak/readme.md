@@ -11,7 +11,7 @@ A volume `postgres_data` will be created to store persistent Keycloak data.
 $ docker compose up
 ```
 
-2. Open `http://localhost:8085/auth/` and login with `admin` and `admin`.
+2. Open `http://localhost:8085/admin/` and login with `user` and `bitnami`.
 3. Add User `larmic` and set credentials password to `test` and add role `user` and remove Required User Actions
 
 

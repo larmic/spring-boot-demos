@@ -1,0 +1,26 @@
+# curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token'
+# --header 'Content-Type: application/x-www-form-urlencoded'
+# --data-urlencode 'grant_type=password'
+# --data-urlencode 'client_id=spring-boot-service-1'
+# --data-urlencode 'username=larmic'
+# --data-urlencode 'password=test'
+POST http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=spring-boot-service-1&username=larmic&password=test
+
+> {%
+    client.global.set("access_token", response.body.access_token);
+    client.log("Access token is " + response.body.access_token)
+%}
+
+###
+
+# curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8081/secure/hello
+GET http://localhost:8081/secure/hello
+Authorization: Bearer {{access_token}}
+
+###
+
+
+

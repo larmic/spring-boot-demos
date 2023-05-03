@@ -27,11 +27,10 @@ class KeycloakSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(it -> {
-            it
-                .requestMatchers("/unsecure/*").permitAll()
-                .requestMatchers("/secure/*").hasRole("user");
-        }).csrf().disable();
+        http.authorizeHttpRequests(it -> it
+            .requestMatchers("/unsecure/*").permitAll()
+            .requestMatchers("/secure/*").hasRole("user"))
+            .csrf().disable();
 
         http.oauth2Login()
             .and()

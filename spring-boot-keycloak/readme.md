@@ -30,16 +30,6 @@ Check the [Keycloak setup](keycloak/readme.md) to start a Keycloak service
 
 After installing Keycloak and register service clients, roles and users you can start Keycloak and retrieve an `access token`.
 
-```sh 
-$ cd keycloak && docker compose up
-$ curl -X POST 'http://localhost:8085/auth/realms/spring-boot-services/protocol/openid-connect/token' \
- --header 'Content-Type: application/x-www-form-urlencoded' \
- --data-urlencode 'grant_type=password' \
- --data-urlencode 'client_id=spring-boot-service-1' \
- --data-urlencode 'username=larmic' \
- --data-urlencode 'password=test'
-```
-
 ### Spring Boot Services
 
 #### Build services
@@ -87,7 +77,7 @@ Date: Mon, 14 Jun 2021 09:47:20 GMT
 #### Get and copy `access token` and add authorization header
 
 ```sh 
-$ curl -X POST 'http://localhost:8085/auth/realms/spring-boot-services/protocol/openid-connect/token' \
+$ curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token' \
  --header 'Content-Type: application/x-www-form-urlencoded' \
  --data-urlencode 'grant_type=password' \
  --data-urlencode 'client_id=spring-boot-service-1' \

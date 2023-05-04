@@ -20,6 +20,10 @@ grant_type=password&client_id=spring-boot-service-1&username=larmic&password=tes
 GET http://localhost:8081/secure/hello
 Authorization: Bearer {{access_token}}
 
+> {%
+    client.log("Response: " + response.body)
+%}
+
 ###
 
 

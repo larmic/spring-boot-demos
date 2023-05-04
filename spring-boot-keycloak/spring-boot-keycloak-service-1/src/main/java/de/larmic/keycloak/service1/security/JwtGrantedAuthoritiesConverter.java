@@ -16,6 +16,7 @@ public class JwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection
     private final Log logger = LogFactory.getLog(getClass());
 
     private static final String AUTHORITIES_CLAIM_NAME = "realm_access";
+    private static final String AUTHORITIES_MAP_NAME = "roles";
 
     @Override
     public Collection<GrantedAuthority> convert(Jwt jwt) {
@@ -40,8 +41,8 @@ public class JwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection
         if (authorities instanceof Collection) {
             return castAuthoritiesToCollection(authorities);
         }
-        if (authorities instanceof Map<?,?> && ((Map<?, ?>) authorities).containsKey("roles")) {
-            return castAuthoritiesToCollection(((Map<?, ?>) authorities).get("roles"));
+        if (authorities instanceof Map<?,?> && ((Map<?, ?>) authorities).containsKey(AUTHORITIES_MAP_NAME)) {
+            return castAuthoritiesToCollection(((Map<?, ?>) authorities).get(AUTHORITIES_MAP_NAME));
         }
         return Collections.emptyList();
     }

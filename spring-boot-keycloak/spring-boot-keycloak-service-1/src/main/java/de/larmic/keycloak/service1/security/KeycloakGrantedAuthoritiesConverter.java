@@ -7,11 +7,14 @@ import org.springframework.core.log.LogMessage;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.util.StringUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-public class JwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
+public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
 
     private final Log logger = LogFactory.getLog(getClass());
 
@@ -20,28 +23,17 @@ public class JwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection
 
     @Override
     public Collection<GrantedAuthority> convert(Jwt jwt) {
-        Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        for (String authority : getAuthorities(jwt)) {
-            grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + authority));
-        }
-        return grantedAuthorities;
+        return getAuthorities(jwt)
+            .stream().map(it -> new SimpleGrantedAuthority("ROLE_" + it))
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
     private Collection<String> getAuthorities(Jwt jwt) {
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(LogMessage.format("Looking for scopes in claim %s", AUTHORITIES_CLAIM_NAME));
         }
-        Object authorities = jwt.getClaim(AUTHORITIES_CLAIM_NAME);
-        if (authorities instanceof String) {
-            if (StringUtils.hasText((String) authorities)) {
-                return Arrays.asList(((String) authorities).split(" "));
-            }
-            return Collections.emptyList();
-        }
-        if (authorities instanceof Collection) {
-            return castAuthoritiesToCollection(authorities);
-        }
-        if (authorities instanceof Map<?,?> && ((Map<?, ?>) authorities).containsKey(AUTHORITIES_MAP_NAME)) {
+        final var authorities = jwt.getClaim(AUTHORITIES_CLAIM_NAME);
+        if (authorities instanceof Map<?, ?> && ((Map<?, ?>) authorities).containsKey(AUTHORITIES_MAP_NAME)) {
             return castAuthoritiesToCollection(((Map<?, ?>) authorities).get(AUTHORITIES_MAP_NAME));
         }
         return Collections.emptyList();

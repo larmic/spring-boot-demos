@@ -50,7 +50,7 @@ class KeycloakSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(it -> it
                 .requestMatchers("/unsecure/*").permitAll()
-                .requestMatchers("/secure/*").hasAnyRole("custom_client_role", "custom_realm_role"))
+                .requestMatchers("/secure/*").hasAnyRole("custom_client1_role", "custom_realm_role"))
             .csrf().disable();
 
         http.oauth2Login()

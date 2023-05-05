@@ -7,9 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
@@ -17,8 +14,6 @@ import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
-import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
-import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.security.oauth2.server.resource.authentication.DelegatingJwtGrantedAuthoritiesConverter;
@@ -29,7 +24,10 @@ import org.springframework.security.web.authentication.session.RegisterSessionAu
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 import java.text.ParseException;
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Configuration
@@ -80,9 +78,6 @@ class KeycloakSecurityConfig {
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(authoritiesConverter);
         return jwtAuthenticationConverter;
     }
-
-    private static final String REALM_ACCESS_CLAIM = "realm_access";
-    private static final String ROLES_CLAIM = "roles";
 
     @Bean(name = "oidcUserService")
     OAuth2UserService<OidcUserRequest, OidcUser> getOidcUserService() {
@@ -142,40 +137,5 @@ class KeycloakSecurityConfig {
                 }
             }
         };
-    }
-
-    //@Bean
-    @SuppressWarnings("unchecked")
-    public GrantedAuthoritiesMapper userAuthoritiesMapperForKeycloak() {
-        return authorities -> {
-            Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
-            var authority = authorities.iterator().next();
-            boolean isOidc = authority instanceof OidcUserAuthority;
-
-            if (isOidc) {
-                var oidcUserAuthority = (OidcUserAuthority) authority;
-                var userInfo = oidcUserAuthority.getUserInfo();
-
-                if (userInfo.hasClaim(REALM_ACCESS_CLAIM)) {
-                    var realmAccess = userInfo.getClaimAsMap(REALM_ACCESS_CLAIM);
-                    var roles = (Collection<String>) realmAccess.get(ROLES_CLAIM);
-                    mappedAuthorities.addAll(generateAuthoritiesFromClaim(roles));
-                }
-            } else {
-                var oauth2UserAuthority = (OAuth2UserAuthority) authority;
-                Map<String, Object> userAttributes = oauth2UserAuthority.getAttributes();
-
-                if (userAttributes.containsKey(REALM_ACCESS_CLAIM)) {
-                    var realmAccess = (Map<String, Object>) userAttributes.get(REALM_ACCESS_CLAIM);
-                    var roles = (Collection<String>) realmAccess.get(ROLES_CLAIM);
-                    mappedAuthorities.addAll(generateAuthoritiesFromClaim(roles));
-                }
-            }
-            return mappedAuthorities;
-        };
-    }
-
-    Collection<GrantedAuthority> generateAuthoritiesFromClaim(Collection<String> roles) {
-        return roles.stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList());
     }
 }

@@ -1,5 +1,6 @@
 package de.larmic.keycloak.service1.security;
 
+import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,7 @@ import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
 import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtException;
 import org.springframework.security.oauth2.server.resource.authentication.DelegatingJwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
@@ -27,15 +29,14 @@ import org.springframework.security.web.authentication.session.RegisterSessionAu
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 import java.text.ParseException;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
 class KeycloakSecurityConfig {
+
+    private static final String DECODING_ERROR_MESSAGE_TEMPLATE = "An error occurred while attempting to decode the Jwt: %s";
 
     private final KeycloakLogoutHandler keycloakLogoutHandler;
 
@@ -90,17 +91,7 @@ class KeycloakSecurityConfig {
             public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
                 final var oidcUser = (DefaultOidcUser) super.loadUser(userRequest);
                 final var jwtAsString = userRequest.getAccessToken().getTokenValue();
-                final var jwt = Jwt.withTokenValue(jwtAsString)
-                    .header("todo", "todo") // TODO
-                    .claim("preferred_username", "larmic") // TODO
-                    .build();
-
-                try {
-                    final var test = JWTParser.parse(jwtAsString);
-                    test.getHeader();
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
+                final var jwt = createJwt(jwtAsString);
 
                 final var authorities = new KeycloakGrantedAuthoritiesConverter().convert(jwt);
                 authorities.addAll(oidcUser.getAuthorities());
@@ -109,10 +100,51 @@ class KeycloakSecurityConfig {
 
                 return defaultOidcUser;
             }
+
+            private Jwt createJwt(String jwtAsString) {
+                try {
+                    final var test = JWTParser.parse(jwtAsString);
+                    return createJwt(jwtAsString, test);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            private Jwt createJwt(String token, JWT parsedJwt) {
+                try {
+                    Map<String, Object> headers = new LinkedHashMap<>(parsedJwt.getHeader().toJSONObject());
+                    Map<String, Object> claims = parsedJwt.getJWTClaimsSet().getClaims();
+
+                    var t = claims
+                        .entrySet()
+                        .stream()
+                        .map(entry -> {
+                            if (entry.getKey().equals("iat")){
+                                return new AbstractMap.SimpleEntry<>("iat", ((Date) entry.getValue()).toInstant());
+                            }
+                            if (entry.getKey().equals("exp")){
+                                return new AbstractMap.SimpleEntry<>("exp", ((Date) entry.getValue()).toInstant());
+                            }
+                            return entry;
+                        })
+                        .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
+
+                    return Jwt.withTokenValue(token)
+                        .headers(h -> h.putAll(headers))
+                        .claims(c -> c.putAll(t))
+                        .build();
+                } catch (Exception ex) {
+                    if (ex.getCause() instanceof ParseException) {
+                        throw new JwtException(String.format(DECODING_ERROR_MESSAGE_TEMPLATE, "Malformed payload"));
+                    } else {
+                        throw new JwtException(String.format(DECODING_ERROR_MESSAGE_TEMPLATE, ex.getMessage()), ex);
+                    }
+                }
+            }
         };
     }
 
-    @Bean
+    //@Bean
     @SuppressWarnings("unchecked")
     public GrantedAuthoritiesMapper userAuthoritiesMapperForKeycloak() {
         return authorities -> {

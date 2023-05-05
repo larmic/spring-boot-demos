@@ -64,14 +64,12 @@ class KeycloakSecurityConfig {
     }
 
     @Bean
-    JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtAuthenticationConverter jwtAuthenticationConverter(KeycloakGrantedAuthoritiesConverter keycloakGrantedAuthoritiesConverter) {
         final var defaultAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         defaultAuthoritiesConverter.setAuthorityPrefix("ROLE_");
         defaultAuthoritiesConverter.setAuthoritiesClaimName("realm_access");
 
-        final var keycloakAuthoritiesConverter = new KeycloakGrantedAuthoritiesConverter();
-
-        final var authoritiesConverter = new DelegatingJwtGrantedAuthoritiesConverter(defaultAuthoritiesConverter, keycloakAuthoritiesConverter);
+        final var authoritiesConverter = new DelegatingJwtGrantedAuthoritiesConverter(defaultAuthoritiesConverter, keycloakGrantedAuthoritiesConverter);
 
         final var jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(authoritiesConverter);
@@ -79,7 +77,7 @@ class KeycloakSecurityConfig {
     }
 
     @Bean(name = "oidcUserService")
-    OAuth2UserService<OidcUserRequest, OidcUser> getOidcUserService() {
+    OAuth2UserService<OidcUserRequest, OidcUser> getOidcUserService(KeycloakGrantedAuthoritiesConverter keycloakGrantedAuthoritiesConverter) {
         return new OidcUserService() {
             @Override
             public OidcUser loadUser(OidcUserRequest userRequest) throws OAuth2AuthenticationException {
@@ -87,12 +85,10 @@ class KeycloakSecurityConfig {
                 final var jwtAsString = userRequest.getAccessToken().getTokenValue();
                 final var jwt = createJwt(jwtAsString);
 
-                final var authorities = new KeycloakGrantedAuthoritiesConverter().convert(jwt);
+                final var authorities = keycloakGrantedAuthoritiesConverter.convert(jwt);
                 authorities.addAll(oidcUser.getAuthorities());
 
-                final var defaultOidcUser = new DefaultOidcUser(authorities, oidcUser.getIdToken(), oidcUser.getUserInfo());
-
-                return defaultOidcUser;
+                return new DefaultOidcUser(authorities, oidcUser.getIdToken(), oidcUser.getUserInfo());
             }
 
             private Jwt createJwt(String jwtAsString) {

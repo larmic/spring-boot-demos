@@ -28,13 +28,13 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
 
     private final String keyCloakResourceClientId;
 
-    public KeycloakGrantedAuthoritiesConverter(@Value("SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_KEYCLOAK_CLIENT-ID") String keyCloakResourceClientId) {
+    public KeycloakGrantedAuthoritiesConverter(@Value("${spring.security.oauth2.client.registration.keycloak.client-id}") String keyCloakResourceClientId) {
         this.keyCloakResourceClientId = keyCloakResourceClientId;
     }
 
     @Override
     @NonNull
-    public Collection<GrantedAuthority> convert(@NonNull  Jwt jwt) {
+    public Collection<GrantedAuthority> convert(@NonNull Jwt jwt) {
         return getAuthorities(jwt)
             .stream().map(it -> new SimpleGrantedAuthority("ROLE_" + it))
             .collect(Collectors.toCollection(ArrayList::new));
@@ -44,13 +44,23 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
         if (this.logger.isTraceEnabled()) {
             this.logger.trace(LogMessage.format("Looking for scopes in claim %s", REALM_AUTHORITIES_CLAIM_NAME));
         }
+        final var authorities = new ArrayList<String>();
+
         final var realmAuthorities = jwt.getClaim(REALM_AUTHORITIES_CLAIM_NAME);
-        if (realmAuthorities instanceof Map<?, ?> && ((Map<?, ?>) realmAuthorities).containsKey(AUTHORITIES_MAP_NAME)) {
-            return castAuthoritiesToCollection(((Map<?, ?>) realmAuthorities).get(AUTHORITIES_MAP_NAME));
-        }
+        authorities.addAll(extractAuthorities(realmAuthorities));
 
         final var resourceAuthorities = jwt.getClaim(RESOURCE_AUTHORITIES_CLAIM_NAME);
+        if (resourceAuthorities instanceof Map<?, ?> && ((Map<?, ?>) resourceAuthorities).containsKey(keyCloakResourceClientId)) {
+            authorities.addAll(extractAuthorities(((Map<?, ?>) resourceAuthorities).get(keyCloakResourceClientId)));
+        }
 
+        return authorities;
+    }
+
+    private Collection<String> extractAuthorities(Object authorityClaim) {
+        if (authorityClaim instanceof Map<?, ?> && ((Map<?, ?>) authorityClaim).containsKey(AUTHORITIES_MAP_NAME)) {
+            return castAuthoritiesToCollection(((Map<?, ?>) authorityClaim).get(AUTHORITIES_MAP_NAME));
+        }
         return Collections.emptyList();
     }
 

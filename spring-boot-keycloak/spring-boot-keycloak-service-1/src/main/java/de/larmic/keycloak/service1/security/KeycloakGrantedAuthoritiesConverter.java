@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.log.LogMessage;
+import org.springframework.lang.NonNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -22,7 +23,8 @@ public class KeycloakGrantedAuthoritiesConverter implements Converter<Jwt, Colle
     private static final String AUTHORITIES_MAP_NAME = "roles";
 
     @Override
-    public Collection<GrantedAuthority> convert(Jwt jwt) {
+    @NonNull
+    public Collection<GrantedAuthority> convert(@NonNull  Jwt jwt) {
         return getAuthorities(jwt)
             .stream().map(it -> new SimpleGrantedAuthority("ROLE_" + it))
             .collect(Collectors.toCollection(ArrayList::new));

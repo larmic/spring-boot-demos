@@ -1,6 +1,5 @@
 package de.larmic.keycloak.service1.security;
 
-import com.nimbusds.jwt.JWT;
 import com.nimbusds.jwt.JWTParser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,8 +49,8 @@ class KeycloakSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(it -> it
-            .requestMatchers("/unsecure/*").permitAll()
-            .requestMatchers("/secure/*").hasRole("custom_realm_role"))
+                .requestMatchers("/unsecure/*").permitAll()
+                .requestMatchers("/secure/*").hasRole("custom_realm_role"))
             .csrf().disable();
 
         http.oauth2Login()
@@ -65,7 +64,7 @@ class KeycloakSecurityConfig {
     }
 
     @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtAuthenticationConverter jwtAuthenticationConverter() {
         final var defaultAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         defaultAuthoritiesConverter.setAuthorityPrefix("ROLE_");
         defaultAuthoritiesConverter.setAuthoritiesClaimName("realm_access");
@@ -74,7 +73,7 @@ class KeycloakSecurityConfig {
 
         final var authoritiesConverter = new DelegatingJwtGrantedAuthoritiesConverter(defaultAuthoritiesConverter, keycloakAuthoritiesConverter);
 
-        var jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        final var jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(authoritiesConverter);
         return jwtAuthenticationConverter;
     }
@@ -98,33 +97,25 @@ class KeycloakSecurityConfig {
 
             private Jwt createJwt(String jwtAsString) {
                 try {
-                    final var test = JWTParser.parse(jwtAsString);
-                    return createJwt(jwtAsString, test);
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-            private Jwt createJwt(String token, JWT parsedJwt) {
-                try {
-                    Map<String, Object> headers = new LinkedHashMap<>(parsedJwt.getHeader().toJSONObject());
-                    Map<String, Object> claims = parsedJwt.getJWTClaimsSet().getClaims();
+                    final var parsedJwt = JWTParser.parse(jwtAsString);
+                    final var headers = new LinkedHashMap<>(parsedJwt.getHeader().toJSONObject());
+                    final var claims = parsedJwt.getJWTClaimsSet().getClaims();
 
                     var t = claims
                         .entrySet()
                         .stream()
                         .map(entry -> {
-                            if (entry.getKey().equals("iat")){
+                            if (entry.getKey().equals("iat")) {
                                 return new AbstractMap.SimpleEntry<>("iat", ((Date) entry.getValue()).toInstant());
                             }
-                            if (entry.getKey().equals("exp")){
+                            if (entry.getKey().equals("exp")) {
                                 return new AbstractMap.SimpleEntry<>("exp", ((Date) entry.getValue()).toInstant());
                             }
                             return entry;
                         })
                         .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
 
-                    return Jwt.withTokenValue(token)
+                    return Jwt.withTokenValue(jwtAsString)
                         .headers(h -> h.putAll(headers))
                         .claims(c -> c.putAll(t))
                         .build();

@@ -5,10 +5,10 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=password&client_id=admin-cli&username=admin&password=admin
 
 > {%
-    client.test("Request executed successfully", function() {
+    client.test("Request executed successfully", function () {
         client.assert(response.status === 200, "Response status is not 200");
     });
-    client.test("Access token exists", function() {
+    client.test("Access token exists", function () {
         client.assert(response.body.hasOwnProperty("access_token"), "Response property 'access_token' does not exists");
     });
 
@@ -30,15 +30,17 @@ Content-Type: application/json
     "lastName": "Michaelis",
     "enabled": "true",
     "username": "larmic",
-    "credentials": [{
-        "type":"password",
-        "value":"test",
-        "temporary":false
-    }]
+    "credentials": [
+        {
+            "type": "password",
+            "value": "test",
+            "temporary": false
+        }
+    ]
 }
 
 > {%
-    client.test("Request executed successfully", function() {
+    client.test("Request executed successfully", function () {
         client.assert(response.status === 201, "Response status is not 200");
     });
 
@@ -54,10 +56,10 @@ Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 > {%
-    client.test("Request executed successfully", function() {
+    client.test("Request executed successfully", function () {
         client.assert(response.status === 200, "Response status is not 200");
     });
-    client.test("id", function() {
+    client.test("id", function () {
         client.assert(response.body.hasOwnProperty("id"), "Response property 'id' does not exists");
     });
 
@@ -73,10 +75,10 @@ Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 > {%
-    client.test("Request executed successfully", function() {
+    client.test("Request executed successfully", function () {
         client.assert(response.status === 200, "Response status is not 200");
     });
-    client.test("id", function() {
+    client.test("id", function () {
         client.assert(response.body[0].hasOwnProperty("id"), "Response property 'id' does not exists");
     });
 
@@ -86,22 +88,38 @@ Content-Type: application/json
 
 ###
 
-# Add roles to larmic
-POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/clients/{{client_id}}
+# Get role id of realm role 'custom_realm_role'
+GET http://localhost:8085/admin/realms/spring-boot-services/roles/custom_realm_role
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
-[
-    {
-        "name":"custom-realm-role",
-        "composite":true,
-        "clientRole":false
-    }
-]
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    client.test("id", function () {
+        client.assert(response.body.hasOwnProperty("id"), "Response property 'id' does not exists");
+    });
+
+    client.global.set("custom_realm_role_id", response.body.id);
+    client.log("Custom realm role id is " + response.body.id)
+%}
+
+###
+
+# Add roles to larmic
+POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/realm
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+[{
+   "id": {{custom-realm-role_id}},
+   "name":"custom-realm-role"
+}]
 
 > {%
-    client.test("Request executed successfully", function() {
-        client.assert(response.status === 201, "Response status is not 200");
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 204, "Response status is not 204");
     });
 %}
 

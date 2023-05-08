@@ -19,6 +19,8 @@ grant_type=password&client_id=admin-cli&username=admin&password=admin
 ###
 
 # Add new user larmic (pw: test)
+# NOTE: groups can not be automatically applied (even if the documentary says so)
+#       see https://github.com/keycloak/keycloak/issues/13390
 POST http://localhost:8085/admin/realms/spring-boot-services/users
 Authorization: Bearer {{access_token}}
 Content-Type: application/json

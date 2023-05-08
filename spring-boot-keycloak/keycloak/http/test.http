@@ -1,0 +1,35 @@
+# Get admin user access token
+POST http://localhost:8085/realms/master/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=admin-cli&username=admin&password=admin
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    client.test("Access token exists", function() {
+        client.assert(response.body.hasOwnProperty("access_token"), "Response property 'access_token' does not exists");
+    });
+
+    client.global.set("access_token", response.body.access_token);
+    client.log("Access token is " + response.body.access_token)
+%}
+
+###
+
+GET http://localhost:8085/admin/realms/spring-boot-services/
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+###
+
+GET http://localhost:8085/admin/realms/spring-boot-services/clients?clientId=spring-boot-service-1
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+###
+
+GET http://localhost:8085/admin/realms/spring-boot-services/users/f79aa955-552d-4215-937d-6d97acfefcae
+Authorization: Bearer {{access_token}}
+Content-Type: application/json

@@ -65,10 +65,27 @@ Content-Type: application/json
 
 ###
 
+# Get spring-boot-service-1 client id
+GET http://localhost:8085/admin/realms/spring-boot-services/clients?clientId=spring-boot-service-1
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    client.test("id", function() {
+        client.assert(response.body[0].hasOwnProperty("id"), "Response property 'id' does not exists");
+    });
+
+    client.global.set("client_id", response.body[0].id);
+    client.log("Client id is " + response.body[0].id)
+%}
+
 ###
 
 # Add roles to larmic
-POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/realm
+POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/clients/{{client_id}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 

@@ -140,3 +140,11 @@ Content-Type: application/json
 
 ###
 # @name Add client role to larmic
+POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/clients/{{client_id}}
+Authorization: Bearer {{access_token}}
+Content-Type: application/json
+
+[{
+    "id": "{{custom_client_role_id}}",
+    "name": "custom_client1_role"
+}]

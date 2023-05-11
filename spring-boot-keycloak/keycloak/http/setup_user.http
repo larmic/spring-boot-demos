@@ -5,7 +5,7 @@
 POST {{host}}realms/master/protocol/openid-connect/token
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=password&client_id=admin-cli&username=admin&password=admin
+grant_type=password&client_id=admin-cli&username={{admin-name}}&password={{admin-password}}
 
 > {%
     client.test("Request executed successfully", function () {
@@ -28,13 +28,13 @@ Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 {
-    "firstName": "Lars",
-    "lastName": "Michaelis",
+    "firstName": "{{add-user-first-name}}",
+    "lastName": "{{add-user-last-name}}",
     "enabled": "true",
-    "username": "larmic",
+    "username": "{{add-user-name}}",
     "credentials": [
         {
-            "type": "password",
+            "type": "{{add-user-password}}",
             "value": "test",
             "temporary": false
         }
@@ -82,13 +82,13 @@ Content-Type: application/json
         client.assert(response.body[0].hasOwnProperty("id"), "Response property 'id' does not exists");
     });
 
-    client.global.set("client_id", response.body[0].id);
+    client.global.set("client-id", response.body[0].id);
     client.log("Client id is " + response.body[0].id)
 %}
 
 ###
 # @name Get role id of realm role 'custom_realm_role'
-GET {{host}}admin/realms/{{realm}}/roles/{{realm_role_name}}
+GET {{host}}admin/realms/{{realm}}/roles/{{realm-role-name}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -100,13 +100,13 @@ Content-Type: application/json
         client.assert(response.body.hasOwnProperty("id"), "Response property 'id' does not exists");
     });
 
-    client.global.set("custom_realm_role_id", response.body.id);
+    client.global.set("realm-role-id", response.body.id);
     client.log("Custom realm role id is " + response.body.id)
 %}
 
 ###
 # @name Get role id of client role 'custom_client1_role'
-GET {{host}}admin/realms/{{realm}}/clients/{{client_id}}/roles/{{client_role_name}}
+GET {{host}}admin/realms/{{realm}}/clients/{{client-id}}/roles/{{client-role-name}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -118,7 +118,7 @@ Content-Type: application/json
         client.assert(response.body.hasOwnProperty("id"), "Response property 'id' does not exists");
     });
 
-    client.global.set("custom_client_role_id", response.body.id);
+    client.global.set("client-role-id", response.body.id);
     client.log("Custom client role id is " + response.body.id)
 %}
 
@@ -129,8 +129,8 @@ Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 [{
-    "id": "{{custom_realm_role_id}}",
-    "name": "{{realm_role_name}}"
+    "id": "{{realm-role-id}}",
+    "name": "{{realm-role-name}}"
 }]
 
 
@@ -142,11 +142,11 @@ Content-Type: application/json
 
 ###
 # @name Add client role to larmic
-POST {{host}}admin/realms/{{realm}}/users/{{user_larmic_id}}/role-mappings/clients/{{client_id}}
+POST {{host}}admin/realms/{{realm}}/users/{{user_larmic_id}}/role-mappings/clients/{{client-id}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 [{
-    "id": "{{custom_client_role_id}}",
-    "name": "{{client_role_name}}"
+    "id": "{{client-role-id}}",
+    "name": "{{client-role-name}}"
 }]

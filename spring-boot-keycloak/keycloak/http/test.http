@@ -42,14 +42,13 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:8085/admin/realms/spring-boot-services/users/f79aa955-552d-4215-937d-6d97acfefcae/role-mappings/realm
+POST http://localhost:8085/admin/realms/spring-boot-services/users/6b304738-0d95-4ea6-bbbe-f4e2840aadc1/role-mappings/realm
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 [{
     "id": "2b062ec5-746e-40f6-a877-55628567c469",
-    "name": "custom_realm_role",
-    "clientRole": false
+    "name": "custom_realm_role"
 }]
 
 ###

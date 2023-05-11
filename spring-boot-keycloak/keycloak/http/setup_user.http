@@ -106,7 +106,7 @@ Content-Type: application/json
 
 ###
 # @name Get role id of client role 'custom_client1_role'
-GET {{host}}admin/realms/{{realm}}/clients/{{client_id}}/roles/custom_client1_role
+GET {{host}}admin/realms/{{realm}}/clients/{{client_id}}/roles/{{client_role_name}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -148,5 +148,5 @@ Content-Type: application/json
 
 [{
     "id": "{{custom_client_role_id}}",
-    "name": "custom_client1_role"
+    "name": "{{client_role_name}}"
 }]

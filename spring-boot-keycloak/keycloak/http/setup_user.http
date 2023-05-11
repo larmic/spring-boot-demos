@@ -1,6 +1,8 @@
+### This script creates a user 'larmic' and assigns client and realm test roles to user.
+
 ###
 # @name Get admin user access token
-POST http://localhost:8085/realms/master/protocol/openid-connect/token
+POST {{host}}realms/master/protocol/openid-connect/token
 Content-Type: application/x-www-form-urlencoded
 
 grant_type=password&client_id=admin-cli&username=admin&password=admin
@@ -21,7 +23,7 @@ grant_type=password&client_id=admin-cli&username=admin&password=admin
 # @name Add new user larmic (pw: test)
 # NOTE: groups can not be automatically applied (even if the documentary says so)
 #       see https://github.com/keycloak/keycloak/issues/13390
-POST http://localhost:8085/admin/realms/spring-boot-services/users
+POST {{host}}admin/realms/spring-boot-services/users
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -68,7 +70,7 @@ Content-Type: application/json
 
 ###
 # @name Get spring-boot-service-1 client id
-GET http://localhost:8085/admin/realms/spring-boot-services/clients?clientId=spring-boot-service-1
+GET {{host}}admin/realms/spring-boot-services/clients?clientId=spring-boot-service-1
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -86,7 +88,7 @@ Content-Type: application/json
 
 ###
 # @name Get role id of realm role 'custom_realm_role'
-GET http://localhost:8085/admin/realms/spring-boot-services/roles/custom_realm_role
+GET {{host}}admin/realms/spring-boot-services/roles/custom_realm_role
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -104,7 +106,7 @@ Content-Type: application/json
 
 ###
 # @name Get role id of client role 'custom_client1_role'
-GET http://localhost:8085/admin/realms/spring-boot-services/clients/{{client_id}}/roles/custom_client1_role
+GET {{host}}admin/realms/spring-boot-services/clients/{{client_id}}/roles/custom_client1_role
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -122,7 +124,7 @@ Content-Type: application/json
 
 ###
 # @name Add realm role to larmic
-POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/realm
+POST {{host}}admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/realm
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
@@ -140,7 +142,7 @@ Content-Type: application/json
 
 ###
 # @name Add client role to larmic
-POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/clients/{{client_id}}
+POST {{host}}admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/clients/{{client_id}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 

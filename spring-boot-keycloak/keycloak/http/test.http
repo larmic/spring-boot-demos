@@ -36,19 +36,18 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8085/admin/realms/spring-boot-services/roles/custom_realm_role
-Authorization: Bearer {{access_token}}
-Content-Type: application/json
-
-###
-
-POST http://localhost:8085/admin/realms/spring-boot-services/users/6b304738-0d95-4ea6-bbbe-f4e2840aadc1/role-mappings/realm
+< {%
+    request.variables.set("realm", "spring-boot-services")
+    request.variables.set("user-id", "e2ad2c37-21fd-4db2-9e95-acc69669d62e")
+    request.variables.set("client-id", "dfff2d11-b661-4f9f-8924-861bf7aa3f13")
+%}
+POST http://localhost:8085/admin/realms/{{realm}}/users/{{user-id}}/role-mappings/clients/{{client-id}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
 
 [{
     "id": "2b062ec5-746e-40f6-a877-55628567c469",
-    "name": "custom_realm_role"
+    "name": "custom_client1_role"
 }]
 
 ###

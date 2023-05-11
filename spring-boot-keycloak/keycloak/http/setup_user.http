@@ -109,12 +109,6 @@ Content-Type: application/json
 ###
 
 # Add roles to larmic
-< {%
-    client.log(client.global.get("custom_realm_role_id"))
-    const test = client.global.get("custom-realm-role_id")
-    request.variables.set("test-var", client.global.get("custom-realm-role_id"))
-    client.log(request.variables.get("test-var"))
-%}
 POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/realm
 Authorization: Bearer {{access_token}}
 Content-Type: application/json

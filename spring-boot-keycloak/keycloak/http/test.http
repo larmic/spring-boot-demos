@@ -30,12 +30,6 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8085/admin/realms/spring-boot-services/users/f79aa955-552d-4215-937d-6d97acfefcae
-Authorization: Bearer {{access_token}}
-Content-Type: application/json
-
-###
-
 < {%
     request.variables.set("realm", "spring-boot-services")
     request.variables.set("user-id", "e2ad2c37-21fd-4db2-9e95-acc69669d62e")

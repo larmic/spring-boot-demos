@@ -104,7 +104,7 @@ Content-Type: application/json
 %}
 
 ###
-# @name Add roles to larmic
+# @name Add realm role to larmic
 POST http://localhost:8085/admin/realms/spring-boot-services/users/{{user_larmic_id}}/role-mappings/realm
 Authorization: Bearer {{access_token}}
 Content-Type: application/json
@@ -122,3 +122,4 @@ Content-Type: application/json
 %}
 
 ###
+# @name Add client role to larmic

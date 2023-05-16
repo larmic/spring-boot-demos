@@ -9,6 +9,11 @@ A volume `postgres_data` will be created to store persistent Keycloak data.
 
 ```sh 
 $ docker compose up
+$ docker run --rm --network="host" -i -t -v $PWD:/workdir jetbrains/intellij-http-client:231.9011.14 \
+  -L VERBOSE \
+  -e setup \
+  -v http/http-client.env.json \
+  http/setup_user.http
 ```
 
 2. Open `http://localhost:8085/admin/` and login with `admin` and `admin`.

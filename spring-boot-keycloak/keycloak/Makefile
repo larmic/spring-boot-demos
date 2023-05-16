@@ -1,7 +1,13 @@
+keycloak_host = http://localhost:8085
+keycloak_realm = spring-boot-services
+keycloak_client_id = spring-boot-service-1
+keycloak_demo_user = larmic
+keycloak_demo_user_pw = test
+
 keycloak_start:
 	docker compose up -d
 	@echo -n "Waiting for keycloak to be ready..."
-	@bash -c 'until curl --output /dev/null --silent --fail http://localhost:8085/health/ready; do echo -n .;sleep 1; done'
+	@bash -c 'until curl --output /dev/null --silent --fail $(keycloak_host)/health/ready; do echo -n .;sleep 1; done'
 	@echo
 	@echo "Keycloak is ready!"
 
@@ -16,9 +22,9 @@ setup_user:
       ./http/setup_user.http
 
 http_get_larmic_token:
-	curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token' \
+	curl -X POST '$(keycloak_host)/realms/$(keycloak_realm)/protocol/openid-connect/token' \
      --header 'Content-Type: application/x-www-form-urlencoded' \
      --data-urlencode 'grant_type=password' \
-     --data-urlencode 'client_id=spring-boot-service-1' \
-     --data-urlencode 'username=larmic' \
-     --data-urlencode 'password=test'
+     --data-urlencode 'client_id=$(keycloak_client_id)' \
+     --data-urlencode 'username=$(keycloak_demo_user)' \
+     --data-urlencode 'password=$(keycloak_demo_user_pw)'

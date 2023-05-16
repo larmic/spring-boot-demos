@@ -2,13 +2,10 @@
 
 Simple example using keycloak and bind two spring boot services with rest api.
 
-![System View](assets/system_view.png)
-
 ## Used technologies
 
-* Spring Boot >= 2.7.x
-* Keycloak >= 16.x.x
-* Postgres >= 15.x (Keycloak database)
+* Spring Boot >= 3.x
+* Keycloak >= 21.x
 
 ## Requirements
 
@@ -36,14 +33,12 @@ After installing Keycloak and register service clients, roles and users you can 
 
 ```sh 
 $ mvn -f spring-boot-keycloak-service-1/pom.xml clean package
-$ mvn -f spring-boot-keycloak-service-2/pom.xml clean package
 ```
 
 #### Start services
 
 ```sh 
 $ mvn -f spring-boot-keycloak-service-1/pom.xml spring-boot:run
-$ mvn -f spring-boot-keycloak-service-2/pom.xml spring-boot:run
 ```
 
 ### Test services
@@ -52,17 +47,12 @@ $ mvn -f spring-boot-keycloak-service-2/pom.xml spring-boot:run
 
 [Unsecure hello of service 1](http://localhost:8081/unsecure/hello)
 
-[Unsecure hello of service 2](http://localhost:8082/unsecure/hello) calls service 1
-
 [Unsecure hello of service 1](http://localhost:8081/secure/hello) redirects to Keycloak
-
-[Unsecure hello of service 2](http://localhost:8082/secure/hello) redirects to Keycloak and calls service 1
 
 #### Or you can use command line
 
 ```sh 
 $ curl -i http://localhost:8081/unsecure/hello
-$ curl -i http://localhost:8082/unsecure/hello
 ```
 
 Without sending an `access token` to secured services you will get a redirect

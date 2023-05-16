@@ -56,6 +56,7 @@ class KeycloakSecurityConfig {
         return http.build();
     }
 
+    // enable custom role mapper. spring security does not support keycloak mapping by default.
     @Bean
     JwtAuthenticationConverter jwtAuthenticationConverter(KeycloakGrantedAuthoritiesConverter keycloakGrantedAuthoritiesConverter) {
         final var defaultAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
@@ -69,6 +70,8 @@ class KeycloakSecurityConfig {
         return jwtAuthenticationConverter;
     }
 
+    // required for getting browser redirect to keycloak login
+    // if no browser redirect is required this bean could be removed
     @Bean(name = "oidcUserService")
     OAuth2UserService<OidcUserRequest, OidcUser> getOidcUserService(KeycloakGrantedAuthoritiesConverter keycloakGrantedAuthoritiesConverter) {
         return new OidcUserService() {

@@ -2,11 +2,7 @@
 
 ### Initial setup
 
-Keycloak will be started as docker service. 
-
-1. Start Keycloak
-
-You can start keycloak by using [Makefile](Makefile). 
+Keycloak will be started as docker service by using [Makefile](Makefile). 
 
 ```shell
 # start keycloak server (admin user is admin:admin)
@@ -15,7 +11,7 @@ $ make keycloak_start
 # initial setup (user larmic:test and user role mapping)
 $ make setup_user
 
-# stop and remove keycloak
+# stop and remove keycloak stuff
 $ make keycloak_stop
 ```
 

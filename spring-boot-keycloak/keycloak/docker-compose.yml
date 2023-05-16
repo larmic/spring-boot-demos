@@ -12,10 +12,5 @@ services:
         environment:
             KEYCLOAK_ADMIN: admin
             KEYCLOAK_ADMIN_PASSWORD: admin
-        #healthcheck:
-        #    test: curl --fail http://localhost:8080/health/ready || exit 1
-        #    interval: 5s
-        #    timeout: 2s
-        #    retries: 15
         ports:
             - "8085:8080"

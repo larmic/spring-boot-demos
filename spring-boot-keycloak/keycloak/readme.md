@@ -2,8 +2,7 @@
 
 ### Initial setup
 
-Keycloak (+ Postgres) will be started as docker service. 
-A volume `postgres_data` will be created to store persistent Keycloak data.
+Keycloak will be started as docker service. 
 
 1. Start Keycloak
 

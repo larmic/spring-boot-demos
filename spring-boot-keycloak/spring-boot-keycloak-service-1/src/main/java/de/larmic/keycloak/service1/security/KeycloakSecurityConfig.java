@@ -35,12 +35,6 @@ class KeycloakSecurityConfig {
 
     private static final String DECODING_ERROR_MESSAGE_TEMPLATE = "An error occurred while attempting to decode the Jwt: %s";
 
-    private final KeycloakLogoutHandler keycloakLogoutHandler;
-
-    KeycloakSecurityConfig(KeycloakLogoutHandler keycloakLogoutHandler) {
-        this.keycloakLogoutHandler = keycloakLogoutHandler;
-    }
-
     @Bean
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
         return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
@@ -56,7 +50,6 @@ class KeycloakSecurityConfig {
         http.oauth2Login()
             .and()
             .logout()
-            .addLogoutHandler(keycloakLogoutHandler)
             .logoutSuccessUrl("/");
         http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
 

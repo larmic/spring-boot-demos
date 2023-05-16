@@ -1,8 +1,4 @@
-version: '3.3'
-
-volumes:
-    postgres_data:
-        driver: local
+version: '3.4'
 
 services:
     keycloak:
@@ -10,10 +6,16 @@ services:
         command:
             - start-dev
             - --import-realm
+            - --health-enabled=true
         volumes:
             - ./imports/realm-export.json:/opt/keycloak/data/import/realm.json
         environment:
             KEYCLOAK_ADMIN: admin
             KEYCLOAK_ADMIN_PASSWORD: admin
+        #healthcheck:
+        #    test: curl --fail http://localhost:8080/health/ready || exit 1
+        #    interval: 5s
+        #    timeout: 2s
+        #    retries: 15
         ports:
             - "8085:8080"

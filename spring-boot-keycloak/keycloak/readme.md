@@ -7,13 +7,9 @@ A volume `postgres_data` will be created to store persistent Keycloak data.
 
 1. Start Keycloak
 
-```sh 
-$ docker compose up
-$ docker run --rm --network="host" -i -t -v $PWD:/workdir jetbrains/intellij-http-client:231.9011.14 \
-  -L VERBOSE \
-  -e setup \
-  -v http/http-client.env.json \
-  http/setup_user.http
+```shell
+$ make keycloak_start
+$ make setup_user
 ```
 
 ### Test Keycloak

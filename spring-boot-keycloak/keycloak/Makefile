@@ -14,3 +14,11 @@ setup_user:
       -e setup \
       -v ./http/http-client.env.json \
       ./http/setup_user.http
+
+http_get_larmic_token:
+	curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token' \
+     --header 'Content-Type: application/x-www-form-urlencoded' \
+     --data-urlencode 'grant_type=password' \
+     --data-urlencode 'client_id=spring-boot-service-1' \
+     --data-urlencode 'username=larmic' \
+     --data-urlencode 'password=test'

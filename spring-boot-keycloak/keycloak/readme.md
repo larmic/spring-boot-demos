@@ -6,25 +6,31 @@ Keycloak will be started as docker service.
 
 1. Start Keycloak
 
+You can start keycloak by using [Makefile](Makefile). 
+
 ```shell
+# start keycloak server (admin user is admin:admin)
 $ make keycloak_start
+
+# initial setup (user larmic:test and user role mapping)
 $ make setup_user
+
+# stop and remove keycloak
+$ make keycloak_stop
 ```
 
 ### Test Keycloak
 
 You can retrieve an access token by sending a `POST` request.
 
-```sh 
+```shell 
 $ curl -X POST '<KEYCLOAK_SERVER_URL>/realms/<REALM_NAME>/protocol/openid-connect/token' \
  --header 'Content-Type: application/x-www-form-urlencoded' \
  --data-urlencode 'grant_type=password' \
  --data-urlencode 'client_id=<CLIENT_ID>' \
  --data-urlencode 'username=<USERNAME>' \
  --data-urlencode 'password=<PASSWORD>'
-```
 
-```sh 
 $ curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token' \
  --header 'Content-Type: application/x-www-form-urlencoded' \
  --data-urlencode 'grant_type=password' \
@@ -33,12 +39,4 @@ $ curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openi
  --data-urlencode 'password=test'
 ```
 
-After that you can validate your `access_token` on [jwt.io](https://jwt.io/). 
-
-### Clean up Keyloak
-
-Stop Keycloak service by
-
-```sh 
-$ docker compose down --volumes
-```
+After that you can validate your `access_token` on [jwt.io](https://jwt.io/).

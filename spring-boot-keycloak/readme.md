@@ -27,7 +27,7 @@ $ make keycloak_start
 $ make keycloak_setup_user_and_roles
 
 # retrieve user larmic access token
-# validate token on https://jwt.io/
+# validate it on https://jwt.io/
 $ make http_get_larmic_access_token
 
 # stop and remove keycloak stuff

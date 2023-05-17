@@ -321,7 +321,7 @@
       "spring-boot-service-1": [
         {
           "id": "2b42206b-b0ff-4c65-ae07-7e3c8fa7df72",
-          "name": "custom_client1_role",
+          "name": "custom_client_role",
           "description": "",
           "composite": false,
           "clientRole": true,

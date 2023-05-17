@@ -105,7 +105,7 @@ Content-Type: application/json
 %}
 
 ###
-# @name Get role id of client role 'custom_client1_role'
+# @name Get role id of client role 'custom_client_role'
 GET {{host}}admin/realms/{{realm}}/clients/{{client-id}}/roles/{{client-role-name}}
 Authorization: Bearer {{access_token}}
 Content-Type: application/json

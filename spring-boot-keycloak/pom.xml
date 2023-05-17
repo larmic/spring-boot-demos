@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.larmic.keycloak</groupId>
-	<artifactId>spring-boot-keycloak-service-1</artifactId>
+	<artifactId>spring-boot-keycloak</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
     <name>spring-boot-keycloak-service-1</name>

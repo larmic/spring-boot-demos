@@ -11,7 +11,7 @@ on:
             - '.github/workflows/spring-boot-keycloak.yml'
 
 jobs:
-    keycloak-service-1:
+    keycloak-service:
         name: Build spring boot using keycloak (service 1) with java version ${{ matrix.java }}
         runs-on: ubuntu-latest
 
@@ -26,4 +26,4 @@ jobs:
                 with:
                     distribution: 'temurin'
                     java-version: ${{ matrix.java }}
-            -   run: mvn -B -f spring-boot-keycloak/spring-boot-keycloak-service-1 clean verify
+            -   run: mvn -B -f spring-boot-keycloak clean verify

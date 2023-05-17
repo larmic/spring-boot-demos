@@ -32,13 +32,13 @@ After installing Keycloak and register service clients, roles and users you can 
 #### Build services
 
 ```sh 
-$ mvn -f spring-boot-keycloak-service-1/pom.xml clean package
+$ mvn clean package
 ```
 
 #### Start services
 
 ```sh 
-$ mvn -f spring-boot-keycloak-service-1/pom.xml spring-boot:run
+$ mvn spring-boot:run
 ```
 
 ### Test services

@@ -13,66 +13,59 @@ Simple example using keycloak and bind two spring boot services with rest api.
 * Maven >= 3.2.1
 * Docker >= 3.0 (to run Keycloak)
 
-## Build project
-
-### Clone project
-
-```sh 
-$ git clone https://github.com/larmic/spring-boot-keycloak
-```
+## Build and run project
 
 ### Keycloak
 
-Check the [Keycloak setup](keycloak/readme.md) to start a Keycloak service
+Keycloak can be started as docker service by using [Makefile](Makefile).
 
-After installing Keycloak and register service clients, roles and users you can start Keycloak and retrieve an `access token`.
+```shell
+# start keycloak server (admin user is admin:admin)
+$ make keycloak_start
 
-### Spring Boot Services
+# initial setup (add user larmic:test and add user role mapping)
+$ make setup_user
 
-#### Build services
+# retrieve user larmic access token
+# validate token on https://jwt.io/
+$ make http_get_larmic_token
 
-```sh 
-$ mvn clean package
+# stop and remove keycloak stuff
+$ make keycloak_stop
 ```
 
-#### Start services
+### Spring Boot Service
 
-```sh 
+```shell
+# clone project
+$ git clone https://github.com/larmic/spring-boot-demos
+
+# build java application 
+$ mvn clean package
+
+# start java service
 $ mvn spring-boot:run
 ```
 
-### Test services
+## Test services
 
-#### You can call REST services in your browser
+### You can call REST services in your browser
 
-[Unsecure hello of service 1](http://localhost:8081/unsecure/hello)
-
-[Unsecure hello of service 1](http://localhost:8081/secure/hello) redirects to Keycloak
+[Call unsecured hello api](http://localhost:8081/unsecure/hello)  
+[Call secured hello api](http://localhost:8081/secure/hello) redirects to Keycloak
 
 #### Or you can use command line
 
-```sh 
+```shell 
+# call unsecured hello api
 $ curl -i http://localhost:8081/unsecure/hello
-```
 
-Without sending an `access token` to secured services you will get a redirect
-
-```sh 
+# call secured hello api without access token
 $ curl -i http://localhost:8081/secure/hello
-HTTP/1.1 302
-...
-Date: Mon, 14 Jun 2021 09:47:20 GMT
-```
+HTTP/1.1 401
 
-#### Get and copy `access token` and add authorization header
-
-```sh 
-$ curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token' \
- --header 'Content-Type: application/x-www-form-urlencoded' \
- --data-urlencode 'grant_type=password' \
- --data-urlencode 'client_id=spring-boot-service-1' \
- --data-urlencode 'username=larmic' \
- --data-urlencode 'password=test'
- 
+# call secured hello api with access token
+# retrieve user larmic access token
+$ make http_get_larmic_token
 $ curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8081/secure/hello
 ```

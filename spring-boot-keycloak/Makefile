@@ -5,21 +5,21 @@ keycloak_demo_user = larmic
 keycloak_demo_user_pw = test
 
 keycloak_start:
-	docker compose up -d
-	@echo -n "Waiting for keycloak to be ready..."
+	docker compose -f keycloak/docker-compose.yml up -d
+	@echo "Waiting for keycloak to be ready..."
 	@bash -c 'until curl --output /dev/null --silent --fail $(keycloak_host)/health/ready; do echo -n .;sleep 1; done'
 	@echo
 	@echo "Keycloak is ready!"
 
 keycloak_stop:
-	docker compose down
+	docker compose -f keycloak/docker-compose.yml down
 
 setup_user:
 	docker run --rm --network="host" -i -t -v ./:/workdir jetbrains/intellij-http-client:231.9011.14 \
       -L VERBOSE \
       -e setup \
-      -v ./http/http-client.env.json \
-      ./http/setup_user.http
+      -v ./keycloak/http/http-client.env.json \
+      ./keycloak/http/setup_user.http
 
 http_get_larmic_token:
 	curl -X POST '$(keycloak_host)/realms/$(keycloak_realm)/protocol/openid-connect/token' \

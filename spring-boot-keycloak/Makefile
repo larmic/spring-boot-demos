@@ -14,14 +14,20 @@ keycloak_start:
 keycloak_stop:
 	docker compose -f keycloak/docker-compose.yml down
 
-setup_user:
+keycloak_setup_user_and_roles:
 	docker run --rm --network="host" -i -t -v ./:/workdir jetbrains/intellij-http-client:231.9011.14 \
       -L VERBOSE \
       -e setup \
       -v ./keycloak/http/http-client.env.json \
       ./keycloak/http/setup_user.http
 
-http_get_larmic_token:
+java-build-application:
+	mvn clean package
+
+java-run-application:
+	mvn spring-boot:run
+
+http_get_larmic_access_token:
 	curl -X POST '$(keycloak_host)/realms/$(keycloak_realm)/protocol/openid-connect/token' \
      --header 'Content-Type: application/x-www-form-urlencoded' \
      --data-urlencode 'grant_type=password' \

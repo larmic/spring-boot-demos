@@ -24,11 +24,11 @@ Keycloak can be started as docker service by using [Makefile](Makefile).
 $ make keycloak_start
 
 # initial setup (add user larmic:test and add user role mapping)
-$ make setup_user
+$ make keycloak_setup_user_and_roles
 
 # retrieve user larmic access token
 # validate token on https://jwt.io/
-$ make http_get_larmic_token
+$ make http_get_larmic_access_token
 
 # stop and remove keycloak stuff
 $ make keycloak_stop
@@ -41,10 +41,10 @@ $ make keycloak_stop
 $ git clone https://github.com/larmic/spring-boot-demos
 
 # build java application 
-$ mvn clean package
+$ make java-build-application
 
 # start java service
-$ mvn spring-boot:run
+$ make java-run-application
 ```
 
 ## Test services
@@ -66,6 +66,6 @@ HTTP/1.1 401
 
 # call secured hello api with access token
 # retrieve user larmic access token
-$ make http_get_larmic_token
+$ make http_get_larmic_access_token
 $ curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8081/secure/hello
 ```

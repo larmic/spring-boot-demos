@@ -1,13 +1,7 @@
-# curl -X POST 'http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token'
-# --header 'Content-Type: application/x-www-form-urlencoded'
-# --data-urlencode 'grant_type=password'
-# --data-urlencode 'client_id=spring-boot-service-1'
-# --data-urlencode 'username=larmic'
-# --data-urlencode 'password=test'
-POST http://localhost:8085/realms/spring-boot-services/protocol/openid-connect/token
+POST {{keycloak-host}}/realms/{{keycloak-realm}}/protocol/openid-connect/token
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=password&client_id=spring-boot-service-1&username=larmic&password=test
+grant_type=password&client_id={{keycloak-client-name}}&username={{demo-user}}&password={{demo-user-pw}}
 
 > {%
     client.test("Request executed successfully", function() {
@@ -23,8 +17,7 @@ grant_type=password&client_id=spring-boot-service-1&username=larmic&password=tes
 
 ###
 
-# curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8081/secure/hello
-GET http://localhost:8081/secure/hello
+GET {{java-service-host}}/secure/hello
 Authorization: Bearer {{access_token}}
 
 > {%
@@ -39,6 +32,3 @@ Authorization: Bearer {{access_token}}
 %}
 
 ###
-
-
-

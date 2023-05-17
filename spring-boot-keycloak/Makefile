@@ -34,3 +34,10 @@ http_get_larmic_access_token:
      --data-urlencode 'client_id=$(keycloak_client_id)' \
      --data-urlencode 'username=$(keycloak_demo_user)' \
      --data-urlencode 'password=$(keycloak_demo_user_pw)'
+
+http-get-hello-secure-with-token:
+	docker run --rm --network="host" -i -t -v ./:/workdir jetbrains/intellij-http-client:231.9011.14 \
+      -L VERBOSE \
+      -e local \
+      -v ./example-requests/http-client.env.json \
+      ./example-requests/hello-secure.http

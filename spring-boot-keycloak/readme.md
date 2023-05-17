@@ -11,7 +11,7 @@ Simple example using keycloak and bind two spring boot services with rest api.
 
 * Java 17
 * Maven >= 3.2.1
-* Docker >= 3.0 (to run Keycloak)
+* Docker >= 3.0
 
 ## Build and run project
 

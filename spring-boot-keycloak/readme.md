@@ -57,6 +57,10 @@ $ make java-run-application
 
 #### Or you can use command line
 
+[Jetbrains HTTP Client](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html)
+(instead of plain curl) is used. The .http scripts containing a validations (or test) phase. So 
+if script is ending with `RUN SUCCESSFUL` everything is working fine.
+
 ```shell 
 # call unsecured hello api
 $ make http-get-hello-unsecure

@@ -38,6 +38,13 @@ http_get_larmic_access_token:
 http-get-hello-secure-with-token:
 	docker run --rm --network="host" -i -t -v ./:/workdir jetbrains/intellij-http-client:231.9011.14 \
       -L VERBOSE \
-      -e local \
+      -e docker \
       -v ./example-requests/http-client.env.json \
       ./example-requests/hello-secure.http
+
+http-get-hello-unsecure:
+	docker run --rm -i -t -v ./:/workdir jetbrains/intellij-http-client:231.9011.14 \
+      -L VERBOSE \
+      -e docker \
+      -v ./example-requests/http-client.env.json \
+      ./example-requests/hello-unsecure.http

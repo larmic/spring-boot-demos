@@ -1,0 +1,14 @@
+GET {{java-service-host}}/unsecure/hello
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    client.test("Http /secure/hello returns 'Hello secure'", function() {
+        client.assert(response.body === 'Hello unsecure', "Response body is not 'Hello secure'");
+    });
+
+    client.log("Response: " + response.body)
+%}
+
+###

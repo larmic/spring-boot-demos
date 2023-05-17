@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class Service1Application {
+public class KeycloakApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Service1Application.class, args);
+		SpringApplication.run(KeycloakApplication.class, args);
 	}
 
     @Bean

@@ -51,21 +51,21 @@ $ make java-run-application
 
 ### You can call REST services in your browser
 
-[Call unsecured hello api](http://localhost:8081/unsecure/hello)  
-[Call secured hello api](http://localhost:8081/secure/hello) redirects to Keycloak
+[Call unsecured hello api](http://localhost:8080/unsecure/hello)  
+[Call secured hello api](http://localhost:8080/secure/hello) redirects to Keycloak
 
 #### Or you can use command line
 
 ```shell 
 # call unsecured hello api
-$ curl -i http://localhost:8081/unsecure/hello
+$ curl -i http://localhost:8080/unsecure/hello
 
 # call secured hello api without access token
-$ curl -i http://localhost:8081/secure/hello
+$ curl -i http://localhost:8080/secure/hello
 HTTP/1.1 401
 
 # call secured hello api with access token
 # retrieve user larmic access token
 $ make http_get_larmic_access_token
-$ curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8081/secure/hello
+$ curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8080/secure/hello
 ```

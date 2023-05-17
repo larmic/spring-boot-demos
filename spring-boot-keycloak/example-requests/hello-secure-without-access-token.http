@@ -1,0 +1,11 @@
+GET {{java-service-host}}/secure/hello
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 401, "Response status is not 401");
+    });
+
+    client.log("Response: " + response.body)
+%}
+
+###

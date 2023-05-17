@@ -35,12 +35,23 @@ http_get_larmic_access_token:
      --data-urlencode 'username=$(keycloak_demo_user)' \
      --data-urlencode 'password=$(keycloak_demo_user_pw)'
 
+# call keycloak localhost from inside container is not easy. normally the http script
+# is using host.docker.internal instead of localhost, but this is causing an error
+# in claim validation.
+# so here --network="host" in combination with http://localhost:8085 is used.
 http-get-hello-secure-with-token:
 	docker run --rm --network="host" -i -t -v ./:/workdir jetbrains/intellij-http-client:231.9011.14 \
       -L VERBOSE \
       -e docker \
       -v ./example-requests/http-client.env.json \
-      ./example-requests/hello-secure.http
+      ./example-requests/hello-secure-with-access-token.http
+
+http-get-hello-secure-without-token:
+	docker run --rm -i -t -v ./:/workdir jetbrains/intellij-http-client:231.9011.14 \
+      -L VERBOSE \
+      -e docker \
+      -v ./example-requests/http-client.env.json \
+      ./example-requests/hello-secure-without-access-token.http
 
 http-get-hello-unsecure:
 	docker run --rm -i -t -v ./:/workdir jetbrains/intellij-http-client:231.9011.14 \

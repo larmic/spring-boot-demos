@@ -25,6 +25,7 @@ $ make keycloak_start
 
 # initial setup (add user larmic:test and add user role mapping)
 $ make keycloak_setup_user_and_roles
+RUN SUCCESSFUL
 
 # retrieve user larmic access token
 # validate it on https://jwt.io/
@@ -58,14 +59,13 @@ $ make java-run-application
 
 ```shell 
 # call unsecured hello api
-$ curl -i http://localhost:8080/unsecure/hello
+$ make http-get-hello-unsecure
+RUN SUCCESSFUL
 
 # call secured hello api without access token
-$ curl -i http://localhost:8080/secure/hello
-HTTP/1.1 401
+$ make http-get-hello-secure-with-token
+RUN SUCCESSFUL
 
-# call secured hello api with access token
-# retrieve user larmic access token
-$ make http_get_larmic_access_token
-$ curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8080/secure/hello
+$ make http-get-hello-secure-without-token
+RUN SUCCESSFUL
 ```

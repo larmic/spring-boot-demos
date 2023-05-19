@@ -2,97 +2,74 @@
 
 Simple example using keycloak and bind two spring boot services with rest api.
 
-![System View](assets/system_view.png)
-
 ## Used technologies
 
-* Spring Boot >= 2.7.x
-* Keycloak >= 16.x.x
-* Postgres >= 15.x (Keycloak database)
+* Spring Boot >= 3.x
+* Keycloak >= 21.x
 
 ## Requirements
 
 * Java 17
 * Maven >= 3.2.1
-* Docker >= 3.0 (to run Keycloak)
+* Docker >= 3.0
 
-## Build project
-
-### Clone project
-
-```sh 
-$ git clone https://github.com/larmic/spring-boot-keycloak
-```
+## Build and run project
 
 ### Keycloak
 
-Check the [Keycloak setup](keycloak/readme.md) to start a Keycloak service
+Keycloak can be started as docker service by using [Makefile](Makefile).
 
-After installing Keycloak and register service clients, roles and users you can start Keycloak and retrieve an `access token`.
+```shell
+# start keycloak server (admin user is admin:admin)
+$ make keycloak_start
 
-```sh 
-$ cd keycloak && docker compose up
-$ curl -X POST 'http://localhost:8085/auth/realms/spring-boot-services/protocol/openid-connect/token' \
- --header 'Content-Type: application/x-www-form-urlencoded' \
- --data-urlencode 'grant_type=password' \
- --data-urlencode 'client_id=spring-boot-service-1' \
- --data-urlencode 'username=larmic' \
- --data-urlencode 'password=test'
+# initial setup (add user larmic:test and add user role mapping)
+$ make keycloak_setup_user_and_roles
+RUN SUCCESSFUL
+
+# retrieve user larmic access token
+# validate it on https://jwt.io/
+$ make http_get_larmic_access_token
+
+# stop and remove keycloak stuff
+$ make keycloak_stop
 ```
 
-### Spring Boot Services
+### Spring Boot Service
 
-#### Build services
+```shell
+# clone project
+$ git clone https://github.com/larmic/spring-boot-demos
 
-```sh 
-$ mvn -f spring-boot-keycloak-service-1/pom.xml clean package
-$ mvn -f spring-boot-keycloak-service-2/pom.xml clean package
+# build java application 
+$ make java-build-application
+
+# start java service
+$ make java-run-application
 ```
 
-#### Start services
+## Test services
 
-```sh 
-$ mvn -f spring-boot-keycloak-service-1/pom.xml spring-boot:run
-$ mvn -f spring-boot-keycloak-service-2/pom.xml spring-boot:run
-```
+### You can call REST services in your browser
 
-### Test services
-
-#### You can call REST services in your browser
-
-[Unsecure hello of service 1](http://localhost:8081/unsecure/hello)
-
-[Unsecure hello of service 2](http://localhost:8082/unsecure/hello) calls service 1
-
-[Unsecure hello of service 1](http://localhost:8081/secure/hello) redirects to Keycloak
-
-[Unsecure hello of service 2](http://localhost:8082/secure/hello) redirects to Keycloak and calls service 1
+[Call unsecured hello api](http://localhost:8080/unsecure/hello)  
+[Call secured hello api](http://localhost:8080/secure/hello) redirects to Keycloak
 
 #### Or you can use command line
 
-```sh 
-$ curl -i http://localhost:8081/unsecure/hello
-$ curl -i http://localhost:8082/unsecure/hello
-```
+[Jetbrains HTTP Client](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html)
+(instead of plain curl) is used. The .http scripts containing a validations (or test) phase. So 
+if script is ending with `RUN SUCCESSFUL` everything is working fine.
 
-Without sending an `access token` to secured services you will get a redirect
+```shell 
+# call unsecured hello api
+$ make http-get-hello-unsecure
+RUN SUCCESSFUL
 
-```sh 
-$ curl -i http://localhost:8081/secure/hello
-HTTP/1.1 302
-...
-Date: Mon, 14 Jun 2021 09:47:20 GMT
-```
+# call secured hello api without access token
+$ make http-get-hello-secure-with-token
+RUN SUCCESSFUL
 
-#### Get and copy `access token` and add authorization header
-
-```sh 
-$ curl -X POST 'http://localhost:8085/auth/realms/spring-boot-services/protocol/openid-connect/token' \
- --header 'Content-Type: application/x-www-form-urlencoded' \
- --data-urlencode 'grant_type=password' \
- --data-urlencode 'client_id=spring-boot-service-1' \
- --data-urlencode 'username=larmic' \
- --data-urlencode 'password=test'
- 
-$ curl -H "Authorization: Bearer <ACCESS_TOKEN>" http://localhost:8081/secure/hello
+$ make http-get-hello-secure-without-token
+RUN SUCCESSFUL
 ```

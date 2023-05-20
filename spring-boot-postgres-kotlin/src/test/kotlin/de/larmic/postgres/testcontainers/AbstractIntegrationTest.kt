@@ -4,12 +4,15 @@ import de.larmic.postgres.database.TweetRepository
 import org.junit.jupiter.api.BeforeEach
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection
 import org.springframework.test.context.ActiveProfiles
-import org.springframework.test.context.ContextConfiguration
+import org.testcontainers.containers.PostgreSQLContainer
+import org.testcontainers.junit.jupiter.Container
+import org.testcontainers.junit.jupiter.Testcontainers
 
 @SpringBootTest
+@Testcontainers
 @ActiveProfiles("it")
-@ContextConfiguration(initializers = [PostgresContextInitializer::class])
 abstract class AbstractIntegrationTest {
 
     @Autowired
@@ -20,4 +23,9 @@ abstract class AbstractIntegrationTest {
         tweetRepository.deleteAll()
     }
 
+    companion object {
+        @Container
+        @ServiceConnection
+        val postgres = PostgreSQLContainer("postgres:15.2")
+    }
 }

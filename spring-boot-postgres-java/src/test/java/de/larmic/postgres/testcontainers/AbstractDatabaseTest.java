@@ -27,7 +27,7 @@ public class AbstractDatabaseTest {
 
     @Container
     @ServiceConnection
-    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15.2");
+    static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:15.3");
 
     @Autowired
     protected TweetRepository tweetRepository;

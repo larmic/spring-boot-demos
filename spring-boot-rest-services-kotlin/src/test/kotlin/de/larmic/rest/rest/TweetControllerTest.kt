@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
@@ -73,18 +74,25 @@ internal class TweetControllerTest {
 
         @Test
         fun `tweet not exists`() {
-            mockMvc.perform(get("/not-existing"))
-                .andExpect(status().isNotFound)
-                .andExpect(jsonPath("$").doesNotExist())
+            mockMvc.get("/not-existing") {
+                contentType = MediaType.APPLICATION_JSON
+            }.andExpect {
+                status { isNotFound() }
+                content { jsonPath("$") { doesNotExist() } }
+            }
         }
 
         @Test
         fun `tweet exists`() {
             val tweet = "second test tweet".wrapInTweet().storeInDatabase()
-            mockMvc.perform(get("/${tweet.id}"))
-                .andExpect(status().isOk)
-                .andExpect(jsonPath("id", `is`(tweet.id)))
-                .andExpect(jsonPath("message", `is`(tweet.message)))
+
+            mockMvc.get("/${tweet.id}") {
+                contentType = MediaType.APPLICATION_JSON
+            }.andExpect {
+                status { isOk() }
+                content { jsonPath("$.id") { value(tweet.id) } }
+                content { jsonPath("$.message") { value(tweet.message) } }
+            }
         }
     }
 

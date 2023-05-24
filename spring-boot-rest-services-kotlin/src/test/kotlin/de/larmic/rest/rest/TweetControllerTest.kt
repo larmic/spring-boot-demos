@@ -102,18 +102,24 @@ internal class TweetControllerTest {
 
         @Test
         fun `tweets are empty`() {
-            mockMvc.perform(get("/"))
-                .andExpect(status().isOk)
-                .andExpect(jsonPath("$").isEmpty)
+            mockMvc.get("/") {
+                contentType = MediaType.APPLICATION_JSON
+            }.andExpect {
+                status { isOk() }
+                content { jsonPath("$") { isEmpty() } }
+            }
         }
 
         @Test
         fun `tweets are not empty`() {
             val tweet = "third test tweet".wrapInTweet().storeInDatabase()
-            mockMvc.perform(get("/"))
-                .andExpect(status().isOk)
-                .andExpect(jsonPath("$[0].id", `is`(tweet.id)))
-                .andExpect(jsonPath("$[0].message", `is`(tweet.message)))
+            mockMvc.get("/") {
+                contentType = MediaType.APPLICATION_JSON
+            }.andExpect {
+                status { isOk() }
+                content { jsonPath("$[0].id") { value(tweet.id) } }
+                content { jsonPath("$[0].message") { value(tweet.message) } }
+            }
         }
     }
 

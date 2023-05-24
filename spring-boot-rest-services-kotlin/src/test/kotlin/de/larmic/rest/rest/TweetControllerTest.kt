@@ -1,7 +1,6 @@
 package de.larmic.rest.rest
 
 import de.larmic.rest.rest.dto.TweetDto
-import org.hamcrest.Matchers.`is`
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -12,9 +11,8 @@ import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 import org.springframework.test.web.servlet.post
+import org.springframework.test.web.servlet.put
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import java.util.*
 
 @WebMvcTest(value = [TweetController::class, InMemoryRepository::class])
@@ -129,18 +127,27 @@ internal class TweetControllerTest {
 
         @Test
         fun `tweet not exists`() {
-            mockMvc.perform(put("/not-existing").content("tweet content changed"))
-                .andExpect(status().isNotFound)
-                .andExpect(jsonPath("$").doesNotExist())
+            mockMvc.put("/not-existing") {
+                contentType = MediaType.APPLICATION_JSON
+                content = "tweet content changed"
+            }.andExpect {
+                status { isNotFound() }
+                content { jsonPath("$") { doesNotExist() } }
+            }
         }
 
         @Test
         fun `tweet exists`() {
             val tweet = "fourth test tweet".wrapInTweet().storeInDatabase()
-            mockMvc.perform(put("/" + tweet.id).content("tweet content changed"))
-                .andExpect(status().isOk)
-                .andExpect(jsonPath("id", `is`(tweet.id)))
-                .andExpect(jsonPath("message", `is`("tweet content changed")))
+
+            mockMvc.put("/${tweet.id}") {
+                contentType = MediaType.APPLICATION_JSON
+                content = "tweet content changed"
+            }.andExpect {
+                status { isOk() }
+                content { jsonPath("$.id") { value(tweet.id) } }
+                content { jsonPath("$.message") { value("tweet content changed") } }
+            }
         }
     }
 

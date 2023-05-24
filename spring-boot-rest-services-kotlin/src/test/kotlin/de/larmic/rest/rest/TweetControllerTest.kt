@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
+import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.post
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
@@ -34,22 +36,34 @@ internal class TweetControllerTest {
 
         @Test
         fun `body is empty`() {
-            mockMvc.perform(post("/").content(""))
-                .andExpect(status().is4xxClientError)
+            mockMvc.post("/") {
+                contentType = MediaType.APPLICATION_JSON
+                content = ""
+            }.andExpect {
+                status { is4xxClientError() }
+            }
         }
 
         @Test
         fun `body is not set`() {
-            mockMvc.perform(post("/"))
-                .andExpect(status().is4xxClientError)
+            mockMvc.post("/") {
+                contentType = MediaType.APPLICATION_JSON
+                content = ""
+            }.andExpect {
+                status { is4xxClientError() }
+            }
         }
 
         @Test
         fun `body is set`() {
-            mockMvc.perform(post("/").content("first test tweet"))
-                .andExpect(status().isOk)
-                .andExpect(jsonPath("message", `is`("first test tweet")))
-                .andExpect(jsonPath("id").isNotEmpty)
+            mockMvc.post("/") {
+                contentType = MediaType.APPLICATION_JSON
+                content = "first test tweet"
+            }.andExpect {
+                status { isOk() }
+                content { jsonPath("$.message") { value("first test tweet") } }
+                content { jsonPath("$.id") { exists() } }
+            }
         }
     }
 

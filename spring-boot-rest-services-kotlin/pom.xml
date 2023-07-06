@@ -21,7 +21,7 @@
 
         <maven.min.version>3.2.1</maven.min.version>
 		<java.version>17</java.version>
-        <kotlin.version>1.8.22</kotlin.version>
+        <kotlin.version>1.9.0</kotlin.version>
 
         <!-- testing -->
         <junit-jupiter.version>5.9.3</junit-jupiter.version>

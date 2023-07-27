@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
 import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
@@ -29,11 +29,19 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
 @EnableWebSecurity
 class KeycloakSecurityConfig {
 
     private static final String DECODING_ERROR_MESSAGE_TEMPLATE = "An error occurred while attempting to decode the Jwt: %s";
+
+    private final KeycloakGrantedAuthoritiesConverter keycloakGrantedAuthoritiesConverter;
+
+    KeycloakSecurityConfig(KeycloakGrantedAuthoritiesConverter keycloakGrantedAuthoritiesConverter) {
+        this.keycloakGrantedAuthoritiesConverter = keycloakGrantedAuthoritiesConverter;
+    }
 
     @Bean
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
@@ -44,14 +52,14 @@ class KeycloakSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(it -> it
                 .requestMatchers("/unsecure/*").permitAll()
-                .requestMatchers("/secure/*").hasAnyRole("custom_client_role", "custom_realm_role"))
-            .csrf().disable();
+                .requestMatchers("/secure/*").hasAnyRole("admin", "custom_realm_role"))
+            .csrf(AbstractHttpConfigurer::disable);
 
-        http.oauth2Login()
-            .and()
-            .logout()
-            .logoutSuccessUrl("/");
-        http.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+        http.oauth2Login(withDefaults())
+            .logout(logout -> logout.logoutSuccessUrl("/"));
+        http.oauth2ResourceServer(oauth -> oauth
+            .jwt(jwtConfigurer -> jwtConfigurer.jwtAuthenticationConverter(jwtAuthenticationConverter(keycloakGrantedAuthoritiesConverter)))
+        );
 
         return http.build();
     }

@@ -22,7 +22,7 @@
         <maven.min.version>3.2.1</maven.min.version>
         <java.version>17</java.version>
 
-        <flyway-core.version>9.21.1</flyway-core.version>
+        <flyway-core.version>9.21.2</flyway-core.version>
 
         <!-- testing -->
         <!-- override spring boot version -->

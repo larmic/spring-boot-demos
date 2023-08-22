@@ -23,7 +23,7 @@
         <java.version>17</java.version>
         <kotlin.version>1.9.0</kotlin.version>
 
-        <flyway-core.version>9.21.1</flyway-core.version>
+        <flyway-core.version>9.21.2</flyway-core.version>
 
         <!-- testing -->
         <!-- override spring boot version -->

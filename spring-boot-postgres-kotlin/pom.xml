@@ -21,7 +21,7 @@
 
         <maven.min.version>3.2.1</maven.min.version>
         <java.version>17</java.version>
-        <kotlin.version>1.9.0</kotlin.version>
+        <kotlin.version>1.9.10</kotlin.version>
 
         <flyway-core.version>9.21.2</flyway-core.version>
 

@@ -31,6 +31,6 @@ abstract class AbstractDatabaseTest {
     companion object {
         @Container
         @ServiceConnection
-        val postgres = PostgreSQLContainer("postgres:15.3")
+        val postgres = PostgreSQLContainer("postgres:16.0-alpine")
     }
 }

@@ -1,21 +1,19 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:base"
+        "config:recommended"
     ],
+    "dependencyDashboardTitle": "Dependency Dashboard",
+    "dependencyDashboardAutoclose": true,
+    "dependencyDashboardLabels": ["documentation"],
     "prConcurrentLimit": 3,
     "prHourlyLimit": 2,
-    "assignees": [
-        "larmic"
-    ],
+    "assignees": ["larmic"],
+    "labels": ["update"],
     "packageRules": [
         {
-            "matchUpdateTypes": [
-                "minor",
-                "patch",
-                "pin",
-                "digest"
-            ],
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+            "automergeType": "branch",
             "automerge": true
         }
     ]

@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.3</version>
+        <version>3.1.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.larmic</groupId>
@@ -15,7 +15,7 @@
     <description>spring-boot-mongodb</description>
     <properties>
         <java.version>17</java.version>
-        <testcontainers.version>1.19.0</testcontainers.version>
+        <testcontainers.version>1.19.1</testcontainers.version>
         <junit-jupiter.version>5.10.0</junit-jupiter.version>
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     </properties>

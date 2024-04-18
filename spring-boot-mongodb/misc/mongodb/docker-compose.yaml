@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongodb_container:
-    image: mongo:7.0.3
+    image: mongo:7.0.8
     environment:
       MONGO_INITDB_DATABASE: db
       MONGO_INITDB_ROOT_USERNAME: root

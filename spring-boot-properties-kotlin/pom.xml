@@ -24,7 +24,7 @@
         <kotlin.version>1.9.25</kotlin.version>
 
         <!-- testing -->
-        <junit-jupiter.version>5.10.3</junit-jupiter.version>
+        <junit-jupiter.version>5.11.2</junit-jupiter.version>
         <maven-surefire-plugin.version>3.3.1</maven-surefire-plugin.version>
     </properties>
 

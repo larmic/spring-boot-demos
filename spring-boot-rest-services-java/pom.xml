@@ -24,7 +24,7 @@
 
         <!-- testing -->
         <junit-jupiter.version>5.11.2</junit-jupiter.version>
-        <maven-surefire-plugin.version>3.3.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
 	</properties>
 
 	<dependencies>

@@ -23,7 +23,7 @@
 		<java.version>17</java.version>
 
         <!-- testing -->
-        <junit-jupiter.version>5.11.2</junit-jupiter.version>
+        <junit-jupiter.version>5.11.4</junit-jupiter.version>
         <testcontainers.version>1.17.2</testcontainers.version>
         <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
 	</properties>

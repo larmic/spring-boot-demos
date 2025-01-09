@@ -25,7 +25,7 @@
 
         <!-- docker (used by build docker in maven phase -->
         <dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
-        <jib-maven-plugin.version>3.4.3</jib-maven-plugin.version>
+        <jib-maven-plugin.version>3.4.4</jib-maven-plugin.version>
     </properties>
 
     <dependencies>

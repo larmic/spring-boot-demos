@@ -6,7 +6,7 @@ volumes:
 
 services:
     rabbit:
-        image: rabbitmq:3-management
+        image: rabbitmq:4-management
         container_name: larmic-spring-boot-rabbit-container
         environment:
             RABBITMQ_DEFAULT_USER: LARMIC_LOCAL_RABBIT_USER

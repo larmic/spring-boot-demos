@@ -30,7 +30,7 @@
 
         <!-- testing -->
         <junit-jupiter.version>6.0.3</junit-jupiter.version>
-        <testcontainers.version>1.20.5</testcontainers.version>
+        <testcontainers.version>1.21.4</testcontainers.version>
         <kotlinx-coroutines-core.version>1.10.2</kotlinx-coroutines-core.version>
         <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
     </properties>
